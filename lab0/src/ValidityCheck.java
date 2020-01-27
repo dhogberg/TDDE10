@@ -2,7 +2,8 @@
  * 
  */
 /**
- * @author johka716
+ * @author jkampe96
+ * @author dhogberg
  *
  */
 public class ValidityCheck {
