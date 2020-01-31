@@ -31,22 +31,22 @@ public class ValidityCheck {
     	if (isCorrectLength(number, correctlength)) {
     	
     		// Variabel som används för att summera ihop alla uträknade siffror
-    		Integer temp_int_sum = 0;
+    		Integer sum = 0;
     		
     		// Loopa 10 gånger, 0..9
     		for (int i = 0; i < 10; i++) {
     			// Om jämnt tal på loopen, kör nummertransformation, annars gör ingenting
     		    if(((i + 2) % 2) == 0){
     		    	// Addera det transformerade numret till vår temporära variabel
-    		    	temp_int_sum = temp_int_sum + transformNumber( number.charAt(i) );
+    		    	sum = sum + transformNumber( number.charAt(i) );
     		    }else{
     		    	// Addera numret som det är till vår temporära variabel
-    		    	temp_int_sum = temp_int_sum + number.charAt(i);
+    		    	sum = sum + number.charAt(i);
     		    }
     		}
 
     		// Om numret är jämnt delbart med 10 (Resten == 0) så är det giltigt, annars ej giltigt
-    		if((temp_int_sum % 10) == 0){
+    		if((sum % 10) == 0){
     			System.out.println("Giltigt nummer.");
     		}else{
     			System.out.println("Ej ett giltigt nummer.");
