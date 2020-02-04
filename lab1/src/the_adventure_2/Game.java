@@ -1,4 +1,5 @@
 import java.util.*;
+import location.*;
 
 public class Game {
     private Scanner keyboard; 
