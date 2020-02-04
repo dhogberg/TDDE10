@@ -1,0 +1,2 @@
+module add prog/eclipse
+eclipse -data /home/johka716/TDDE10/lab1 > /dev/null 2>&1 &
