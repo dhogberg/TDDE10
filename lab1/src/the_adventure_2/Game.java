@@ -28,5 +28,4 @@ public class Game {
 	    player.doCommand(command);
 	}	    
     }
-    
 }
