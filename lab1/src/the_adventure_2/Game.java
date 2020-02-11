@@ -1,32 +1,125 @@
 import java.util.*;
 import location.*;
+import java.util.HashMap;
+
 
 public class Game {
     private Scanner keyboard; 
     private ArrayList<Location> locations;
     private Player player;
+    public Coords currPos;
+    HashMap<Coords, Location> locationMap = new HashMap<Coords, Location>();
+    
+    /*
+    locationMap[-2][1];
+    
+    if exists ( locationMap[x][y] ) {
+    	
+    }else
+    	invalidLocationsMap[x][y];
+    };
+    
+    locationMap = {
+		
+		"-2":{
+		    "0":{
+				
+			},
+			
+			"1": {
+				locations[5]
+			}
+		},
+		
+		"-1":{
+			
+		},
+		
+		"0": {
+			
+		},
+			
+		"1": {
+			
+		}
+    }
+
+	invalidLocationsMap = {
+		
+		"-2":{
+		    "2":{
+				displayInvalidPath(-2,2,currentPosition);
+			}
+		},
+		...
+	}
+	*/
+    
+    
     
     public Game() {
 	    keyboard = new Scanner(System.in);
 	    locations = new ArrayList<>();
-	    locations.add(new Location("Starting location"));
+	    buildLocations(); // Adds all locations to ArrayList "locations"
+	    buildLocationMap();
+	    currPos = new Coords(-2, 1);
+	    
+	   
+	    // TEST // TEST // TEST // TEST // TEST // TEST // TEST //
+	    // TEST // TEST // TEST // TEST // TEST // TEST // TEST //
+	    
+	    
+	    this.locationMap.get(currPos).describeYourself();
+	    
+	    
+	    /*
+	    for (Coords i : currPos.keySet()) {
+    		i.printCoordsOnScreen();
+    		
+    		i.setX(8);
+    		i.setY(7);
+    		
+    		i.printCoordsOnScreen();
+    	}
+    	*/
+    }
+    
+    private void buildLocations() {
+    	/* 0 */ locations.add(new OutdoorsArea("Stora Torget", " You wake up outdoor with an brutal headache and no memory of the night before. Confused you check your surroundings. To the left of you stands a large fountain. You quickly realize that you are at Stora Torget, Linköpings mighty square."));
+    	/* 1 */ locations.add(new OutdoorsArea("Outside Platens", "Long text outside Platens"));
+    	/* 2 */ locations.add(new OutdoorsArea("Trädgårdstorget", "Long text Trädgårdstorget"));
+    	/* 3 */ locations.add(new Room("Galleria Filbyter floor 1", "Long text Galleria Filbyter floor 1"));
+    	/* 4 */ locations.add(new Room("Galleria Filbyter floor -1", "Long text Galleria Filbyter floor -1"));
+    	/* 5 */ locations.add(new Room("Hemköp Lucullus", " Long text Hemköp Lucullus"));
+    	/* 6 */ locations.add(new Room("Platens Bar", "Long text Platens Bar"));
+    }
+    
+    private void buildLocationMap() {
+    	locationMap.put(new Coords(  0,   0 ), locations.get(0));
+    	locationMap.put(new Coords(  0,   1 ), locations.get(1));
+    	locationMap.put(new Coords(  0,  -1 ), locations.get(2));
+    	locationMap.put(new Coords( -1,   0 ), locations.get(3));
+    	locationMap.put(new Coords( -2,   0 ), locations.get(4));
+    	locationMap.put(currPos/*new Coords( -2,   1 )*/, locations.get(5));
+    	locationMap.put(new Coords(  1,   1 ), locations.get(6));
     }
 
     public void run() {
-	String name;
+    	String name; // Holds player name
 	    
-        System.out.println("Welcome to the adventure game!\nWhat is your name?");
-	name = keyboard.nextLine();
-	player = new Player(name, locations.get(0));
-	System.out.println("Hello " + name + ", welcome to this magical world of wonder! You can move around by typing north/south/west/east. You will have to learn more commands as you play the game! (Hint: there is a command \"help\").");
+        System.out.println("Welcome to the adventure 2!\nWhat is your name?");
+        name = keyboard.nextLine(); // Takes in name from player
+        
+        player = new Player(name, locations.get(0));
+        System.out.println("Hello " + name + ", welcome to this magical world of wonder! You can move around by typing north/south/west/east. You will have to learn more commands as you play the game! (Hint: there is a command \"help\").");
 	
-	while (true) {
-            String command;
-	    
-	    player.getLocation().describeYourself();
-	    System.out.println("What do you want to do?");
-	    command = keyboard.nextLine();
-	    player.doCommand(command);
-	}	    
+		while (true) {
+	            String command;
+		    
+		    player.getLocation().describeYourself();
+		    System.out.println("What do you want to do?");
+		    command = keyboard.nextLine();
+		    player.doCommand(command); // Returns an int=1 normally, but can be used to end game, etc...
+		}
     }
 }
