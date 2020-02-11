@@ -24,15 +24,8 @@ public class Player {
 		this.position = newLocation;
 	}
 	
-	
-	//  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
-	//  //  //  //  //  //  //  //  //  //  //  //  //  //  C O M M A N D S //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
-	//  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
 	public int doCommand(String command) {
 		switch(command) {
-			case "help": case "h": case "?":
-				displayAvailableCommands(currentXY);
-				break;
 			case "north": case "n":
 			case "west": case "w":
 			case "south": case "s":
@@ -49,17 +42,8 @@ public class Player {
 		
 		return 1;
 	}
-	//  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
-	//  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
-	//  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
 	
-	
-	private void displayAvailableCommands(String inputXY) {
-		System.out.print(
-				"Available commands:\n" +
-				"look" + " - " + "Shows where you can go\n\n"
-		);
-	}
+	//attemptToMove_NORTH(currentPlayerXY);
 	
 	
 	private void attemptToMove (String inputXY, String direction) {
@@ -97,9 +81,8 @@ public class Player {
 		
 		if( this.game.locationMap.containsKey(new_XY_String) ) {
 			currentXY = newx + "," + newy;
-			changeLocation(this.game.locationMap.get(new_XY_String));
+			this.position = this.game.locationMap.get(new_XY_String);
 			System.out.printf("You went %s.\n", direction);
-			this.getLocation().describeYourself();
 		}else {
 			System.out.println("That way is blocked.");
 		}

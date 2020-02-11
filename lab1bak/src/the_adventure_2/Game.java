@@ -7,13 +7,25 @@ public class Game {
     private Scanner keyboard; 
     private ArrayList<Location> locations;
     private Player player;
+    
     HashMap<String, Location> locationMap = new HashMap<String, Location>();
+    
     
     public Game() {
 	    keyboard = new Scanner(System.in);
 	    locations = new ArrayList<>();
+	    
+	    // must be added before locationMap is built! 
+	    
 	    buildLocations(); // Adds all locations to ArrayList "locations"
 	    buildLocationMap(); // Builds locationMap, is dependent on currPos
+	    
+	   
+	    // TEST // TEST // TEST // TEST // TEST // TEST // TEST //
+	    // TEST // TEST // TEST // TEST // TEST // TEST // TEST //
+	    
+	    //System.out.println("X=" + Location.getx_from_String("-5,7") + ", Y=" + Location.gety_from_String("-5,7") + "");
+	    
     }
     
     private void buildLocations() {
@@ -24,7 +36,6 @@ public class Game {
     	/* 4 */ locations.add(new Room("Galleria Filbyter floor -1", "Long text Galleria Filbyter floor -1"));
     	/* 5 */ locations.add(new Room("Hemköp Lucullus", " Long text Hemköp Lucullus"));
     	/* 6 */ locations.add(new Room("Platens Bar", "Long text Platens Bar"));
-    		
     }
     
     private void buildLocationMap() {
@@ -38,17 +49,18 @@ public class Game {
     }
 
     public void run() {
-    	String name = "Davveboi & Kämpe"; // Holds player name
-        // System.out.println("Welcome to the adventure 2!\nWhat is your name?");
-        // name = keyboard.nextLine(); // Takes in name from player
+    	String name; // = "Davveboi & Kämpe"; // Holds player name
+        System.out.println("Welcome to the adventure 2!\nWhat is your name?");
+        name = keyboard.nextLine(); // Takes in name from player
+        
         player = new Player(name, locations.get(0), this);
         System.out.println("Hello " + name + ", welcome to this magical world of wonder! You can move around by typing north/south/west/east. You will have to learn more commands as you play the game! (Hint: there is a command \"help\").");
-
+	
 		while (true) {
-	        String command;
-		    System.out.println("\nWhat do you want to do?");
+	            String command;
+		    player.getLocation().describeYourself();
+		    System.out.println("What do you want to do?");
 		    command = keyboard.nextLine();
-		    System.out.print("\n");
 		    player.doCommand(command); // Returns an int=1 normally, but can be used to end game, etc...
 		}
     }
