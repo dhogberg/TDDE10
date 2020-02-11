@@ -2,7 +2,7 @@ package location;
 
 import java.util.ArrayList;
 
-import jdk.javadoc.internal.doclets.toolkit.taglets.ReturnTaglet;
+// import jdk.javadoc.internal.doclets.toolkit.taglets.ReturnTaglet;
 
 public class Location {
 	private String shortDesc;
@@ -26,6 +26,24 @@ public class Location {
 	}
 	//////////////////////////////////////
 
+	
+	
+	public String convert_xy_to_String(int x, int y) {
+		return x + "," + y;
+	}
+	
+	public static int getx_from_String(String xy) {
+		return Integer.valueOf( xy.substring( 0, xy.indexOf(",")) );
+	}
+	public static int gety_from_String(String xy) {
+		return Integer.valueOf( xy.substring(xy.indexOf(",")+1, xy.length()) );
+	}
+    
+    //String kept = str.substring( 0, str.indexOf(","));
+    //String remainder = str.substring(str.indexOf(",")+1, str.length());
+	
+	
+	
 	/*
 	public ArrayList<Location> getLocations() {
 		return this.locations;

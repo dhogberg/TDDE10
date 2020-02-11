@@ -1,15 +1,16 @@
-import location.Coords;
 import location.Location;
 
 public class Player {
 	// SKRIV OM! /////////////////////////
 	private Location position;
 	private String name;
+	public String currentXY;
 	/////////////////////////////////
 
 	
 	public Player(String name, Location startLocation) {
 		this.position = startLocation;
+		currentXY = "0,0";
 
 	}
 
@@ -27,7 +28,7 @@ public class Player {
 		
 			case "north":
 				System.out.println("You went NORTH");
-				this.position = this.position.attemptToMove_NORTH(this.position);
+				this.position = attemptToMove_NORTH();
 				
 				break;
 			case "west":
@@ -51,13 +52,17 @@ public class Player {
 		return 1;
 	}
 	
-	//attemptToMove_NORTH(currentPlayerCords);
+	//attemptToMove_NORTH(currentPlayerXY);
 	
 	
-	private Location attemptToMove_NORTH (Location inputLocation) {
-		inputLocation  = locations.get(1);
+	private Location attemptToMove_NORTH (String inputXY) {
+		private int x;
+		private int y;
 		
-		// return locations.get(1);
+		System.out.println(this.position.convert_xy_to_String(2,7));
+		// System.out.println("attemptToMove_NORTH ran!");
+		
+		// return locationMap.get(inputLocation);
 	}
 	
 	

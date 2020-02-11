@@ -7,81 +7,26 @@ public class Game {
     private Scanner keyboard; 
     private ArrayList<Location> locations;
     private Player player;
-    public Coords currPos;
-    HashMap<Coords, Location> locationMap = new HashMap<Coords, Location>();
     
-    /*
-    locationMap[-2][1];
     
-    if exists ( locationMap[x][y] ) {
-    	
-    }else
-    	invalidLocationsMap[x][y];
-    };
-    
-    locationMap = {
-		
-		"-2":{
-		    "0":{
-				
-			},
-			
-			"1": {
-				locations[5]
-			}
-		},
-		
-		"-1":{
-			
-		},
-		
-		"0": {
-			
-		},
-			
-		"1": {
-			
-		}
-    }
-
-	invalidLocationsMap = {
-		
-		"-2":{
-		    "2":{
-				displayInvalidPath(-2,2,currentPosition);
-			}
-		},
-		...
-	}
-	*/
-    
+    HashMap<String, Location> locationMap = new HashMap<String, Location>();
     
     
     public Game() {
 	    keyboard = new Scanner(System.in);
 	    locations = new ArrayList<>();
+	    
+	    // must be added before locationMap is built! 
+	    
 	    buildLocations(); // Adds all locations to ArrayList "locations"
-	    buildLocationMap();
-	    currPos = new Coords(-2, 1);
+	    buildLocationMap(); // Builds locationMap, is dependent on currPos
 	    
 	   
 	    // TEST // TEST // TEST // TEST // TEST // TEST // TEST //
 	    // TEST // TEST // TEST // TEST // TEST // TEST // TEST //
 	    
+	    System.out.println("X=" + Location.getx_from_String("-5,7") + ", Y=" + Location.gety_from_String("-5,7") + "");
 	    
-	    this.locationMap.get(currPos).describeYourself();
-	    
-	    
-	    /*
-	    for (Coords i : currPos.keySet()) {
-    		i.printCoordsOnScreen();
-    		
-    		i.setX(8);
-    		i.setY(7);
-    		
-    		i.printCoordsOnScreen();
-    	}
-    	*/
     }
     
     private void buildLocations() {
@@ -92,26 +37,26 @@ public class Game {
     	/* 4 */ locations.add(new Room("Galleria Filbyter floor -1", "Long text Galleria Filbyter floor -1"));
     	/* 5 */ locations.add(new Room("Hemköp Lucullus", " Long text Hemköp Lucullus"));
     	/* 6 */ locations.add(new Room("Platens Bar", "Long text Platens Bar"));
+    		
     }
     
     private void buildLocationMap() {
-    	locationMap.put(new Coords(  0,   0 ), locations.get(0));
-    	locationMap.put(new Coords(  0,   1 ), locations.get(1));
-    	locationMap.put(new Coords(  0,  -1 ), locations.get(2));
-    	locationMap.put(new Coords( -1,   0 ), locations.get(3));
-    	locationMap.put(new Coords( -2,   0 ), locations.get(4));
-    	locationMap.put(currPos/*new Coords( -2,   1 )*/, locations.get(5));
-    	locationMap.put(new Coords(  1,   1 ), locations.get(6));
+    	locationMap.put( (" 0" + "," + " 0") , locations.get(0));
+    	locationMap.put( (" 0" + "," + " 1") , locations.get(1));
+    	locationMap.put( (" 0" + "," + "-1") , locations.get(2));
+    	locationMap.put( ("-1" + "," + " 0") , locations.get(3));
+    	locationMap.put( ("-2" + "," + " 0") , locations.get(4));
+    	locationMap.put( ("-2" + "," + " 1") , locations.get(5));
+    	locationMap.put( (" 1" + "," + " 1") , locations.get(6));
     }
 
     public void run() {
-    	String name; // Holds player name
-	    
-        System.out.println("Welcome to the adventure 2!\nWhat is your name?");
-        name = keyboard.nextLine(); // Takes in name from player
+    	String name = "Davveboi & Kämpe"; // Holds player name
+        //System.out.println("Welcome to the adventure 2!\nWhat is your name?");
+        // name = keyboard.nextLine(); // Takes in name from player
         
         player = new Player(name, locations.get(0));
-        System.out.println("Hello " + name + ", welcome to this magical world of wonder! You can move around by typing north/south/west/east. You will have to learn more commands as you play the game! (Hint: there is a command \"help\").");
+        //System.out.println("Hello " + name + ", welcome to this magical world of wonder! You can move around by typing north/south/west/east. You will have to learn more commands as you play the game! (Hint: there is a command \"help\").");
 	
 		while (true) {
 	            String command;
