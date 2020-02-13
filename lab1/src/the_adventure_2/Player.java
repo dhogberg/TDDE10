@@ -20,7 +20,7 @@ public class Player {
 		return this.position;
 	}
 	
-	public void changeLocation(Location newLocation) {
+	protected void changeLocation(Location newLocation) {
 		this.position = newLocation;
 	}
 	

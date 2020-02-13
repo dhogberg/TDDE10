@@ -1,6 +1,6 @@
 package location;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 // import jdk.javadoc.internal.doclets.toolkit.taglets.ReturnTaglet;
 
@@ -16,15 +16,25 @@ public class Location {
 	
 	// SKRIV OM! /////////////////////////
 	public void describeYourself() {
+		
 		if(!this.visitedBefore) {
 			this.visitedBefore = true;
-			System.out.println("println(this.longDesc): " + this.longDesc);
-			
+			System.out.print(this.longDesc);
 		}else {
-			System.out.println("println(this.shortDesc): " + this.shortDesc);
+			System.out.print(this.shortDesc + ".");
 		}
+		
+		// Print weather if we are outside
+		if (this instanceof OutdoorsArea) {
+			this.printWeather();
+		}
+		
 	}
 	//////////////////////////////////////
+	
+	public void printWeather() {
+		// Function is defined inside OutdoorsArea class! 
+	}
 
 	
 	

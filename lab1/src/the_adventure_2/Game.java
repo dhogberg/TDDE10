@@ -7,6 +7,7 @@ public class Game {
     private Scanner keyboard; 
     private ArrayList<Location> locations;
     private Player player;
+    public int weatherCount;
     HashMap<String, Location> locationMap = new HashMap<String, Location>();
     
     public Game() {
@@ -14,10 +15,15 @@ public class Game {
 	    locations = new ArrayList<>();
 	    buildLocations(); // Adds all locations to ArrayList "locations"
 	    buildLocationMap(); // Builds locationMap, is dependent on currPos
+	    weatherCount = 0;
+    }
+    
+    public int getWeatherCount() {
+    	return this.weatherCount;
     }
     
     private void buildLocations() {
-    	/* 0 */ locations.add(new OutdoorsArea("Stora Torget", " You wake up outdoor with an brutal headache and no memory of the night before. Confused you check your surroundings. To the left of you stands a large fountain. You quickly realize that you are at Stora Torget, Linköpings mighty square."));
+    	/* 0 */ locations.add(new OutdoorsArea("Stora Torget", "You wake up outdoor with an brutal headache and no memory of the night before. Confused you check your surroundings. To the left of you stands a large fountain. You quickly realize that you are at Stora Torget, Linköpings mighty square."));
     	/* 1 */ locations.add(new OutdoorsArea("Outside Platens", "Long text outside Platens"));
     	/* 2 */ locations.add(new OutdoorsArea("Trädgårdstorget", "Long text Trädgårdstorget"));
     	/* 3 */ locations.add(new Room("Galleria Filbyter floor 1", "Long text Galleria Filbyter floor 1"));
@@ -42,8 +48,9 @@ public class Game {
         // System.out.println("Welcome to the adventure 2!\nWhat is your name?");
         // name = keyboard.nextLine(); // Takes in name from player
         player = new Player(name, locations.get(0), this);
-        System.out.println("Hello " + name + ", welcome to this magical world of wonder! You can move around by typing north/south/west/east. You will have to learn more commands as you play the game! (Hint: there is a command \"help\").");
-
+        System.out.println("Hello " + name + ", welcome to this magical world of wonder! You can move around by typing north/south/west/east. You will have to learn more commands as you play the game! (Hint: there is a command \"help\").\n");
+        player.getLocation().describeYourself();
+        
 		while (true) {
 	        String command;
 		    System.out.println("\nWhat do you want to do?");
