@@ -10,6 +10,17 @@ public class Location {
 		this.longDesc = longDescription;
 	}
 	
+
+	
+	// TEST // TEST // TEST // TEST // TEST // TEST //
+	public boolean locationCommand(String command) {
+		return true;
+	}
+	// TEST // TEST // TEST // TEST // TEST // TEST //
+	
+	
+	
+	
 	public void describeYourself() {
 		
 		if(!this.visitedBefore) {

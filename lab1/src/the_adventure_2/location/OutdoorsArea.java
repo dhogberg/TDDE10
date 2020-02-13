@@ -3,6 +3,17 @@ import java.util.Random;
 
 public class OutdoorsArea extends Location {
 	
+	
+	
+	
+	// TEST // TEST // TEST // TEST // TEST // TEST // 
+	@Override
+	public boolean locationCommand(String command) {
+		return true;
+	}
+	// TEST // TEST // TEST // TEST // TEST // TEST //
+	
+	
 	public OutdoorsArea(String shortDescription, String longDescription) {
 		// Kolla upp vad super betyder! Skriv eventuellt om VVVV
 		super(shortDescription, longDescription);
@@ -26,8 +37,12 @@ public class OutdoorsArea extends Location {
 	}
 	
 	public void printWeather() {
-		
 		System.out.printf(" " + "The weather is %s.\n", randWeather());
+	}
+	
+	@Override
+	public void describeYourself() {
+		super.describeYourself();
 	}
 	
 }

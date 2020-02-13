@@ -28,7 +28,7 @@ public class Player {
 	//  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
 	//  //  //  //  //  //  //  //  //  //  //  //  //  //  C O M M A N D S //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
 	//  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
-	public int doCommand(String command) {
+	private boolean playerCommand(String command) {
 		switch(command) {
 			case "help": case "h": case "?":
 				displayAvailableCommands(currentXY);
@@ -42,12 +42,23 @@ public class Player {
 			case "look":
 				System.out.println("You wanted to run command LOOK, not implemented yet :)");
 				break;
+			
 			//  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
 			default:
+				return false;
+				
+		}
+		return true;
+	}
+	
+	public int doCommand(String command) {
+		
+		if(!playerCommand(command)) {
+			if(!locationCommand(command)) {
 				System.out.println("Command not found, type 'help' or ? for available commands.");
+			}
 		}
 		
-		return 1;
 	}
 	//  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
 	//  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
