@@ -7,10 +7,10 @@ public class OutdoorsArea extends Location {
 	
 	
 	// TEST // TEST // TEST // TEST // TEST // TEST // 
-	@Override
-	public boolean locationCommand(String command) {
-		return true;
-	}
+	//@Override
+	//public boolean locationCommand(String command) {
+	//	return true;
+	//}
 	// TEST // TEST // TEST // TEST // TEST // TEST //
 	
 	

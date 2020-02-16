@@ -1,11 +1,18 @@
 import location.Location;
 
+import java.util.ArrayList;
+
+import items.Item;
+
 public class Player {
 	// SKRIV OM! /////////////////////////
 	private Location position;
+	private int appearance = 4;
+	private Item items;
 	private String name;
 	public String currentXY;
 	private Game game;
+	private ArrayList<Item> playeritems = new ArrayList<Item>();
 	/////////////////////////////////
 
 	
@@ -33,7 +40,7 @@ public class Player {
 			case "help": case "h": case "?":
 				displayAvailableCommands(currentXY);
 				break;
-			case "north": case "n":
+			case "north_no": case "n_no":
 			case "west": case "w":
 			case "south": case "s":
 			case "east": case "e":
@@ -42,22 +49,32 @@ public class Player {
 			case "look":
 				System.out.println("You wanted to run command LOOK, not implemented yet :)");
 				break;
-			
+			case "appearance":
+				appearance();
+				break;		
 			//  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
 			default:
 				return false;
 				
 		}
+		
 		return true;
+	}
+	
+	private void appearance() {
+		System.out.println("Your appearance is: " + this.appearance);
 	}
 	
 	public int doCommand(String command) {
 		
 		if(!playerCommand(command)) {
-			if(!locationCommand(command)) {
-				System.out.println("Command not found, type 'help' or ? for available commands.");
+			if(!this.position.locationCommand(command)) {
+				//if(!.locationCommand(command)) {
+					System.out.println("Command not found, type 'help' or ? for available commands.");
+				//}
 			}
 		}
+		return 1; // TRUE
 		
 	}
 	//  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //

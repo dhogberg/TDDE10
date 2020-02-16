@@ -14,6 +14,17 @@ public class Location {
 	
 	// TEST // TEST // TEST // TEST // TEST // TEST //
 	public boolean locationCommand(String command) {
+		switch(command) {
+			case "north": case "n":
+				//attemptToMove(currentXY, command);
+				System.out.println("Works!°!!#!#!");
+				break;
+		//  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
+		default:
+			System.out.println("NO WORKS NOT :( !°!!#!#!");
+			return false;
+				
+		}
 		return true;
 	}
 	// TEST // TEST // TEST // TEST // TEST // TEST //
