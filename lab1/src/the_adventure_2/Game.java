@@ -2,6 +2,7 @@ package the_adventure_2;
 
 import java.util.*;
 import location.*;
+import items.*;
 import java.util.HashMap;
 
 
@@ -16,6 +17,7 @@ public class Game {
 	    keyboard = new Scanner(System.in);
 	    locations = new ArrayList<>();
 	    buildLocations(); // Adds all locations to ArrayList "locations"
+	    addItemsToLocations(); // Adds items to locations 
 	    buildLocationMap(); // Builds locationMap, is dependent on currPos
 	    weatherCount = 0;
     }
@@ -25,14 +27,23 @@ public class Game {
     }
     
     private void buildLocations() {
-    	/* 0 */ locations.add(new OutdoorsArea("Stora Torget", "You wake up outdoor with an brutal headache and no memory of the night before. Confused you check your surroundings. To the left of you stands a large fountain. You quickly realize that you are at Stora Torget, Linköpings mighty square."));
-    	/* 1 */ locations.add(new OutdoorsArea("Outside Platens", "Long text outside Platens"));
-    	/* 2 */ locations.add(new OutdoorsArea("Trädgårdstorget", "Long text Trädgårdstorget"));
-    	/* 3 */ locations.add(new Room("Galleria Filbyter floor 1", "Long text Galleria Filbyter floor 1"));
-    	/* 4 */ locations.add(new Room("Galleria Filbyter floor -1", "Long text Galleria Filbyter floor -1"));
-    	/* 5 */ locations.add(new Room("Hemköp Lucullus", " Long text Hemköp Lucullus"));
-    	/* 6 */ locations.add(new Room("Platens Bar", "Long text Platens Bar"));
-    		
+    	/* 0 */ locations.add(new OutdoorsArea("Stora Torget", "You wake up outdoor with an brutal headache and no memory of the night before. Confused you check your surroundings. To the left of you stands a large fountain. You quickly realize that you are at Stora Torget, Linköpings mighty square.", this.player));
+    	/* 1 */ locations.add(new OutdoorsArea("Outside Platens", "Long text outside Platens", this.player));
+    	/* 2 */ locations.add(new OutdoorsArea("Trädgårdstorget", "Long text Trädgårdstorget", this.player));
+    	/* 3 */ locations.add(new Room("Galleria Filbyter floor 1", "Long text Galleria Filbyter floor 1", this.player));
+    	/* 4 */ locations.add(new Room("Galleria Filbyter floor -1", "Long text Galleria Filbyter floor -1", this.player));
+    	/* 5 */ locations.add(new Room("Hemköp Lucullus", " Long text Hemköp Lucullus", this.player));
+    	/* 6 */ locations.add(new Room("Platens Bar", "Long text Platens Bar", this.player));
+    }
+    
+    private void addItemsToLocations() {
+    	//locations.get(0).addItem
+    	//locations.get(1).addItem();
+    	//locations.get(2).addItem();
+    	locations.get(3).addItem(new Flashlight(this.player));
+    	//locations.get(4).addItem();
+    	//locations.get(5).addItem();
+    	//locations.get(6).addItem();
     }
     
     private void buildLocationMap() {

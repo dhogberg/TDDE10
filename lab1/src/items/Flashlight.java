@@ -2,20 +2,19 @@ package items;
 
 import the_adventure_2.Player;
 
-public class Item {
-	private double weight;
-	private Player player;
-	public String name;
-	
-	public Item(Player player) {
-		this.player = player;
+public class Flashlight extends Item{
+
+	public Flashlight(Player player) {
+		super(player);
+		this.name = "flashlight";
 		// TODO Auto-generated constructor stub
 	}
 	
+	@Override
 	public boolean itemCommand(String command) {
 		switch(command) {
-			case "item":
-				System.out.println("Itemcommand runs!!! WOOO :)");
+			case "flashlight":
+				System.out.println("You have a flashlight! :)");
 				break;
 		//  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
 		default:
@@ -23,4 +22,5 @@ public class Item {
 		}
 		return true;
 	}
+
 }

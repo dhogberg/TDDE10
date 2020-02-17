@@ -1,22 +1,18 @@
 package location;
 import java.util.Random;
 
+import the_adventure_2.Player;
+
 public class OutdoorsArea extends Location {
 	
-	
-	
-	
-	// TEST // TEST // TEST // TEST // TEST // TEST // 
-	//@Override
-	//public boolean locationCommand(String command) {
-	//	return true;
-	//}
-	// TEST // TEST // TEST // TEST // TEST // TEST //
-	
-	
-	public OutdoorsArea(String shortDescription, String longDescription) {
+	public OutdoorsArea(String shortDescription, String longDescription, Player player) {
 		// Kolla upp vad super betyder! Skriv eventuellt om VVVV
-		super(shortDescription, longDescription);
+		super(shortDescription, longDescription, player);
+	}
+	
+	@Override
+	public void displayAvailablePaths(){
+		System.out.println("You are outdoor, there is a road leading bla bla bla");
 	}
 	
 	private String randWeather() {

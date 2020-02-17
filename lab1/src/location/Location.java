@@ -1,37 +1,54 @@
 package location;
 
+import java.util.ArrayList;
+import the_adventure_2.Player;
+
+import items.*;
 import location.OutdoorsArea;
+import location.Room;
 
 public class Location {
 	private String shortDesc;
 	private String longDesc;
 	private boolean visitedBefore = false;
+	private ArrayList<Item> items_on_location = new ArrayList<Item>();
+	private Player player;
 	
-	public Location(String shortDescription, String longDescription) {
+	public Location(String shortDescription, String longDescription, Player player) {
 		this.shortDesc = shortDescription;
 		this.longDesc = longDescription;
+		this.player = player;
 	}
 	
-
+	public void addItem(Item item) {
+		this.items_on_location.add(item);
+	}
 	
-	// TEST // TEST // TEST // TEST // TEST // TEST //
+	public void displayAvailablePaths(){
+		System.out.println("Default, should never run!"); // TA BORT INNAN REDOVISNING
+	}
+	
+	public void display_items(){
+		System.out.println(this.player.position);
+		//for(Item item: player.getLocation().items_on_location) {
+		//	System.out.printf("There is a %s laying on the ground.", item.name);
+		//}
+	}
+	
+	
 	public boolean locationCommand(String command) {
 		switch(command) {
-			case "north": case "n":
-				//attemptToMove(currentXY, command);
-				System.out.println("Works!°!!#!#!");
+			case "look": case "ls":
+				displayAvailablePaths(); // Show available paths - @Override in Room.java and OutdoorsArea.java
+				display_items();
 				break;
 		//  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
 		default:
-			System.out.println("NO WORKS NOT :( !°!!#!#!");
 			return false;
 				
 		}
 		return true;
 	}
-	// TEST // TEST // TEST // TEST // TEST // TEST //
-	
-	
 	
 	
 	public void describeYourself() {

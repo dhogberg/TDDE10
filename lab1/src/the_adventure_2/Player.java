@@ -1,16 +1,16 @@
 package the_adventure_2;
 
-import location.Location;
-
 import java.util.ArrayList;
 
-import items.Item;
+import location.*;
+import items.*;
+
 
 public class Player {
 	// SKRIV OM! /////////////////////////
 	private Location position;
 	private int appearance = 4;
-	private Item items;
+	private Item item;
 	private String name;
 	public String currentXY;
 	private Game game;
@@ -22,6 +22,7 @@ public class Player {
 		this.position = startLocation;
 		currentXY = "0,0";
 		this.game = game;
+		this.playeritems.add(new Item(this));
 	}
 
 	// SKRIV OM! /////////////////////////
@@ -42,14 +43,11 @@ public class Player {
 			case "help": case "h": case "?":
 				displayAvailableCommands(currentXY);
 				break;
-			case "north_no": case "n_no":
+			case "north": case "n":
 			case "west": case "w":
 			case "south": case "s":
 			case "east": case "e":
 				attemptToMove(currentXY, command);
-				break;
-			case "look":
-				System.out.println("You wanted to run command LOOK, not implemented yet :)");
 				break;
 			case "appearance":
 				appearance();
@@ -67,13 +65,25 @@ public class Player {
 		System.out.println("Your appearance is: " + this.appearance);
 	}
 	
+	
+	public boolean try_itemCommands(String command){
+		for (Item item: this.playeritems) {
+			if(item.itemCommand(command)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	
+	
 	public int doCommand(String command) {
 		
 		if(!playerCommand(command)) {
 			if(!this.position.locationCommand(command)) {
-				//if(!.locationCommand(command)) {
+				if(!try_itemCommands(command)) {
 					System.out.println("Command not found, type 'help' or ? for available commands.");
-				//}
+				}
 			}
 		}
 		return 1; // TRUE
