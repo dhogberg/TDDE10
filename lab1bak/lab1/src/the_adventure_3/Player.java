@@ -1,4 +1,4 @@
-package the_adventure_2;
+package the_adventure_3;
 
 import location.Location;
 

@@ -1,5 +1,3 @@
-package the_adventure_2;
-
 import java.util.*;
 import location.*;
 import java.util.HashMap;

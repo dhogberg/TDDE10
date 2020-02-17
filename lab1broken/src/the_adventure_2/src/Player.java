@@ -1,5 +1,3 @@
-package the_adventure_2;
-
 import location.Location;
 
 import java.util.ArrayList;
