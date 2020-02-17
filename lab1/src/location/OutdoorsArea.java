@@ -5,9 +5,9 @@ import the_adventure_2.Player;
 
 public class OutdoorsArea extends Location {
 	
-	public OutdoorsArea(String shortDescription, String longDescription, Player player) {
+	public OutdoorsArea(String shortDescription, String longDescription) {
 		// Kolla upp vad super betyder! Skriv eventuellt om VVVV
-		super(shortDescription, longDescription, player);
+		super(shortDescription, longDescription);
 	}
 	
 	@Override

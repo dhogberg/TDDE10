@@ -1,22 +1,27 @@
 package location;
 
 import java.util.ArrayList;
+
 import the_adventure_2.Player;
 
 import items.*;
 import location.OutdoorsArea;
 import location.Room;
+import the_adventure_2.Game;
 
 public class Location {
 	private String shortDesc;
 	private String longDesc;
 	private boolean visitedBefore = false;
 	private ArrayList<Item> items_on_location = new ArrayList<Item>();
-	private Player player;
+	public Player player;
 	
-	public Location(String shortDescription, String longDescription, Player player) {
+	public Location(String shortDescription, String longDescription) {
 		this.shortDesc = shortDescription;
 		this.longDesc = longDescription;
+	}
+	
+	public void setPlayer(Player player) {
 		this.player = player;
 	}
 	
@@ -29,14 +34,26 @@ public class Location {
 	}
 	
 	public void display_items(){
-		System.out.println(this.player.position);
-		//for(Item item: player.getLocation().items_on_location) {
-		//	System.out.printf("There is a %s laying on the ground.", item.name);
-		//}
+		for(Item item: player.getLocation().items_on_location) {
+			System.out.printf("There is a %s laying on the ground.\n", item.name);
+		}
 	}
 	
 	
 	public boolean locationCommand(String command) {
+		
+		if (command.length() > 4) {
+			if(command.startsWith("take")) {
+				for (Item item: player.getLocation().items_on_location) {
+					if(command.substring(5).equals(item.name)) {
+						player.giveItem(item);
+						player.getLocation().items_on_location.remove(item);
+						return true;
+					}
+				}
+			}
+		}
+		
 		switch(command) {
 			case "look": case "ls":
 				displayAvailablePaths(); // Show available paths - @Override in Room.java and OutdoorsArea.java

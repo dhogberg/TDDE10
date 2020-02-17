@@ -9,38 +9,40 @@ import java.util.HashMap;
 public class Game {
     private Scanner keyboard; 
     private ArrayList<Location> locations;
-    private Player player;
-    public int weatherCount;
+    public Player player;
     HashMap<String, Location> locationMap = new HashMap<String, Location>();
     
     public Game() {
-	    keyboard = new Scanner(System.in);
+    	keyboard = new Scanner(System.in);
 	    locations = new ArrayList<>();
 	    buildLocations(); // Adds all locations to ArrayList "locations"
 	    addItemsToLocations(); // Adds items to locations 
 	    buildLocationMap(); // Builds locationMap, is dependent on currPos
-	    weatherCount = 0;
+	    player = new Player(locations.get(0), this);
+	    addPlayerToLocations(player);
     }
     
-    public int getWeatherCount() {
-    	return this.weatherCount;
+    private void addPlayerToLocations(Player player) {
+    	for(Location location: locations) {
+    		location.setPlayer(player);
+    	}
     }
     
     private void buildLocations() {
-    	/* 0 */ locations.add(new OutdoorsArea("Stora Torget", "You wake up outdoor with an brutal headache and no memory of the night before. Confused you check your surroundings. To the left of you stands a large fountain. You quickly realize that you are at Stora Torget, Linköpings mighty square.", this.player));
-    	/* 1 */ locations.add(new OutdoorsArea("Outside Platens", "Long text outside Platens", this.player));
-    	/* 2 */ locations.add(new OutdoorsArea("Trädgårdstorget", "Long text Trädgårdstorget", this.player));
-    	/* 3 */ locations.add(new Room("Galleria Filbyter floor 1", "Long text Galleria Filbyter floor 1", this.player));
-    	/* 4 */ locations.add(new Room("Galleria Filbyter floor -1", "Long text Galleria Filbyter floor -1", this.player));
-    	/* 5 */ locations.add(new Room("Hemköp Lucullus", " Long text Hemköp Lucullus", this.player));
-    	/* 6 */ locations.add(new Room("Platens Bar", "Long text Platens Bar", this.player));
+    	/* 0 */ locations.add(new OutdoorsArea("Stora Torget", "You wake up outdoor with an brutal headache and no memory of the night before. Confused you check your surroundings. To the left of you stands a large fountain. You quickly realize that you are at Stora Torget, Linköpings mighty square."));
+    	/* 1 */ locations.add(new OutdoorsArea("Outside Platens", "Long text outside Platens"));
+    	/* 2 */ locations.add(new OutdoorsArea("Trädgårdstorget", "Long text Trädgårdstorget"));
+    	/* 3 */ locations.add(new Room("Galleria Filbyter floor 1", "Long text Galleria Filbyter floor 1"));
+    	/* 4 */ locations.add(new Room("Galleria Filbyter floor -1", "Long text Galleria Filbyter floor -1"));
+    	/* 5 */ locations.add(new Room("Hemköp Lucullus", " Long text Hemköp Lucullus"));
+    	/* 6 */ locations.add(new Room("Platens Bar", "Long text Platens Bar"));
     }
     
     private void addItemsToLocations() {
     	//locations.get(0).addItem
     	//locations.get(1).addItem();
     	//locations.get(2).addItem();
-    	locations.get(3).addItem(new Flashlight(this.player));
+    	locations.get(3).addItem(new Flashlight());
     	//locations.get(4).addItem();
     	//locations.get(5).addItem();
     	//locations.get(6).addItem();
@@ -60,7 +62,7 @@ public class Game {
     	String name = "Davveboi & Kämpe"; // Holds player name
         // System.out.println("Welcome to the adventure 2!\nWhat is your name?");
         // name = keyboard.nextLine(); // Takes in name from player
-        player = new Player(name, locations.get(0), this);
+        player.setPlayerName(name);
         System.out.println("Hello " + name + ", welcome to this magical world of wonder! You can move around by typing north/south/west/east. You will have to learn more commands as you play the game! (Hint: there is a command \"help\").\n");
         player.getLocation().describeYourself();
         

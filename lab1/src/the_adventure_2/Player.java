@@ -15,20 +15,30 @@ public class Player {
 	public String currentXY;
 	private Game game;
 	private ArrayList<Item> playeritems = new ArrayList<Item>();
+	private String playername;
 	/////////////////////////////////
 
-	
-	public Player(String name, Location startLocation, Game game) {
+	public Player(Location startLocation, Game game) {
 		this.position = startLocation;
 		currentXY = "0,0";
 		this.game = game;
-		this.playeritems.add(new Item(this));
+		this.playeritems.add(new Item());
+	}
+	
+	public void setPlayerName(String name) {
+		this.playername = name;
+		System.out.printf("You changed name to %s.\n", name);
 	}
 
 	// SKRIV OM! /////////////////////////
 	public Location getLocation() {
 		return this.position;
 	}
+	
+	public void giveItem(Item item) {
+		playeritems.add(item);
+		System.out.printf("You picked up %s.\n", item.name);
+	};
 	
 	protected void changeLocation(Location newLocation) {
 		this.position = newLocation;
@@ -68,7 +78,7 @@ public class Player {
 	
 	public boolean try_itemCommands(String command){
 		for (Item item: this.playeritems) {
-			if(item.itemCommand(command)) {
+			if(item.itemCommand(command, this)) {
 				return true;
 			}
 		}
