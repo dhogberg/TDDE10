@@ -1,4 +1,4 @@
-.*
+# .*
 !/.gitignore
 lab1/bin/
 .DS_Store
