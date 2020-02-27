@@ -8,13 +8,14 @@ import items.*;
 
 public class Player {
 	// SKRIV OM! /////////////////////////
-	private Location position;
+	private Location position;	
 	private int appearance = 4;
 	private Item item;
 	private String name;
 	public String currentXY;
 	private Game game;
 	private ArrayList<Item> playeritems = new ArrayList<Item>();
+	private ArrayList<Item> wornitems = new ArrayList<Item>();
 	private String playername;
 	/////////////////////////////////
 
@@ -22,7 +23,12 @@ public class Player {
 		this.position = startLocation;
 		currentXY = "0,0";
 		this.game = game;
-		this.playeritems.add(new Item());
+		//this.playeritems.add(new Item());
+		this.playeritems.add(new Bag("bag", 0.4));
+	}
+	
+	public ArrayList<Item> playeritems() {
+		return this.playeritems;
 	}
 	
 	public void setPlayerName(String name) {
@@ -35,9 +41,23 @@ public class Player {
 		return this.position;
 	}
 	
+	public void wearItem(Item item){
+		wornitems.add(item);
+		playeritems.remove(item);
+	}
+	
+	public void takeoffItem() {
+		playeritems.add(item);
+		wornitems.remove(item);
+	}
+	
 	public void giveItem(Item item) {
 		playeritems.add(item);
-		System.out.printf("You picked up %s.\n", item.name);
+		if(item.name == "batteries") {
+			System.out.printf("You bought %s.\n", item.name);
+		}else{
+			System.out.printf("You picked up %s.\n", item.name);
+		}
 	};
 	
 	protected void changeLocation(Location newLocation) {
@@ -52,6 +72,11 @@ public class Player {
 		switch(command) {
 			case "help": case "h": case "?":
 				displayAvailableCommands(currentXY);
+				this.position.locationDirectionHelp(currentXY);
+				this.position.locationItemHelp(currentXY);
+				appearanceHelp();
+				itemsHelp(currentXY);
+				//System.out.print("\n");
 				break;
 			case "north": case "n":
 			case "west": case "w":
@@ -59,20 +84,34 @@ public class Player {
 			case "east": case "e":
 				attemptToMove(currentXY, command);
 				break;
-			case "appearance":
+			case "appearance": case "a":
 				appearance();
-				break;		
-			//  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
+				break;
+			case "items": case "i":
+				this.playeritems.get(0).itemSpecialCommand("items", this);
+				break;
+			//  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
 			default:
 				return false;
-				
 		}
-		
 		return true;
 	}
 	
+	
+	public void increaseAppearance(Integer x) {
+		this.appearance = this.appearance + x;
+	}
+	public void decreaseAppearance(Integer x) {
+		this.appearance = this.appearance - x;
+	}
+	public Integer getAppearance() {
+		return this.appearance;
+	}
 	private void appearance() {
 		System.out.println("Your appearance is: " + this.appearance);
+	}
+	private void appearanceHelp() {
+		System.out.println("appearance/a - Displays your apperance");
 	}
 	
 	
@@ -83,6 +122,13 @@ public class Player {
 			}
 		}
 		return false;
+	}
+	
+	public void itemsHelp(String currentXY){
+		System.out.print("items/i - Displays your inventory\n");
+		for (Item item: this.playeritems) {
+			item.itemHelp(currentXY, this);
+		}
 	}
 
 	
@@ -105,16 +151,17 @@ public class Player {
 	
 	
 	private void displayAvailableCommands(String inputXY) {
-		System.out.print(
-				"Available commands:\n" +
-				"look" + " - " + "Shows where you can go\n\n"
+		System.out.print(""
+			+ "Available commands: \n"
+			+ "help/h/? - Displays available commands \n"
 		);
 	}
 	
-	
 	private void attemptToMove (String inputXY, String direction) {
-		int x, y;
-		int newx, newy;
+		int x;
+		int y;
+		int newx;
+		int newy;
 		String new_XY_String;
 		
 		x = Location.getx_from_String(inputXY);
@@ -151,10 +198,7 @@ public class Player {
 			System.out.printf("You went %s.\n", direction);
 			this.getLocation().describeYourself();
 		}else {
-			System.out.println("That way is blocked.");
+			System.out.println("That way is blocked.\n");
 		}
-		// System.out.println("attemptToMove_NORTH ran!");
-	}
-	
-	
+	}	
 }

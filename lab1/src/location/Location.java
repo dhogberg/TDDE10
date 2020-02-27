@@ -21,6 +21,31 @@ public class Location {
 		this.longDesc = longDescription;
 	}
 	
+	public void lightenRoom(){
+	}
+
+	public void locationDirectionHelp(String currentXY) {
+		System.out.print(""
+				+ "look/l - Shows where you can go \n"
+				+ "north/n - Go north \n"
+				+ "west/w - Go west \n"
+				+ "south/s - Go south \n"
+				+ "east/e - Go east \n"
+		);
+	}
+	
+	public void locationItemHelp(String currentXY) {
+		if(shortDesc.contains("Hemköp")) {
+			for(Item item: player.getLocation().items_on_location) {
+				System.out.printf("buy %s - Buy %s\n", item.name, item.name);
+			}
+		}else {
+			for(Item item: player.getLocation().items_on_location) {
+				System.out.printf("take %s - Pick up %s\n", item.name, item.name);
+			}
+		}
+	}
+	
 	public void setPlayer(Player player) {
 		this.player = player;
 	}
@@ -42,6 +67,18 @@ public class Location {
 	
 	public boolean locationCommand(String command) {
 		
+		if (command.length() > 3) {
+			if(command.startsWith("buy")) {
+				for (Item item: player.getLocation().items_on_location) {
+					if(command.substring(4).equals(item.name)) {
+						player.giveItem(item);
+						player.getLocation().items_on_location.remove(item);
+						return true;
+					}
+				}
+			}
+		}
+		
 		if (command.length() > 4) {
 			if(command.startsWith("take")) {
 				for (Item item: player.getLocation().items_on_location) {
@@ -55,7 +92,7 @@ public class Location {
 		}
 		
 		switch(command) {
-			case "look": case "ls":
+			case "look": case "l":
 				displayAvailablePaths(); // Show available paths - @Override in Room.java and OutdoorsArea.java
 				display_items();
 				break;
@@ -76,12 +113,8 @@ public class Location {
 		}else {
 			System.out.print(this.shortDesc + ".");
 		}
-		
-		// Print weather if we are outside
-		if (this instanceof OutdoorsArea) {
-			this.printWeather();
-		}
-		
+		this.printWeather();
+		System.out.print("\n");
 	}
 	
 	public void printWeather() {

@@ -6,7 +6,6 @@ import the_adventure_2.Player;
 public class OutdoorsArea extends Location {
 	
 	public OutdoorsArea(String shortDescription, String longDescription) {
-		// Kolla upp vad super betyder! Skriv eventuellt om VVVV
 		super(shortDescription, longDescription);
 	}
 	
@@ -33,7 +32,7 @@ public class OutdoorsArea extends Location {
 	}
 	
 	public void printWeather() {
-		System.out.printf(" " + "The weather is %s.\n", randWeather());
+		System.out.printf(" " + "The weather is %s.", randWeather());
 	}
 	
 	@Override

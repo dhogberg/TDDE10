@@ -2,27 +2,19 @@ package items;
 
 import the_adventure_2.Player;
 
-public class Flashlight extends Tool{
-
-	Boolean hasBatteries = false; 
+public class Batteries extends Tool{ 
 	
-	public Flashlight(String name, Double weight) {
+	public Batteries(String name, Double weight) {
 		this.setName(name);
 		this.setWeight(weight);
 	}
 	
 	
-	private void useFlashlight(Player player) {
-		player.getLocation().lightenRoom();
-
-		if(!hasBatteries) {
-			System.out.print("Nothing happened. The flashlight is missing batteries.\n");
-		}else {
-			System.out.print("Damn, that's bright. That's bright.");
-		}
+	private void useBatteries() {
+		System.out.print("USE BATTERIES - NOT IMPLEMENTED YET\n\n");
 	}
 	
-	
+
 
 
 	/* Detta ska flyttas till Tool.java */
@@ -30,8 +22,8 @@ public class Flashlight extends Tool{
 	@Override
 	public boolean itemCommand(String command, Player player) {
 		switch(command) {
-			case "use flashlight":
-				useFlashlight(player);
+			case "use batteries":
+				useBatteries();
 				break;
 		//  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
 		default:
@@ -44,10 +36,11 @@ public class Flashlight extends Tool{
 
 
 
+
 	
 	@Override
 	public void itemHelp(String currentXY, Player player) {
-		System.out.println("use flashlight - Turn on flashlight");
+		System.out.println("use batteries - Maybe these could be useful...");
 	}
 
 }

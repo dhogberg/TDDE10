@@ -34,18 +34,20 @@ public class Game {
     	/* 2 */ locations.add(new OutdoorsArea("Trädgårdstorget", "Long text Trädgårdstorget"));
     	/* 3 */ locations.add(new Room("Galleria Filbyter floor 1", "Long text Galleria Filbyter floor 1"));
     	/* 4 */ locations.add(new Room("Galleria Filbyter floor -1", "Long text Galleria Filbyter floor -1"));
-    	/* 5 */ locations.add(new Room("Hemköp Lucullus", " Long text Hemköp Lucullus"));
+    	/* 5 */ locations.add(new Room("Hemköp Lucullus", "Long text Hemköp Lucullus"));
     	/* 6 */ locations.add(new Room("Platens Bar", "Long text Platens Bar"));
+    	/* 7 */ locations.add(new DarkRoom("Closed H&M", "Closed H&M store, currently under construction. It is very dark, there are no lights turned on."));
     }
     
     private void addItemsToLocations() {
     	//locations.get(0).addItem
     	//locations.get(1).addItem();
-    	//locations.get(2).addItem();
-    	locations.get(3).addItem(new Flashlight());
+    	locations.get(2).addItem(new Flashlight("flashlight", 0.6));
+    	locations.get(3).addItem(new Hat("hat", 0.35));
     	//locations.get(4).addItem();
-    	//locations.get(5).addItem();
+    	locations.get(5).addItem(new Batteries("batteries", 0.15));
     	//locations.get(6).addItem();
+    	locations.get(7).addItem(new Jacket("jacket", 0.4));
     }
     
     private void buildLocationMap() {
@@ -56,6 +58,7 @@ public class Game {
     	locationMap.put( ("-2" + "," +  "0") , locations.get(4));
     	locationMap.put( ("-2" + "," +  "1") , locations.get(5));
     	locationMap.put( ( "1" + "," +  "1") , locations.get(6));
+    	locationMap.put( ("-2" + "," +  "-1") , locations.get(7));
     }
 
     public void run() {
