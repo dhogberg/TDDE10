@@ -55,7 +55,7 @@ public class Location {
 	}
 	
 	public void displayAvailablePaths(){
-		System.out.println("Default, should never run!"); // TA BORT INNAN REDOVISNING
+		// Override in subclasses!
 	}
 	
 	public void display_items(){
@@ -93,7 +93,7 @@ public class Location {
 		
 		switch(command) {
 			case "look": case "l":
-				displayAvailablePaths(); // Show available paths - @Override in Room.java and OutdoorsArea.java
+				displayAvailablePaths(); // Show available paths - @Override in subclasses!
 				display_items();
 				break;
 		//  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
