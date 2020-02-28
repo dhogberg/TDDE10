@@ -30,12 +30,12 @@ public class Game {
     
     private void buildLocations() {
     	/* 0 */ locations.add(new OutdoorsArea("Stora Torget", "You wake up outdoor with an brutal headache and no memory of the night before. Confused you check your surroundings. To the left of you stands a large fountain. You quickly realize that you are at Stora Torget, Linköpings mighty square."));
-    	/* 1 */ locations.add(new OutdoorsArea("Outside Platens", "Long text outside Platens"));
-    	/* 2 */ locations.add(new OutdoorsArea("Trädgårdstorget", "Long text Trädgårdstorget"));
-    	/* 3 */ locations.add(new Room("Galleria Filbyter floor 1", "Long text Galleria Filbyter floor 1"));
+    	/* 1 */ locations.add(new OutdoorsArea("Outside Platens", "You find yourself outside platens. You are suddenly struck by instant thirst, you have to get in there. A guard stands right before you"));
+    	/* 2 */ locations.add(new OutdoorsArea("Trädgårdstorget", "You found the second square of Linköping, Trädgårdstorget. You see something glimmering on the ground."));
+    	/* 3 */ locations.add(new Room("Galleria Filbyter floor 1", "You have entered Galleria Filbyter floor 1.  "));
     	/* 4 */ locations.add(new Room("Galleria Filbyter floor -1", "Long text Galleria Filbyter floor -1"));
-    	/* 5 */ locations.add(new Room("Hemköp Lucullus", "Long text Hemköp Lucullus"));
-    	/* 6 */ locations.add(new Room("Platens Bar", "Long text Platens Bar"));
+    	/* 5 */ locations.add(new Room("Hemköp Lucullus", "You entered Hemköp Lucullus. Maybe you can buy something useful here."));
+    	/* 6 */ locations.add(new Room("Platens Bar", " The guard let you in to Platens. You look stunning! Everyones looks you with envy. Congratuliosns you  "));
     	/* 7 */ locations.add(new DarkRoom("Closed H&M", "Closed H&M store, currently under construction. It is very dark, there are no lights turned on."));
     }
     
@@ -66,7 +66,7 @@ public class Game {
         // System.out.println("Welcome to the adventure 2!\nWhat is your name?");
         // name = keyboard.nextLine(); // Takes in name from player
         player.setPlayerName(name);
-        System.out.println("Hello " + name + ", welcome to this magical world of wonder! You can move around by typing north/south/west/east. You will have to learn more commands as you play the game! (Hint: there is a command \"help\").\n");
+        System.out.println("Hello " + name + ", welcome to the fantastic city of Linköping! You can move around by typing north/south/west/east. You will have to learn more commands as you play the game! (Hint: there is a command \"help\").\n");
         player.getLocation().describeYourself();
         
 		while (true) {
