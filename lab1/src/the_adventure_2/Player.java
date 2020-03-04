@@ -7,36 +7,37 @@ import items.*;
 
 
 public class Player {
-	// SKRIV OM! /////////////////////////
 	private Location position;	
 	private int appearance = 4;
 	private Item item;
 	private String name;
+	private String playername;
 	public String currentXY;
 	private Game game;
 	private ArrayList<Item> playeritems = new ArrayList<Item>();
 	private ArrayList<Item> wornitems = new ArrayList<Item>();
-	private String playername;
-	/////////////////////////////////
+	
 
 	public Player(Location startLocation, Game game) {
 		this.position = startLocation;
 		currentXY = "0,0";
 		this.game = game;
-		//this.playeritems.add(new Item());
 		this.playeritems.add(new Bag("bag", 0.4));
 	}
 	
 	public ArrayList<Item> playeritems() {
 		return this.playeritems;
 	}
+
+	public ArrayList<Item> wornitems() {
+		return this.wornitems;
+	}
 	
 	public void setPlayerName(String name) {
 		this.playername = name;
-		System.out.printf("You changed name to %s.\n", name);
+		//System.out.printf("You changed name to %s.\n", name);
 	}
 
-	// SKRIV OM! /////////////////////////
 	public Location getLocation() {
 		return this.position;
 	}
@@ -46,9 +47,13 @@ public class Player {
 		playeritems.remove(item);
 	}
 	
-	public void takeoffItem() {
+	public void takeoffItem(Item item) {
 		playeritems.add(item);
 		wornitems.remove(item);
+	}
+	
+	public void removePlayeritem(Item item) {
+		playeritems.remove(item);
 	}
 	
 	public void giveItem(Item item) {

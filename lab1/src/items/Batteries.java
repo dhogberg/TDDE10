@@ -9,34 +9,24 @@ public class Batteries extends Tool{
 		this.setWeight(weight);
 	}
 	
-	
-	private void useBatteries() {
-		System.out.print("USE BATTERIES - NOT IMPLEMENTED YET\n\n");
-	}
-	
-
-
-
-	/* Detta ska flyttas till Tool.java */
-	/* Detta ska flyttas till Tool.java */
 	@Override
-	public boolean itemCommand(String command, Player player) {
-		switch(command) {
-			case "use batteries":
-				useBatteries();
-				break;
-		//  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
-		default:
-			return false;
+	public void useItem(Player player){
+		if(!this.useBatteries(player)){
+			System.out.println("Could not use batteries - You don't have any item to use them on.");
 		}
-		return true;
 	}
-	/* Detta ska flyttas till Tool.java */
-	/* Detta ska flyttas till Tool.java */
-
-
-
-
+	
+	private boolean useBatteries(Player player) {
+		for (Item item: player.playeritems()) {
+			if(item.getName().contains("flashlight")) {
+				item.addBatteries(); // Add batteries to flashlight
+				player.removePlayeritem(this); // Remove batteries from player inventory
+				System.out.print("Success! The flashlight now has batteries.\n");
+				return true;
+			}
+		}
+		return false;
+	}
 	
 	@Override
 	public void itemHelp(String currentXY, Player player) {

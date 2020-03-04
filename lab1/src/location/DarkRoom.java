@@ -9,21 +9,27 @@ public class DarkRoom extends Location {
 	}
 
 	@Override
-	public void lightenRoom(){
-		this.roomIsDark = false;
+	public void lookOnLocation(){
+		this.displayAvailablePaths();
+		this.display_items_darkroom();
 	}
 
-	public void darkenRoom(){
-		this.roomIsDark = true;
-	}
-	
 	@Override
 	public void displayAvailablePaths(){
-		if(roomIsDark){
-			System.out.println("The room is dark...");
+		System.out.println("Darkroom: You are outdoor, there is a road leading bla bla bla");
+	}
+
+	@Override
+	public void display_items_darkroom(){
+		if(this.roomIsDark){
+			System.out.println("Darkroom: Now you cant see the jacket, it's too dark!");
 		}else{
-			System.out.println("The room is lit! :)");
+			System.out.println("Litroom: Now you can see the jacket!");
 		}
-		//System.out.println("You are in a darkroom, there is a door leading bla bla bla");
+	}
+
+	@Override
+	public void lightenRoom(){
+		this.roomIsDark = false;
 	}
 }

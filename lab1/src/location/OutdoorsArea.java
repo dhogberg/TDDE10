@@ -1,8 +1,6 @@
 package location;
 import java.util.Random;
 
-import the_adventure_2.Player;
-
 public class OutdoorsArea extends Location {
 	
 	public OutdoorsArea(String shortDescription, String longDescription) {
@@ -10,8 +8,14 @@ public class OutdoorsArea extends Location {
 	}
 	
 	@Override
+	public void lookOnLocation(){
+		this.displayAvailablePaths();
+		this.display_items();
+	}
+
+	@Override
 	public void displayAvailablePaths(){
-		System.out.println("You are outdoor, there is a road leading bla bla bla");
+		System.out.println("OutdoorsArea: You are outdoor, there is a road leading bla bla bla");
 	}
 	
 	private String randWeather() {

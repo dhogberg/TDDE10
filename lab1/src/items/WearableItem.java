@@ -8,7 +8,7 @@ public class WearableItem extends Item {
 	Integer appearanceFactor = 0; // By default, wearable items do not affect appearance. This can be overwritten in the respective subclass on an item per item basis. 
 	
 	public WearableItem() {
-		// TODO Auto-generated constructor stub
+		//
 	}
 	
 	private void appearanceUpdate(Player player, String wearOrTakeOff) {

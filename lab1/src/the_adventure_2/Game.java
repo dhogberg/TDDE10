@@ -40,13 +40,9 @@ public class Game {
     }
     
     private void addItemsToLocations() {
-    	//locations.get(0).addItem
-    	//locations.get(1).addItem();
     	locations.get(2).addItem(new Flashlight("flashlight", 0.6));
     	locations.get(3).addItem(new Hat("hat", 0.35));
-    	//locations.get(4).addItem();
     	locations.get(5).addItem(new Batteries("batteries", 0.15));
-    	//locations.get(6).addItem();
     	locations.get(7).addItem(new Jacket("jacket", 0.4));
     }
     
@@ -62,9 +58,9 @@ public class Game {
     }
 
     public void run() {
-    	String name = "Davveboi & Kämpe"; // Holds player name
-        // System.out.println("Welcome to the adventure 2!\nWhat is your name?");
-        // name = keyboard.nextLine(); // Takes in name from player
+    	String name;
+        System.out.println("Welcome to the adventure 2!\nWhat is your name?");
+        name = keyboard.nextLine(); // Takes in name from player
         player.setPlayerName(name);
         System.out.println("Hello " + name + ", welcome to this magical world of wonder! You can move around by typing north/south/west/east. You will have to learn more commands as you play the game! (Hint: there is a command \"help\").\n");
         player.getLocation().describeYourself();

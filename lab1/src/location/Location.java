@@ -5,9 +5,6 @@ import java.util.ArrayList;
 import the_adventure_2.Player;
 
 import items.*;
-import location.OutdoorsArea;
-import location.Room;
-import the_adventure_2.Game;
 
 public class Location {
 	private String shortDesc;
@@ -53,9 +50,15 @@ public class Location {
 	public void addItem(Item item) {
 		this.items_on_location.add(item);
 	}
-	
+
+	public void lookOnLocation(){
+		// Override in subclasses
+	}
 	public void displayAvailablePaths(){
-		// Override in subclasses!
+		// Override in subclasses
+	}
+	public void display_items_darkroom(){
+		// Override in subclasses
 	}
 	
 	public void display_items(){
@@ -63,7 +66,6 @@ public class Location {
 			System.out.printf("There is a %s laying on the ground.\n", item.name);
 		}
 	}
-	
 	
 	public boolean locationCommand(String command) {
 		
@@ -93,13 +95,11 @@ public class Location {
 		
 		switch(command) {
 			case "look": case "l":
-				displayAvailablePaths(); // Show available paths - @Override in subclasses!
-				display_items();
+				lookOnLocation(); // @Override in subclasses
 				break;
 		//  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
 		default:
 			return false;
-				
 		}
 		return true;
 	}

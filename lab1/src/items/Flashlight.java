@@ -11,7 +11,11 @@ public class Flashlight extends Tool{
 		this.setWeight(weight);
 	}
 	
-	
+	@Override
+	public void useItem(Player player){
+		this.useFlashlight(player);
+	}
+
 	private void useFlashlight(Player player) {
 		player.getLocation().lightenRoom();
 
@@ -22,28 +26,10 @@ public class Flashlight extends Tool{
 		}
 	}
 	
-	
-
-
-	/* Detta ska flyttas till Tool.java */
-	/* Detta ska flyttas till Tool.java */
 	@Override
-	public boolean itemCommand(String command, Player player) {
-		switch(command) {
-			case "use flashlight":
-				useFlashlight(player);
-				break;
-		//  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
-		default:
-			return false;
-		}
-		return true;
+	public void addBatteries() {
+		this.hasBatteries = true;
 	}
-	/* Detta ska flyttas till Tool.java */
-	/* Detta ska flyttas till Tool.java */
-
-
-
 	
 	@Override
 	public void itemHelp(String currentXY, Player player) {
