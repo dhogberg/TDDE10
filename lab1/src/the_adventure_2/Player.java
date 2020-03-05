@@ -118,8 +118,21 @@ public class Player {
 	public Integer getAppearance() {
 		return this.appearance;
 	}
+	public String getAppearanceFriendlyname() {
+		switch(this.appearance){
+			case 5:
+				return "ALMOST NORMAL";
+			case 6:
+				return "HIGH";
+			case 7:
+				return "VERY HIGH";
+		//  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
+			default:
+				return "VERY LOW";
+		}
+	}
 	private void appearance() {
-		System.out.println("Your appearance is: " + this.appearance);
+		System.out.println("Your appearance is " + getAppearanceFriendlyname() + ".");
 	}
 	private void appearanceHelp() {
 		System.out.println("appearance/a - Displays your apperance");

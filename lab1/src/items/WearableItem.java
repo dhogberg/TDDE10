@@ -34,7 +34,7 @@ public class WearableItem extends Item {
 			}
 		}
 		
-		System.out.printf(" Your appearance has %s and is %s %s.\n", increaseOrDecrease, stillOrNow, player.getAppearance());
+		System.out.printf(" Your appearance has %s and is %s %s.\n", increaseOrDecrease, stillOrNow, player.getAppearanceFriendlyname());
 		
 	}
 	
