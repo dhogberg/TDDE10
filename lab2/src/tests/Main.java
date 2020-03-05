@@ -1,9 +1,12 @@
 package tests;
 
+import myutil.*;
+
 public class Main {
-
-	public Main() {
-		// TODO Auto-generated constructor stub
+	public static void main(String[] args){
+		NodeTest.run(); // Tests Node.java
+		MyStackTest.run(); // Tests MyStack.java
+		MyQueueTest.run(); // Tests MyQueue.java
+		MyListTest.run(); // Tests MyList.java
 	}
-
 }

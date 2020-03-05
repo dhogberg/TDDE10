@@ -15,11 +15,6 @@ public class OutdoorsArea extends Location {
 		this.display_items("OutdoorsArea");
 	}
 
-	/*@Override
-	public void displayAvailablePaths(){
-		System.out.println("OutdoorsArea: You are outdoor, there is a road leading bla bla bla");
-	}*/
-	
 	private String randWeather() {
 		Random r = new Random();
 		
