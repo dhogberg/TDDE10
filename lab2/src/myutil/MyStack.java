@@ -14,8 +14,13 @@ public class MyStack<E> extends ListVector<E> {
 		}
 	}
 
-	/*public E pop() { // Kastar exception om det ej finns något att poppa
-		
-	}*/
-
+	public E pop() { // Kastar exception om det ej finns något att poppa
+		if(this.isEmpty()) {
+			// ADD EXCEPTION
+		}else {
+			this.topOfStackNode = this.topOfStackNode.getNextReference();
+			this.changeSize(-1);
+		}
+		return this.topOfStackNode.getData();
+	}
 }

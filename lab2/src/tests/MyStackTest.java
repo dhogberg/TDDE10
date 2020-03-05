@@ -28,22 +28,28 @@ public class MyStackTest {
 		
 		System.out.printf("Pushing %s to testStack1...", testInteger1);
 		testStack1.push(testInteger1);
-		System.out.print("Done\n");
+		System.out.print(" Done\n");
 
-		System.out.printf("Pushing %s to testStack1...", testInteger2);
+		System.out.printf("Pushing %s to testStack1 . . .", testInteger2);
 		testStack1.push(testInteger2);
-		System.out.print("Done\n");
+		System.out.print(" Done\n");
 
 		System.out.printf("Pushing %s to testStack1...", testInteger3);
 		testStack1.push(testInteger3);
-		System.out.print("Done\n");
+		System.out.print(" Done\n");
 
 		System.out.printf("Pushing %s to testStack1...", testInteger4);
 		testStack1.push(testInteger4);
-		System.out.print("Done\n");
+		System.out.print(" Done\n");
 
 		System.out.printf("Check if stack is empty returned %s.\n", testStack1.isEmpty());
 
+		System.out.printf("Check size of stack returned %s.\n", testStack1.size());
+		
+		System.out.print("Running testStack1.pop()...");
+		testStack1.pop();
+		System.out.print(" Done\n");
+		
 		System.out.printf("Check size of stack returned %s.\n", testStack1.size());
 
 		System.out.print("\n\n");
