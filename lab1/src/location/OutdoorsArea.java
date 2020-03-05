@@ -1,5 +1,7 @@
 package location;
+
 import java.util.Random;
+import the_adventure_2.Player;
 
 public class OutdoorsArea extends Location {
 	
@@ -8,15 +10,15 @@ public class OutdoorsArea extends Location {
 	}
 	
 	@Override
-	public void lookOnLocation(){
-		this.displayAvailablePaths();
-		this.display_items();
+	public void lookOnLocation(Player player){
+		this.displayAvailablePaths(player, "OutdoorsArea");
+		this.display_items("OutdoorsArea");
 	}
 
-	@Override
+	/*@Override
 	public void displayAvailablePaths(){
 		System.out.println("OutdoorsArea: You are outdoor, there is a road leading bla bla bla");
-	}
+	}*/
 	
 	private String randWeather() {
 		Random r = new Random();

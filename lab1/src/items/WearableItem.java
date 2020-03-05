@@ -28,6 +28,7 @@ public class WearableItem extends Item {
 					increaseOrDecrease = "increased";
 					stillOrNow = "now";
 					break;
+			//  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
 				default:
 					// Appearance is the same
 			}
@@ -40,21 +41,33 @@ public class WearableItem extends Item {
 	@Override
 	public boolean itemCommand(String command, Player player) {
 		if (command.length() > 5 && command.contains("wear " + this.name)) {
-			this.wear(player);
-			this.appearanceUpdate(player, "wear");
+			if(!this.playerCurrentlyWearingItem){
+				player.wearItem(this);
+				this.wear(player);
+				this.appearanceUpdate(player, "wear");
+			}else{
+				System.out.printf("You are already wearing your %s!\n", this.name);
+			}
 			return true;
+			
 		}else if(command.length() > 9 && command.contains("take off " + this.name)){
-			this.takeof(player);
-			this.appearanceUpdate(player, "take off");
+			if(this.playerCurrentlyWearingItem){
+				player.takeoffItem(this);
+				this.takeof(player);
+				this.appearanceUpdate(player, "take off");
+			}else{
+				System.out.printf("You are not wearing your %s!\n", this.name);
+			}
 			return true;
 		}else{
 			switch(command) {
 				case "items":
-					System.out.println("You have the class wearableitem instanced!");
+					// @Override in subclasses
+					//System.out.println("You have the class wearableitem instanced!");
 					break;
 			//  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
-			default:
-				return false;
+				default:
+					return false;
 			}
 			return true;
 		}

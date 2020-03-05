@@ -6,23 +6,26 @@ import location.*;
 import items.*;
 
 
-public class Player {
-	private Location position;	
-	private int appearance = 4;
-	private Item item;
-	private String name;
-	private String playername;
-	public String currentXY;
-	private Game game;
+public class Player {	
 	private ArrayList<Item> playeritems = new ArrayList<Item>();
 	private ArrayList<Item> wornitems = new ArrayList<Item>();
+	private int appearance = 4;
+	private Location position;
+	private Game game;
+	private String playername;
 	
+	public String currentXY;
 
+	
 	public Player(Location startLocation, Game game) {
 		this.position = startLocation;
 		currentXY = "0,0";
 		this.game = game;
 		this.playeritems.add(new Bag("bag", 0.4));
+	}
+	
+	public void setName(String playername) {
+		this.playername = playername;
 	}
 	
 	public ArrayList<Item> playeritems() {
@@ -32,14 +35,13 @@ public class Player {
 	public ArrayList<Item> wornitems() {
 		return this.wornitems;
 	}
-	
-	public void setPlayerName(String name) {
-		this.playername = name;
-		//System.out.printf("You changed name to %s.\n", name);
-	}
 
 	public Location getLocation() {
 		return this.position;
+	}
+	
+	public Game getGame() {
+		return this.game;
 	}
 	
 	public void wearItem(Item item){
@@ -93,9 +95,13 @@ public class Player {
 				appearance();
 				break;
 			case "items": case "i":
-				this.playeritems.get(0).itemSpecialCommand("items", this);
+				if(this.playeritems().isEmpty()){
+					this.wornitems.get(0).itemSpecialCommand("items", this);
+				}else {
+					this.playeritems.get(0).itemSpecialCommand("items", this);
+				}
 				break;
-			//  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
+		//  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
 			default:
 				return false;
 		}
@@ -121,11 +127,18 @@ public class Player {
 	
 	
 	public boolean try_itemCommands(String command){
+		
 		for (Item item: this.playeritems) {
 			if(item.itemCommand(command, this)) {
 				return true;
 			}
 		}
+		for (Item item: this.wornitems) {
+			if(item.itemCommand(command, this)) {
+				return true;
+			}
+		}
+		
 		return false;
 	}
 	
@@ -134,14 +147,14 @@ public class Player {
 		for (Item item: this.playeritems) {
 			item.itemHelp(currentXY, this);
 		}
+		for (Item item: this.wornitems) {
+			item.itemHelp(currentXY, this);
+		}
 	}
 
-	
-	
 	public int doCommand(String command) {
-		
 		if(!playerCommand(command)) {
-			if(!this.position.locationCommand(command)) {
+			if(!this.position.locationCommand(command, this)) {
 				if(!try_itemCommands(command)) {
 					System.out.println("Command not found, type 'help' or ? for available commands.");
 				}
@@ -150,11 +163,7 @@ public class Player {
 		return 1; // TRUE
 		
 	}
-	//  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
-	//  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
-	//  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
-	
-	
+
 	private void displayAvailableCommands(String inputXY) {
 		System.out.print(""
 			+ "Available commands: \n"
@@ -176,21 +185,21 @@ public class Player {
 		newy = y;
 		
 		switch(direction) {
-		case "north": case "n":
-			newy = y + 1; // Y = Y + 1
-			break;
-		case "west": case "w":
-			newx = x - 1; // X = X - 1
-			break;
-		case "south": case "s":
-			newy = y - 1; // Y = Y - 1
-			break;
-		case "east": case "e":
-			newx = x + 1; // X = X + 1
-			break;
+			case "north": case "n":
+				newy = y + 1; // Y = Y + 1
+				break;
+			case "west": case "w":
+				newx = x - 1; // X = X - 1
+				break;
+			case "south": case "s":
+				newy = y - 1; // Y = Y - 1
+				break;
+			case "east": case "e":
+				newx = x + 1; // X = X + 1
+				break;
 		//  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
-		default:
-			System.out.println("attemptToMove received an invalid direction");
+			default:
+				System.out.println("attemptToMove received an invalid direction");
 		}
 		
 		
@@ -198,12 +207,28 @@ public class Player {
 		
 		
 		if( this.game.locationMap.containsKey(new_XY_String) ) {
-			currentXY = newx + "," + newy;
-			changeLocation(this.game.locationMap.get(new_XY_String));
-			System.out.printf("You went %s.\n", direction);
-			this.getLocation().describeYourself();
+			// Check if platens
+			if(this.game.locationMap.get(new_XY_String).shortDescription().equals("Platens Bar")){
+				// Platens. Check appearance first
+				if(this.getAppearance() >= 6){
+					currentXY = newx + "," + newy;
+					changeLocation(this.game.locationMap.get(new_XY_String));
+					System.out.printf("You went %s.\n", direction);
+					this.getLocation().describeYourself();
+					game.quitGame(this.playername);
+				}else{
+					System.out.println("Platens does not let you in! Your appearance is too low. Try again when you have higher appearance.\n\nTip: You can raise your appearance by wearing certain items.\nTo check your appearance, type 'appearance' or 'a'.");
+				}
+			}else{
+				// Not platens, so move without checking appearance
+				currentXY = newx + "," + newy;
+				changeLocation(this.game.locationMap.get(new_XY_String));
+				System.out.printf("You went %s.\n", direction);
+				this.getLocation().describeYourself();
+				this.getLocation().lookOnLocation(this);
+			}
 		}else {
-			System.out.println("That way is blocked.\n");
+			System.out.println("That way is blocked.");
 		}
-	}	
+	}
 }

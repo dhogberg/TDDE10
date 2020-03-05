@@ -25,18 +25,18 @@ public class Tool extends Item {
 				System.out.println("You have the class tool instanced!");
 				break;
 		//  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
-		default:
-			if (command.length() > 4) {
-				if(command.startsWith("use")) {
-					for (Item item: player.playeritems()) {
-						if(command.substring(4).equals(item.name)) {
-							item.useItem(player);
-							return true;
+			default:
+				if (command.length() > 4) {
+					if(command.startsWith("use")) {
+						for (Item item: player.playeritems()) {
+							if(command.substring(4).equals(item.name)) {
+								item.useItem(player);
+								return true;
+							}
 						}
 					}
 				}
-			}
-			return false;
+				return false;
 		}
 		return true;
 	}

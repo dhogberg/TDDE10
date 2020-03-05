@@ -38,29 +38,28 @@ public class Item {
 
 	public boolean itemSpecialCommand(String command, Player player) {
 		switch(command) {
-		case "items": case "i":
-			System.out.print("Items:\n");
-			if(player.playeritems().isEmpty()){
-				System.out.printf("-\n");	
-			}else{
-				for (Item item: player.playeritems()) {
-					System.out.printf("■ %s, %skg\n", item.getName(), item.getWeight());	
+			case "items": case "i":
+				System.out.print("Items:\n");
+				if(player.playeritems().isEmpty()){
+					System.out.printf("-\n");
+				}else{
+					for (Item item: player.playeritems()) {
+						System.out.printf("■ %s, %skg\n", item.getName(), item.getWeight());	
+					}
 				}
-			}
-
-			System.out.print("\nWorn items:\n");
-
-			if(player.wornitems().isEmpty()){
-				System.out.printf("-\n");	
-			}else{
-				for (Item item: player.wornitems()) {
-					System.out.printf("■ %s, %skg\n", item.getName(), item.getWeight());	
+				
+				System.out.print("\nWorn items:\n");
+				if(player.wornitems().isEmpty()){
+					System.out.printf("-\n");	
+				}else{
+					for (Item item: player.wornitems()) {
+						System.out.printf("■ %s, %skg\n", item.getName(), item.getWeight());	
+					}
 				}
-			}
-
-			break;
-		default:
-			return false;
+				break;
+		//  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
+			default:
+				return false;
 		}
 		return true;
 	}

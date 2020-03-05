@@ -1,5 +1,7 @@
 package location;
 
+import the_adventure_2.Player;
+
 public class Room extends Location {
 	
 	public Room(String shortDescription, String longDescription) {
@@ -7,13 +9,13 @@ public class Room extends Location {
 	}
 	
 	@Override
-	public void lookOnLocation(){
-		this.displayAvailablePaths();
-		this.display_items();
-	}
-
-	@Override
-	public void displayAvailablePaths(){
-		System.out.println("ROOM: You are in a room, there is a door leading bla bla bla");
+	public void lookOnLocation(Player player){
+		this.displayAvailablePaths(player, "Room");
+		
+		if(this.shortDescription().contains("Hemköp")){
+			this.display_items("Store");
+		}else{
+			this.display_items("Room");
+		}
 	}
 }

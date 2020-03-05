@@ -10,9 +10,11 @@ public class Game {
     private Scanner keyboard; 
     private ArrayList<Location> locations;
     public Player player;
+    private Boolean gameIsRunning;
     HashMap<String, Location> locationMap = new HashMap<String, Location>();
     
     public Game() {
+    	gameIsRunning = true;
     	keyboard = new Scanner(System.in);
 	    locations = new ArrayList<>();
 	    buildLocations(); // Adds all locations to ArrayList "locations"
@@ -20,6 +22,15 @@ public class Game {
 	    buildLocationMap(); // Builds locationMap, is dependent on currPos
 	    player = new Player(locations.get(0), this);
 	    addPlayerToLocations(player);
+    }
+    
+    public void quitGame(String playername){
+    	System.out.printf("Congratulations %s, you won the game!\nThank you for playing, exiting game...", playername); 
+    	this.gameIsRunning = false;
+    }
+    
+    public HashMap<String, Location> getLocationMap() {
+    	return this.locationMap;
     }
     
     private void addPlayerToLocations(Player player) {
@@ -30,12 +41,12 @@ public class Game {
     
     private void buildLocations() {
     	/* 0 */ locations.add(new OutdoorsArea("Stora Torget", "You wake up outdoor with an brutal headache and no memory of the night before. Confused you check your surroundings. To the left of you stands a large fountain. You quickly realize that you are at Stora Torget, Linköpings mighty square."));
-    	/* 1 */ locations.add(new OutdoorsArea("Outside Platens", "You find yourself outside platens. You are suddenly struck by instant thirst, you have to get in there. A guard stands right before you"));
+    	/* 1 */ locations.add(new OutdoorsArea("Outside Platens", "You find yourself outside platens. You are suddenly struck by instant thirst, you have to get in there. A guard stands right before you."));
     	/* 2 */ locations.add(new OutdoorsArea("Trädgårdstorget", "You found the second square of Linköping, Trädgårdstorget. You see something glimmering on the ground."));
-    	/* 3 */ locations.add(new Room("Galleria Filbyter floor 1", "You have entered Galleria Filbyter floor 1.  "));
-    	/* 4 */ locations.add(new Room("Galleria Filbyter floor -1", "Long text Galleria Filbyter floor -1"));
+    	/* 3 */ locations.add(new Room("Galleria Filbyter floor 1", "You have entered Galleria Filbyter floor 1. There is something laying on the floor."));
+    	/* 4 */ locations.add(new Room("Galleria Filbyter floor -1", "Long text Galleria Filbyter floor -1."));
     	/* 5 */ locations.add(new Room("Hemköp Lucullus", "You entered Hemköp Lucullus. Maybe you can buy something useful here."));
-    	/* 6 */ locations.add(new Room("Platens Bar", " The guard let you in to Platens. You look stunning! Everyones looks you with envy. Congratuliosns you  "));
+    	/* 6 */ locations.add(new Room("Platens Bar", "The guard let you in to Platens. You look stunning! Everyones looks you with envy."));
     	/* 7 */ locations.add(new DarkRoom("Closed H&M", "Closed H&M store, currently under construction. It is very dark, there are no lights turned on."));
     }
     
@@ -61,11 +72,11 @@ public class Game {
     	String name;
         System.out.println("Welcome to the adventure 2!\nWhat is your name?");
         name = keyboard.nextLine(); // Takes in name from player
-        player.setPlayerName(name);
+        player.setName(name);
         System.out.println("Hello " + name + ", welcome to the fantastic city of Linköping! You can move around by typing north/south/west/east. You will have to learn more commands as you play the game! (Hint: there is a command \"help\").\n");
         player.getLocation().describeYourself();
         
-		while (true) {
+		while (gameIsRunning) {
 	        String command;
 		    System.out.println("\nWhat do you want to do?");
 		    command = keyboard.nextLine();
