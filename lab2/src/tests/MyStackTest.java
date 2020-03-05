@@ -46,10 +46,13 @@ public class MyStackTest {
 
 		System.out.printf("Check size of stack returned %s.\n", testStack1.size());
 		
-		System.out.print("Running testStack1.pop()...");
-		testStack1.pop();
-		System.out.print(" Done\n");
-		
+		System.out.printf("testStack1.pop() returned %s\n", testStack1.pop());
+		System.out.printf("testStack1.pop() returned %s\n", testStack1.pop());
+		System.out.printf("testStack1.pop() returned %s\n", testStack1.pop());
+		System.out.printf("testStack1.pop() returned %s\n", testStack1.pop());
+
+		System.out.printf("Check if stack is empty returned %s.\n", testStack1.isEmpty());
+
 		System.out.printf("Check size of stack returned %s.\n", testStack1.size());
 
 		System.out.print("\n\n");
