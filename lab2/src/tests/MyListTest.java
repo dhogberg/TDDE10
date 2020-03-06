@@ -12,7 +12,8 @@ public class MyListTest {
 		System.out.print("Creating a new list 'testList1'...");
 		testList1 = new MyList<Integer>();
 		System.out.print(" Done\n");
-		
+
+		System.out.printf("testList1.size() returned %s\n", testList1.size());	
 		
 	}
 	
