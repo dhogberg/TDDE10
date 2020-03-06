@@ -50,6 +50,7 @@ public class MyStackTest {
 		System.out.printf("testStack1.pop() returned %s\n", testStack1.pop());
 		System.out.printf("testStack1.pop() returned %s\n", testStack1.pop());
 		System.out.printf("testStack1.pop() returned %s\n", testStack1.pop());
+		System.out.printf("testStack1.pop() returned %s\n", testStack1.pop());
 
 		System.out.printf("Check if stack is empty returned %s.\n", testStack1.isEmpty());
 
