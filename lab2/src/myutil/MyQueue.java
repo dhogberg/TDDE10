@@ -1,9 +1,21 @@
 package myutil;
 
-public class MyQueue {
+public class MyQueue extends ListVector<E> {
 
-	public MyQueue() {
-		// TODO Auto-generated constructor stub
+	public void enqueue(E element) {
+		// WIP
+		// WIP
+		// WIP
+		// WIP
+		// WIP
+	}
+
+	public E dequeue() {
+		// WIP
+		// WIP
+		// WIP
+		// WIP
+		// WIP
 	}
 
 }
