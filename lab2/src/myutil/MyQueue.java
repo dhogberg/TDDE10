@@ -1,21 +1,30 @@
 package myutil;
 
-public class MyQueue extends ListVector<E> {
+public class MyQueue<E> extends MyVector<E> implements MyInterface {
 
+	private Node<E> topOfStackNode;
+	
 	public void enqueue(E element) {
-		// WIP
-		// WIP
-		// WIP
-		// WIP
-		// WIP
+		if(this.isEmpty()){
+			this.topOfStackNode = new Node<E>(element);
+			this.changeSize(+1);
+		}else{
+			this.topOfStackNode = new Node<E>(element, topOfStackNode);
+			this.changeSize(+1);
+		}
 	}
 
 	public E dequeue() {
-		// WIP
-		// WIP
-		// WIP
-		// WIP
-		// WIP
+		if(!this.isEmpty()) {
+			if(this.size() == 1){
+				this.topOfStackNode = new Node<E>();
+			}else{
+				this.topOfStackNode = this.topOfStackNode.getNextReference();
+			}
+			this.changeSize(-1);
+		}else {
+			throw new EmptyQueueException();
+		}
+		return this.topOfStackNode.getData();
 	}
-
 }

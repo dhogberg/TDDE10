@@ -1,6 +1,6 @@
 package myutil;
 
-public class ListVector<E> {
+public class MyVector<E> {
 	
 	private int size = 0;
 

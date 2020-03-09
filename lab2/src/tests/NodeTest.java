@@ -38,6 +38,9 @@ public class NodeTest {
 		System.out.printf("Reading node 3 from 'testNode1'. Data was: %s.\n", testNode1.getNextReference().getNextReference().getData());
 		System.out.printf("Reading node 2 from 'testNode1'. Data was: %s.\n", testNode1.getNextReference().getData());
 		System.out.printf("Reading node 1 from 'testNode1'. Data was: %s.\n", testNode1.getData());
-		System.out.print("\n\n");
+
+		System.out.print("/////////////////////////////////////\n");
+		System.out.print("Testing of myutil/Node.java complete.\n");
+		System.out.print("/////////////////////////////////////\n\n");
 	}
 }

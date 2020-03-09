@@ -1,6 +1,6 @@
 package myutil;
 
-public class MyStack<E> extends ListVector<E> {
+public class MyStack<E> extends MyVector<E> implements MyInterface {
 
 	private Node<E> topOfStackNode;
 
@@ -14,12 +14,16 @@ public class MyStack<E> extends ListVector<E> {
 		}
 	}
 
-	public E pop() { // Kastar exception om det ej finns något att poppa
-		if(this.isEmpty()) {
-			// ADD EXCEPTION
-		}else {
-			this.topOfStackNode = this.topOfStackNode.getNextReference();
+	public E pop() {
+		if(!this.isEmpty()) {
+			if(this.size() == 1){
+				this.topOfStackNode = new Node<E>();
+			}else{
+				this.topOfStackNode = this.topOfStackNode.getNextReference();
+			}
 			this.changeSize(-1);
+		}else {
+			throw new EmptyStackException();
 		}
 		return this.topOfStackNode.getData();
 	}

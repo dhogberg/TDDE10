@@ -30,7 +30,7 @@ public class MyStackTest {
 		testStack1.push(testInteger1);
 		System.out.print(" Done\n");
 
-		System.out.printf("Pushing %s to testStack1 . . .", testInteger2);
+		System.out.printf("Pushing %s to testStack1...", testInteger2);
 		testStack1.push(testInteger2);
 		System.out.print(" Done\n");
 
@@ -50,12 +50,20 @@ public class MyStackTest {
 		System.out.printf("testStack1.pop() returned %s\n", testStack1.pop());
 		System.out.printf("testStack1.pop() returned %s\n", testStack1.pop());
 		System.out.printf("testStack1.pop() returned %s\n", testStack1.pop());
-		System.out.printf("testStack1.pop() returned %s\n", testStack1.pop());
 
-		System.out.printf("Check if stack is empty returned %s.\n", testStack1.isEmpty());
+		System.out.print("Now testing testStack1.pop(), this should throw EmptyStackException.\n");
+
+		try {
+			System.out.printf("testStack1.pop() returned %s\n", testStack1.pop()); // Will throw EmptyStackException
+		} catch (RuntimeException EmptyStackException) {
+			System.out.print("Caught EmptyStackException!\n");
+		}
 
 		System.out.printf("Check size of stack returned %s.\n", testStack1.size());
+		System.out.printf("Check if stack is empty returned %s.\n", testStack1.isEmpty());
 
-		System.out.print("\n\n");
+		System.out.print("////////////////////////////////////////\n");
+		System.out.print("Testing of myutil/MyStack.java complete.\n");
+		System.out.print("////////////////////////////////////////\n\n");
 	}
 }
