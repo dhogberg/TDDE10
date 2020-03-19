@@ -7,10 +7,6 @@ public class NodeTest {
 	public static Integer testInteger1;
 	public static Integer testInteger2;
 	public static Integer testInteger3;
-
-	public NodeTest() {
-		//
-	}
 	
 	public static void run(){
 		System.out.print("- - Testing myutil/Node.java - -\n\n");
