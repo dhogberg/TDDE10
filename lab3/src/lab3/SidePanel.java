@@ -3,46 +3,65 @@ package lab3;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.Color;
+
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
-public class SidePanel extends JPanel {
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+import java.util.ArrayList;
+
+import drawComponents.*;
+
+public class SidePanel extends JPanel implements MouseListener {
 
 	private JPanel colorPanel;
 	private JPanel shapePanel;
-	private JPanel blackButton;
-	private JPanel whiteButton;
-	private JPanel blueButton;
-	private JPanel redButton;
-	private JPanel yellowButton;
-	private JPanel greenButton;
-	private JPanel magentaButton;
-	private JPanel cyanButton;
+	private SidePanelButton blackButton;
+	private SidePanelButton whiteButton;
+	private SidePanelButton blueButton;
+	private SidePanelButton redButton;
+	private SidePanelButton yellowButton;
+	private SidePanelButton greenButton;
+	private SidePanelButton magentaButton;
+	private SidePanelButton cyanButton;
 
-	public SidePanel() {
+	private SidePanelButton circleButton;
+	private SidePanelButton squareButton;
+	private SidePanelButton triangleButton;
+	
+	private DrawSettings drawSettings;
 
+	private ArrayList<SidePanelButton> buttons = new ArrayList<SidePanelButton>();
+
+	public SidePanel(DrawSettings drawSettings) {
+
+		this.drawSettings = drawSettings;
+		
 		JPanel colorPanel = new JPanel();
 		colorPanel.setLayout(new GridLayout(9,1));
 		colorPanel.add(new JLabel("Färg"));
+		//colorPanel.addMouseListener(this);
 
-		blackButton = new JPanel();
-		whiteButton = new JPanel();
-		blueButton = new JPanel();
-		redButton = new JPanel();
-		yellowButton = new JPanel();
-		greenButton = new JPanel();
-		magentaButton = new JPanel();
-		cyanButton = new JPanel();
+		blackButton = new SidePanelButton(Color.BLACK);
+		whiteButton = new SidePanelButton(Color.WHITE);
+		blueButton = new SidePanelButton(Color.BLUE);
+		redButton = new SidePanelButton(Color.RED);
+		yellowButton = new SidePanelButton(Color.YELLOW);
+		greenButton = new SidePanelButton(Color.GREEN);
+		magentaButton = new SidePanelButton(Color.MAGENTA);
+		cyanButton = new SidePanelButton(Color.CYAN);
 
-		blackButton.setBackground(Color.BLACK);
-		whiteButton.setBackground(Color.WHITE);
-		blueButton.setBackground(Color.BLUE);
-		redButton.setBackground(Color.RED);
-		yellowButton.setBackground(Color.YELLOW);
-		greenButton.setBackground(Color.GREEN);
-		magentaButton.setBackground(Color.MAGENTA);
-		cyanButton.setBackground(Color.CYAN);
+		blackButton.addMouseListener(this);
+		whiteButton.addMouseListener(this);
+		blueButton.addMouseListener(this);
+		redButton.addMouseListener(this);
+		yellowButton.addMouseListener(this);
+		greenButton.addMouseListener(this);
+		magentaButton.addMouseListener(this);
+		cyanButton.addMouseListener(this);
 
 		colorPanel.add(blackButton);
 		colorPanel.add(whiteButton);
@@ -53,13 +72,22 @@ public class SidePanel extends JPanel {
 		colorPanel.add(magentaButton);
 		colorPanel.add(cyanButton);
 
-
 		JPanel shapePanel = new JPanel();
 		shapePanel.setLayout(new GridLayout(4,1));
 		shapePanel.add(new JLabel("Form"));
-		shapePanel.add(new JButton("REKTANGLE"));
-		shapePanel.add(new JButton("SQUARE"));
-		shapePanel.add(new JButton("TRIANGLE"));
+		
+		circleButton = new SidePanelButton("circle");
+		squareButton = new SidePanelButton("square");
+		triangleButton = new SidePanelButton("triangle");
+
+		shapePanel.add(circleButton);
+		shapePanel.add(squareButton);
+		shapePanel.add(triangleButton);
+		
+		//shapePanel.add(new JButton("REKTANGLE"));
+		//shapePanel.add(new JButton("SQUARE"));
+		//shapePanel.add(new JButton("TRIANGLE"));
+		
 
 		this.setLayout(new GridLayout(2, 1));
 		this.setBackground(Color.GRAY);
@@ -74,4 +102,30 @@ public class SidePanel extends JPanel {
 		//this.add(testButton2, BorderLayout.NORTH);
 	}
 
+	@Override
+	public void mousePressed(MouseEvent e) {}
+	@Override
+	public void mouseEntered(MouseEvent e) {}
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		blackButton.deselect();
+		whiteButton.deselect();
+		blueButton.deselect();
+		redButton.deselect();
+		yellowButton.deselect();
+		greenButton.deselect();
+		magentaButton.deselect();
+		cyanButton.deselect();
+		
+		this.pressButton((SidePanelButton) e.getSource());
+	}
+	@Override
+	public void mouseClicked(MouseEvent e) {}
+	@Override
+	public void mouseExited(MouseEvent e) {}
+	
+	public void pressButton(SidePanelButton sidePanelButton) {
+		drawSettings.set_bg_color(sidePanelButton.get_color());
+		sidePanelButton.select();
+	}
 }

@@ -75,10 +75,14 @@ public class MyFrame extends JFrame implements MouseListener {
 		this.add(bottomPanel, BorderLayout.SOUTH);
 
 		// Add sidepanel
-		this.sidePanel = new SidePanel();
+		this.sidePanel = new SidePanel(drawSettings);
 		this.add(sidePanel, BorderLayout.EAST);
 		
 		this.setVisible(true);
+	}
+	
+	public DrawSettings drawSettings() {
+		return this.drawSettings;
 	}
 
 	@Override
@@ -89,15 +93,17 @@ public class MyFrame extends JFrame implements MouseListener {
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		//this.state.addObject(e.getX() - 25, e.getY() - 25, this.settings);
-		//this.drawArea.repaint();
 		System.out.printf("CLICK! X=%s Y=%s\n", e.getX(), e.getY());
-		Smiley smiley = new Smiley(e.getX() - 100, e.getY() - 100, 120234, 50, drawSettings.get_bg_color(), Color.BLACK);
 		
-		//this.myDrawArea.add(smiley, BorderLayout.CENTER);
-		this.layeredDrawArea.add(smiley, testx);
+		Smiley smiley = new Smiley(e.getX() - 100, e.getY() - 100, 120234, 50, drawSettings.get_bg_color(), Color.BLACK);
+		Circle circle = new Circle(e.getX(), e.getY(), 100, 100, drawSettings.get_bg_color(), Color.BLACK);
+		Square square = new Square(e.getX(), e.getY(), 100, 100, drawSettings.get_bg_color(), Color.BLACK);
+		Triangle triangle = new Triangle(e.getX(), e.getY(), 100, 100, drawSettings.get_bg_color(), Color.BLACK);
+		
+		//this.layeredDrawArea.add(smiley, testx);
+		this.layeredDrawArea.add(triangle, testx);
 		testx = testx + 1;
-		//this.myDrawArea.revalidate(); // --- // --- GÖR OM TILL EN REDRAW-FUNKTION!
+		
 		this.layeredDrawArea.revalidate(); // --- // --- GÖR OM TILL EN REDRAW-FUNKTION!
 	}
 
