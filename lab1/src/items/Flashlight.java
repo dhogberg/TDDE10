@@ -25,7 +25,7 @@ public class Flashlight extends Tool{
 			System.out.print("Nothing happened. The flashlight is missing batteries.\n");
 		}else {
 			System.out.print("Damn, that's bright. That's bright.\n");
-			player.getLocation().lightenRoom();
+			//player.getLocation().lightenRoom();
 		}
 	}
 	
