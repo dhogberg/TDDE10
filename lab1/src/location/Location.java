@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import the_adventure_2.Player;
 import items.*;
 
-public class Location {
+public abstract class Location {
 	private String shortDesc;
 	private String longDesc;
 	private boolean visitedBefore = false;
 	private ArrayList<Item> items_on_location = new ArrayList<Item>();
-	public Player player;
-	
+	private Player player;
+
 	public Location(String shortDescription, String longDescription) {
 		this.shortDesc = shortDescription;
 		this.longDesc = longDescription;
@@ -19,14 +19,32 @@ public class Location {
 	public String shortDescription(){
 		return this.shortDesc;
 	}
+
+	public String get_typeOfPath(){
+		return "road";
+	}
+	public String get_typeOfGround(){
+		return "ground";
+	}
+
+	public ArrayList<Item> get_items_on_location(){
+		return this.items_on_location;
+	}
 	
-	public Boolean RoomIsDark(){
+	
+  //TODO: Komplettering: Detta är lite som att säga är klassen av
+  //type DarkRoom eller är den inte det. Då tappar man lite
+  //av objektorienteringen. Låt istället DarkRoom ansvara över vad
+  //som sker när man försöker ta något från DarkRoom. 
+	
+	/*public Boolean RoomIsDark(){
 		// Override in subclass DarkRoom
 		return false;
-	}
+	}*/
 	
-	public void lightenRoom(){
-	}
+	/*public void lightenRoom(){
+
+	}*/
 
 	public void locationDirectionHelp(String currentXY) {
 		System.out.print(""
@@ -41,11 +59,11 @@ public class Location {
 	public void locationItemHelp(String currentXY) {
 		if(shortDesc.contains("Hemköp")) {
 			for(Item item: player.getLocation().items_on_location) {
-				System.out.printf("buy %s - Buy %s\n", item.name, item.name);
+				System.out.printf("buy %s - Buy %s\n", item.getName(), item.getName());
 			}
 		}else {
 			for(Item item: player.getLocation().items_on_location) {
-				System.out.printf("take %s - Pick up %s\n", item.name, item.name);
+				System.out.printf("take %s - Pick up %s\n", item.getName(), item.getName());
 			}
 		}
 	}
@@ -58,13 +76,22 @@ public class Location {
 		this.items_on_location.add(item);
 	}
 
+	/*
 	public void lookOnLocation(Player player){
 		// Override in subclasses
-	}
-	
-	public void displayAvailablePaths(Player player, String typeOfLocation){
+	}*/
+
+	public abstract void lookOnLocation(Player player);
+
+  //TODO[FIXAD]: Komplettering: Låt OutdoorsArea respektive Room ansvara över vilken typ av Location
+  //det är och alltså vilken typ av path det är. 
+	//---- FIXAT ----
+	//---- FIXAT ----
+	public void displayAvailablePaths(Player player/*, String typeOfLocation*/){
+
 		String typeOfPath;
-		
+
+		/*
 		switch(typeOfLocation) {
 			case "OutdoorsArea":
 				typeOfPath = "road";
@@ -72,8 +99,11 @@ public class Location {
 		//  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
 			default:
 				typeOfPath = "door";
-		}
+		}*/
+
+		typeOfPath = player.getLocation().get_typeOfPath();
 		
+
 		Boolean northPossible = false;
 		Boolean westPossible = false;
 		Boolean southPossible = false;
@@ -84,8 +114,10 @@ public class Location {
 		String southMoveCoords;
 		String eastMoveCoords;
 		
-		int x = Location.getx_from_String(player.currentXY);
-		int y = Location.gety_from_String(player.currentXY);
+		//int x = Location.getx_from_String(player.currentXY);
+		//int y = Location.gety_from_String(player.currentXY);
+		int x = Location.getx_from_String(player.get_currentXY());
+		int y = Location.gety_from_String(player.get_currentXY());
 
 		northMoveCoords = player.getLocation().convert_xy_to_String(x, y + 1);
 		westMoveCoords  = player.getLocation().convert_xy_to_String(x - 1, y);
@@ -118,13 +150,22 @@ public class Location {
 			System.out.printf("There is a %s leading east.\n", typeOfPath);
 		}
 	}
-	public void display_items_darkroom(){
+
+  //TODO[FIXAD]: Komplettering: Samma som RoomIsDark(). Hör den verkligen till Location?
+	//---- FIXAT ----
+	//---- FIXAT ----
+
+	/* public void display_items_darkroom(){
 		// Override in subclasses
-	}
+	}*/
 	
-	public void display_items(String typeOfLocation){
+	/*public void display_items(String typeOfLocation){*/
+	public void display_items(){
 		String typeOfGround;
-		
+
+		typeOfGround = player.getLocation().get_typeOfGround();
+
+		/*
 		switch(typeOfLocation) {
 			case "OutdoorsArea":
 				typeOfGround = "ground";
@@ -135,10 +176,10 @@ public class Location {
 		//  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
 			default:
 				typeOfGround = "floor";
-		}
+		}*/
 		
 		for(Item item: player.getLocation().items_on_location) {
-			System.out.printf("There is a %s laying on the %s.\n", item.name, typeOfGround);
+			System.out.printf("There is a %s laying on the %s.\n", item.getName(), typeOfGround);
 		}
 	}
 	
@@ -147,7 +188,7 @@ public class Location {
 		if (command.length() > 3) {
 			if(command.startsWith("buy")) {
 				for (Item item: player.getLocation().items_on_location) {
-					if(command.substring(4).equals(item.name)) {
+					if(command.substring(4).equals(item.getName())) {
 						player.giveItem(item);
 						player.getLocation().items_on_location.remove(item);
 						return true;
@@ -159,14 +200,24 @@ public class Location {
 		if (command.length() > 4) {
 			if(command.startsWith("take")) {
 				for (Item item: player.getLocation().items_on_location) {
-					if(command.substring(5).equals(item.name)) {
-						if(!RoomIsDark()) {
+					if(command.substring(5).equals(item.getName())) {
+                                          //TODO: Komplettering: Om ni tar bort metoden RoomIsDark()
+                                          //kan ni då istället låta DarkRoom själv ha ansvaret över 
+                                          //att det inte går att ta upp något där. Så att ni 
+                                          //här anropar en metod förslagvis take() som DarkRoom
+                                          //överskuggar. 
+						if(take(player, item)) {
+							return true;
+						}else{
+							return false;
+						}
+						/*if(!RoomIsDark()) {
 							player.giveItem(item);
 							player.getLocation().items_on_location.remove(item);
 							return true;
 						}else {
 							return false;
-						}
+						}*/
 					}
 				}
 			}
@@ -184,22 +235,26 @@ public class Location {
 		return true;
 	}
 	
+	public Boolean take(Player player, Item item) {
+		player.giveItem(item);
+		player.getLocation().items_on_location.remove(item);
+		return true;
+	}
 	
 	public void describeYourself() {
-		
 		if(!this.visitedBefore) {
 			this.visitedBefore = true;
 			System.out.print(this.longDesc);
 		}else {
 			System.out.print(this.shortDesc + ".");
 		}
-		this.printWeather();
+		//this.printWeather();
 		System.out.print("\n");
 	}
 	
-	public void printWeather() {
+	/*public void printWeather() {
 		// @Override in subclass OutdoorsArea 
-	}
+	}*/
 	
 	public String convert_xy_to_String(int x, int y) {
 		return x + "," + y;

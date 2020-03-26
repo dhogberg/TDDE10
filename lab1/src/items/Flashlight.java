@@ -2,16 +2,20 @@ package items;
 
 import the_adventure_2.Player;
 
+//Kommentar: Här skiljer sig funktionaliteten
+//ifrån Tool och då är det superbra att ni har
+//en egen klass till Flashlight. 
+
 public class Flashlight extends Tool{
 
-	Boolean hasBatteries = false; 
+	private Boolean hasBatteries = false; 
 	
 	public Flashlight(String name, Double weight) {
 		this.setName(name);
 		this.setWeight(weight);
 	}
 	
-	@Override
+	/*@Override*/
 	public void useItem(Player player){
 		this.useFlashlight(player);
 	}
@@ -25,9 +29,29 @@ public class Flashlight extends Tool{
 		}
 	}
 	
-	@Override
+	/*@Override*/
 	public void addBatteries() {
 		this.hasBatteries = true;
+	}
+
+	public boolean itemCommandV2(String command, Player player) {
+		switch(command) {
+			case "addBatteries":
+				this.addBatteries();
+				break;
+		//  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
+			default:
+				if (command.length() > 4) {
+					if(command.startsWith("use")) {
+						if(command.substring(4).equals(this.getName())) {
+							this.useItem(player);
+							return true;
+						}
+					}
+				}
+				return false;
+		}
+		return true;
 	}
 	
 	@Override

@@ -11,8 +11,8 @@ public class OutdoorsArea extends Location {
 	
 	@Override
 	public void lookOnLocation(Player player){
-		this.displayAvailablePaths(player, "OutdoorsArea");
-		this.display_items("OutdoorsArea");
+		this.displayAvailablePaths(player/*, "OutdoorsArea"*/);
+		this.display_items(); //this.display_items("OutdoorsArea");
 	}
 
 	private String randWeather() {
@@ -39,6 +39,7 @@ public class OutdoorsArea extends Location {
 	@Override
 	public void describeYourself() {
 		super.describeYourself();
+		this.printWeather();
 	}
 	
 }

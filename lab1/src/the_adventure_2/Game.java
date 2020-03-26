@@ -9,9 +9,9 @@ import java.util.HashMap;
 public class Game {
     private Scanner keyboard; 
     private ArrayList<Location> locations;
-    public Player player;
+    private Player player;
     private Boolean gameIsRunning;
-    HashMap<String, Location> locationMap = new HashMap<String, Location>();
+    private HashMap<String, Location> locationMap = new HashMap<String, Location>();
     
     public Game() {
     	gameIsRunning = true;
@@ -45,16 +45,20 @@ public class Game {
     	/* 2 */ locations.add(new OutdoorsArea("Trädgårdstorget", "You found the second square of Linköping, Trädgårdstorget. You see something glimmering on the ground."));
     	/* 3 */ locations.add(new Room("Galleria Filbyter floor 1", "You have entered Galleria Filbyter floor 1. There is something laying on the floor."));
     	/* 4 */ locations.add(new Room("Galleria Filbyter floor -1", "Long text Galleria Filbyter floor -1."));
-    	/* 5 */ locations.add(new Room("Hemköp Lucullus", "You entered Hemköp Lucullus. Maybe you can buy something useful here."));
+    	/* 5 */ locations.add(new Store("Hemköp Lucullus", "You entered Hemköp Lucullus. Maybe you can buy something useful here."));
     	/* 6 */ locations.add(new Room("Platens Bar", "The guard let you in to Platens. You look stunning! Everyones looks you with envy."));
     	/* 7 */ locations.add(new DarkRoom("Closed H&M", "Closed H&M store, currently under construction. It is very dark, there are no lights turned on."));
     }
     
     private void addItemsToLocations() {
-    	locations.get(2).addItem(new Flashlight("flashlight", 0.6));
+    	/*locations.get(2).addItem(new Flashlight("flashlight", 0.6));
     	locations.get(3).addItem(new Hat("hat", 0.35));
     	locations.get(5).addItem(new Batteries("batteries", 0.15));
-    	locations.get(7).addItem(new Jacket("jacket", 0.4));
+    	locations.get(7).addItem(new Jacket("jacket", 0.4));*/
+        locations.get(2).addItem(new Flashlight("flashlight", 0.6));
+        locations.get(3).addItem(new WearableItem("hat", 0.35, 1));
+        locations.get(5).addItem(new Batteries("batteries", 0.15));
+        locations.get(7).addItem(new WearableItem("jacket", 0.4, 2));
     }
     
     private void buildLocationMap() {

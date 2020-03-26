@@ -13,17 +13,24 @@ public class Player {
 	private Location position;
 	private Game game;
 	private String playername;
-	
-	public String currentXY;
+
+  //TODO[FIXAT]: Komplettering: Variabler ska vara privata. 
+	//---- FIXAT ----
+	//---- FIXAT ----
+	private String currentXY;
 
 	
 	public Player(Location startLocation, Game game) {
 		this.position = startLocation;
 		currentXY = "0,0";
 		this.game = game;
-		this.playeritems.add(new Bag("bag", 0.4));
+		this.playeritems.add(new WearableItem("bag", 0.4)); //this.playeritems.add(new Bag("bag", 0.4));
 	}
 	
+	public String get_currentXY(){
+		return this.currentXY;
+	}
+
 	public void setName(String playername) {
 		this.playername = playername;
 	}
@@ -60,10 +67,10 @@ public class Player {
 	
 	public void giveItem(Item item) {
 		playeritems.add(item);
-		if(item.name == "batteries") {
-			System.out.printf("You bought %s.\n", item.name);
+		if(item.getName() == "batteries") {
+			System.out.printf("You bought %s.\n", item.getName());
 		}else{
-			System.out.printf("You picked up %s.\n", item.name);
+			System.out.printf("You picked up %s.\n", item.getName());
 		}
 	};
 	
@@ -142,12 +149,15 @@ public class Player {
 	public boolean try_itemCommands(String command){
 		
 		for (Item item: this.playeritems) {
-			if(item.itemCommand(command, this)) {
+			/*if(item.itemCommand(command, this)) {
+				return true;
+			}*/
+			if(item.itemCommandV2(command, this)) {
 				return true;
 			}
 		}
 		for (Item item: this.wornitems) {
-			if(item.itemCommand(command, this)) {
+			if(item.itemCommandV2(command, this)) {
 				return true;
 			}
 		}
@@ -165,6 +175,8 @@ public class Player {
 		}
 	}
 
+  //Kommentar: Snyggt att ni låter doCommand() returnera boolean samt att ni låter item ansvara över
+  //sina egna kommandon. 
 	public int doCommand(String command) {
 		if(!playerCommand(command)) {
 			if(!this.position.locationCommand(command, this)) {
@@ -219,13 +231,13 @@ public class Player {
 		new_XY_String = this.position.convert_xy_to_String(newx, newy);
 		
 		
-		if( this.game.locationMap.containsKey(new_XY_String) ) {
+		if( this.game.getLocationMap().containsKey(new_XY_String) ) {
 			// Check if platens
-			if(this.game.locationMap.get(new_XY_String).shortDescription().equals("Platens Bar")){
+			if(this.game.getLocationMap().get(new_XY_String).shortDescription().equals("Platens Bar")){
 				// Platens. Check appearance first
 				if(this.getAppearance() >= 6){
 					currentXY = newx + "," + newy;
-					changeLocation(this.game.locationMap.get(new_XY_String));
+					changeLocation(this.game.getLocationMap().get(new_XY_String));
 					System.out.printf("You went %s.\n", direction);
 					this.getLocation().describeYourself();
 					game.quitGame(this.playername);
@@ -235,7 +247,7 @@ public class Player {
 			}else{
 				// Not platens, so move without checking appearance
 				currentXY = newx + "," + newy;
-				changeLocation(this.game.locationMap.get(new_XY_String));
+				changeLocation(this.game.getLocationMap().get(new_XY_String));
 				System.out.printf("You went %s.\n", direction);
 				this.getLocation().describeYourself();
 				this.getLocation().lookOnLocation(this);

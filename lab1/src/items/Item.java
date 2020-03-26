@@ -2,22 +2,34 @@ package items;
 
 import the_adventure_2.Player;
 
-public class Item {
+//TODO[FIXED]: Komplettering: Skulle Items kunna vara abstrakt? Det skulle vara 
+//att föredra om de flesta metoder ändå är tomma. 
+
+//TODO[FIXAD]: Komplettering: Ni ska inte ha några publika instansvariabler.
+//Se över detta i hela koden. 
+
+public abstract class Item {
 	private double weight;
-	public Player player;
-	public String name;
+	private Player player;
+	private String name;
 	
 	public Item() {
 		//
 	}
 
+	/*
 	public void useItem(Player player){
 		// override in subclass
 	}
+	*/
 	
+	public abstract boolean itemCommandV2(String command, Player player);
+
+	/*
 	public void addBatteries() {
 		// override in subclass
 	}
+	*/
 	
 	public void setName(String name) {
 		this.name = name;
@@ -64,10 +76,10 @@ public class Item {
 		return true;
 	}
 	
-	public boolean itemCommand(String command, Player player) {
+	/*public boolean itemCommand(String command, Player player) {
 		// Override in subclasses!
 		return false;
-	}
+	}*/
 	
 	public void itemHelp(String currentXY, Player player) {
 		System.out.println("items/i - Displays your inventory\n");

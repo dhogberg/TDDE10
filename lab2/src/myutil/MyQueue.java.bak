@@ -1,0 +1,30 @@
+package myutil;
+
+public class MyQueue<E> extends MyVector<E> implements MyInterface {
+
+	private Node<E> first, last;
+	
+	public void enqueue(E element) {
+		if(this.isEmpty()){
+			this.first = new Node<E>(element);
+			this.changeSize(+1);
+		}else{
+			this.first = new Node<E>(element, first);
+			this.changeSize(+1);
+		}
+	}
+
+	public E dequeue() {
+		if(!this.isEmpty()) {
+			if(this.size() == 1){
+				this.first = new Node<E>();
+			}else{
+				this.first = this.first.getNextReference();
+			}
+			this.changeSize(-1);
+		}else {
+			throw new EmptyQueueException();
+		}
+		return this.first.getData();
+	}
+}
