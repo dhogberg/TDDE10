@@ -86,13 +86,7 @@ public class MyFrame extends JFrame implements MouseListener {
 	}
 
 	@Override
-	public void mousePressed(MouseEvent e) {}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
+	public void mousePressed(MouseEvent e) {
 		System.out.printf("CLICK! X=%s Y=%s\n", e.getX(), e.getY());
 		
 		Smiley smiley = new Smiley(e.getX() - 100, e.getY() - 100, 120234, 50, drawSettings.get_bg_color(), Color.BLACK);
@@ -106,6 +100,12 @@ public class MyFrame extends JFrame implements MouseListener {
 		
 		this.layeredDrawArea.revalidate(); // --- // --- GÖR OM TILL EN REDRAW-FUNKTION!
 	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {}		
