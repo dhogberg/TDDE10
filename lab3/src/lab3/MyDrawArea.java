@@ -15,5 +15,13 @@ public class MyDrawArea extends JLayeredPane {
 		this.setBackground(Color.WHITE);
 	}
 
-	
+	public void clear() {
+		this.removeAll();
+		this.repaint();
+	} 
+
+	public void redraw() {
+		this.revalidate();
+	}
+
 }
