@@ -14,4 +14,6 @@ public class MyDrawArea extends JLayeredPane {
 		this.setLayout(new BorderLayout());
 		this.setBackground(Color.WHITE);
 	}
+
+	
 }

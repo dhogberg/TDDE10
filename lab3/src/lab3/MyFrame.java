@@ -29,21 +29,22 @@ public class MyFrame extends JFrame implements MouseListener {
 
 		paintLayer_x = 0;
 
+		// Add settings
+		drawSettings = new DrawSettings();
+
 		// Add drawingarea
 		layeredDrawArea = new MyDrawArea();
 		layeredDrawArea.setLayout(null);
 		layeredDrawArea.setVisible(true);
 		layeredDrawArea.addMouseListener(this);
-
-		// Add settings
-		drawSettings = new DrawSettings();
 		
 		// Add bottompanel
 		this.bottomPanel = new BottomPanel(layeredDrawArea);
-		
+
 		// Add sidepanel
 		this.sidePanel = new SidePanel(drawSettings);
 		
+		// Add 
 		this.add(bottomPanel, BorderLayout.SOUTH);
 		this.add(sidePanel, BorderLayout.EAST);
 		this.add(layeredDrawArea, BorderLayout.CENTER);
@@ -93,13 +94,10 @@ public class MyFrame extends JFrame implements MouseListener {
 
 	@Override
 	public void mouseEntered(MouseEvent e) {}
-
 	@Override
 	public void mouseReleased(MouseEvent e) {}
-
 	@Override
 	public void mouseClicked(MouseEvent e) {}		
-
 	@Override
 	public void mouseExited(MouseEvent e) {}
 }
