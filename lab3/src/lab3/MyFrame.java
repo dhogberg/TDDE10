@@ -95,7 +95,23 @@ public class MyFrame extends JFrame implements MouseListener {
 		Triangle triangle = new Triangle(e.getX(), e.getY(), 100, 100, drawSettings.get_bg_color(), Color.BLACK);
 		
 		//this.layeredDrawArea.add(smiley, testx);
-		this.layeredDrawArea.add(triangle, testx);
+		
+		switch(drawSettings.get_draw_component()) {
+			case "square":
+				this.layeredDrawArea.add(square, testx);
+				break;
+			case "triangle":
+				this.layeredDrawArea.add(triangle, testx);
+				break;
+			case "smiley":
+				this.layeredDrawArea.add(smiley, testx);
+				break;
+			//  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
+			default:
+				this.layeredDrawArea.add(circle, testx);
+		}
+		
+		
 		testx = testx + 1;
 		
 		this.layeredDrawArea.revalidate(); // --- // --- GÖR OM TILL EN REDRAW-FUNKTION!
