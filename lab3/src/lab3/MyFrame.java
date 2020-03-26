@@ -18,9 +18,8 @@ import drawComponents.*;
 public class MyFrame extends JFrame implements MouseListener {
 	private BottomPanel bottomPanel;
 	private SidePanel sidePanel;
-	private MyDrawArea myDrawArea;
-	private JLayeredPane layeredDrawArea;
-	private Integer testx;
+	private MyDrawArea layeredDrawArea;
+	private Integer paintLayer_x;
 	private DrawSettings drawSettings;
 
 	public MyFrame() {
@@ -28,61 +27,36 @@ public class MyFrame extends JFrame implements MouseListener {
 		this.setSize(800,450);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-		// Add drawingarea
-		//myDrawArea = new MyDrawArea();
+		paintLayer_x = 0;
 
-		
+		// Add drawingarea
+		layeredDrawArea = new MyDrawArea();
+		layeredDrawArea.setLayout(null);
+		layeredDrawArea.setVisible(true);
+		layeredDrawArea.addMouseListener(this);
+
 		// Add settings
 		drawSettings = new DrawSettings();
 		
-		
-		// TEST CODE
-		layeredDrawArea = new JLayeredPane();
-		
-		layeredDrawArea.setLayout(null);
-		layeredDrawArea.setPreferredSize(new Dimension(200,0));
-		layeredDrawArea.setBackground(Color.blue);
-		
-		layeredDrawArea.addMouseListener(this);
-		//layeredDrawArea.setBackground(Color.RED);
-		layeredDrawArea.setVisible(true);
-		
-		layeredDrawArea.setBounds(0, 0, 100, 100);
-
-		//myDrawArea.add(layeredDrawArea, BorderLayout.CENTER);
-		
-		testx = 0;
-		
-		
-		//myDrawArea.addMouseListener(this);
-		//myDrawArea.addMouseListener(this);
-		
-		// Add smiley
-		
-		
-		////myDrawArea.setSize(500, 500);
-		//myDrawArea.setLocationRelativeTo(null);
-		//myDrawArea.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//////myDrawArea.setVisible(true);
-		
-		
-		/////this.add(myDrawArea, BorderLayout.CENTER);// 
-		this.add(layeredDrawArea, BorderLayout.CENTER);
-		
-
 		// Add bottompanel
-		this.bottomPanel = new BottomPanel();
-		this.add(bottomPanel, BorderLayout.SOUTH);
-
+		this.bottomPanel = new BottomPanel(layeredDrawArea);
+		
 		// Add sidepanel
 		this.sidePanel = new SidePanel(drawSettings);
-		this.add(sidePanel, BorderLayout.EAST);
 		
+		this.add(bottomPanel, BorderLayout.SOUTH);
+		this.add(sidePanel, BorderLayout.EAST);
+		this.add(layeredDrawArea, BorderLayout.CENTER);
+
 		this.setVisible(true);
 	}
 	
 	public DrawSettings drawSettings() {
 		return this.drawSettings;
+	}
+
+	public JLayeredPane get_layeredDrawArea (){
+		return this.layeredDrawArea;
 	}
 
 	@Override
@@ -94,25 +68,25 @@ public class MyFrame extends JFrame implements MouseListener {
 		Square square = new Square(e.getX(), e.getY(), 100, 100, drawSettings.get_bg_color(), Color.BLACK);
 		Triangle triangle = new Triangle(e.getX(), e.getY(), 100, 100, drawSettings.get_bg_color(), Color.BLACK);
 		
-		//this.layeredDrawArea.add(smiley, testx);
+		//this.layeredDrawArea.add(smiley, paintLayer_x);
 		
 		switch(drawSettings.get_draw_component()) {
 			case "square":
-				this.layeredDrawArea.add(square, testx);
+				this.layeredDrawArea.add(square, paintLayer_x);
 				break;
 			case "triangle":
-				this.layeredDrawArea.add(triangle, testx);
+				this.layeredDrawArea.add(triangle, paintLayer_x);
 				break;
 			case "smiley":
-				this.layeredDrawArea.add(smiley, testx);
+				this.layeredDrawArea.add(smiley, paintLayer_x);
 				break;
 			//  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
 			default:
-				this.layeredDrawArea.add(circle, testx);
+				this.layeredDrawArea.add(circle, paintLayer_x);
 		}
 		
 		
-		testx = testx + 1;
+		paintLayer_x = paintLayer_x + 1;
 		
 		this.layeredDrawArea.revalidate(); // --- // --- GÖR OM TILL EN REDRAW-FUNKTION!
 	}

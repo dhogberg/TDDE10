@@ -4,13 +4,14 @@ import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.Color;
 import javax.swing.JPanel;
+import javax.swing.JLayeredPane;
 
 import drawComponents.*;
 
-public class MyDrawArea extends JPanel {
+public class MyDrawArea extends JLayeredPane {
 
 	public MyDrawArea() {
 		this.setLayout(new BorderLayout());
-		//this.setBackground(Color.WHITE);
+		this.setBackground(Color.WHITE);
 	}
 }

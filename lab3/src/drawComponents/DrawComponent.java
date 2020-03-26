@@ -2,7 +2,9 @@ package drawComponents;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Dimension;
 import javax.swing.JComponent;
+
 
 public abstract class DrawComponent extends JComponent {
 
@@ -20,6 +22,7 @@ public abstract class DrawComponent extends JComponent {
 		this.h = h;
 		this.bg_color = bg_color;
 		this.stroke_color = stroke_color;
+		this.setPreferredSize(new Dimension(w, h));
 		//this.setBackground(Color.WHITE);
 	}
 	

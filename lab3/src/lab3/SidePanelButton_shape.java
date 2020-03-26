@@ -3,6 +3,8 @@ package lab3;
 import java.awt.Color;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
+import javax.swing.JLabel;
+import java.awt.Dimension;
 
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
@@ -18,28 +20,29 @@ public class SidePanelButton_shape extends SidePanelButton {
 
 	public SidePanelButton_shape(String type_of_shape) {
 		super(type_of_shape);
+		Circle circle = new Circle(13, 13, 26, 26, Color.BLACK, Color.BLACK);
+		Circle circle2 = new Circle(13, 13, 26, 26, Color.YELLOW, Color.BLACK);
+		Square square = new Square(13, 13, 26, 26, Color.BLACK, Color.BLACK);
+		Triangle triangle = new Triangle(13, 13, 26, 26, Color.BLACK, Color.BLACK);
 		this.type_of_shape = type_of_shape;
 		switch(type_of_shape){
 			case "square":
-				Square square = new Square(0, 0, 10, 10, Color.BLACK, Color.BLACK);
+				
 				this.add(square, BorderLayout.CENTER);
-				this.setBackground(Color.BLUE);
 				break;
 			case "triangle":
-				Triangle triangle = new Triangle(0, 0, 26, 26, Color.BLACK, Color.BLACK);
-				this.add(triangle);
-				//this.setBackground(Color.GREEN);
+				
+				this.add(triangle, BorderLayout.CENTER);
 				break;
 			case "smiley":
-				Smiley smiley = new Smiley(0, 0, 0, 0, Color.BLACK, Color.BLACK);
-				this.add(smiley);
-				//this.setBackground(Color.GREEN);
+				this.add(circle2, BorderLayout.CENTER);
+				//Smiley smiley = new Smiley(13, 13, 26, 26, Color.BLACK, Color.BLACK);
+				//this.add(smiley, BorderLayout.CENTER);
 				break;
 			//  //  //  //  //  //  //  //  //  //  //
 			default: // circle
 				//this.setBackground(Color.RED);
-				Circle circle = new Circle(0, 0, 26, 26, Color.BLACK, Color.BLACK);
-				this.add(circle);
+				this.add(circle, BorderLayout.CENTER);
 		}
 	}
 

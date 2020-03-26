@@ -3,6 +3,7 @@ package lab3;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -73,6 +74,7 @@ public class SidePanel extends JPanel implements MouseListener {
 
 		JPanel shapePanel = new JPanel();
 		shapePanel.setLayout(new GridLayout(5,1));
+		shapePanel.setPreferredSize(new Dimension(100, 100));
 		
 		shapePanel.add(new JLabel("Form"));
 		
@@ -80,6 +82,9 @@ public class SidePanel extends JPanel implements MouseListener {
 		squareButton = new SidePanelButton_shape("square");
 		triangleButton = new SidePanelButton_shape("triangle");
 		smileyButton = new SidePanelButton_shape("smiley");
+		
+        setVisible(true);
+ 
 
 		circleButton.addMouseListener(this);
 		squareButton.addMouseListener(this);
