@@ -33,24 +33,37 @@ public class SidePanel extends JPanel implements MouseListener {
 		
 		colorButtons = new ArrayList<SidePanelButton_color>();
 		
-		colorButtons.add(new SidePanelButton_color(Color.BLACK));
-		colorButtons.add(new SidePanelButton_color(Color.WHITE));
-		colorButtons.add(new SidePanelButton_color(Color.BLUE));
-		colorButtons.add(new SidePanelButton_color(Color.RED));
-		colorButtons.add(new SidePanelButton_color(Color.YELLOW));
-		colorButtons.add(new SidePanelButton_color(Color.GREEN));
-		colorButtons.add(new SidePanelButton_color(Color.MAGENTA));
-		colorButtons.add(new SidePanelButton_color(Color.CYAN));
-		
 		JPanel colorPanel = new JPanel();
 		colorPanel.setLayout(new GridLayout(9,1));
 		colorPanel.add(new JLabel("Färg"));
 
-		for (SidePanelButton_color colorButton : colorButtons) { 		      
-			colorButton.addMouseListener(this);
-			colorPanel.add(colorButton);
-		}
-		
+		blackButton = new SidePanelButton_color(Color.BLACK);
+		whiteButton = new SidePanelButton_color(Color.WHITE);
+		blueButton = new SidePanelButton_color(Color.BLUE);
+		redButton = new SidePanelButton_color(Color.RED);
+		yellowButton = new SidePanelButton_color(Color.YELLOW);
+		greenButton = new SidePanelButton_color(Color.GREEN);
+		magentaButton = new SidePanelButton_color(Color.MAGENTA);
+		cyanButton = new SidePanelButton_color(Color.CYAN);
+
+		blackButton.addMouseListener(this);
+		whiteButton.addMouseListener(this);
+		blueButton.addMouseListener(this);
+		redButton.addMouseListener(this);
+		yellowButton.addMouseListener(this);
+		greenButton.addMouseListener(this);
+		magentaButton.addMouseListener(this);
+		cyanButton.addMouseListener(this);
+
+		colorPanel.add(blackButton);
+		colorPanel.add(whiteButton);
+		colorPanel.add(blueButton);
+		colorPanel.add(redButton);
+		colorPanel.add(yellowButton);
+		colorPanel.add(greenButton);
+		colorPanel.add(magentaButton);
+		colorPanel.add(cyanButton);
+
 		JPanel shapePanel = new JPanel();
 		shapePanel.setLayout(new GridLayout(5,1));
 		shapePanel.setPreferredSize(new Dimension(100, 100));
@@ -81,7 +94,7 @@ public class SidePanel extends JPanel implements MouseListener {
 		setVisible(true);
 
 		circleButton.select();
-		colorButtons.get(0).select(); // Select black colorButton
+		blackButton.select();
 	}
 
 	@Override
@@ -103,11 +116,14 @@ public class SidePanel extends JPanel implements MouseListener {
 	
 	public void pressButton(SidePanelButton_color sidePanelButton_color) {
 		this.drawModel.set_bg_color(sidePanelButton_color.get_color());
-		
-		for (SidePanelButton_color colorButton : colorButtons) { 		      
-			colorButton.deselect();
-		}
-		
+		blackButton.deselect();
+		whiteButton.deselect();
+		blueButton.deselect();
+		redButton.deselect();
+		yellowButton.deselect();
+		greenButton.deselect();
+		magentaButton.deselect();
+		cyanButton.deselect();
 		sidePanelButton_color.select();
 	}
 	
