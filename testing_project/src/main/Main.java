@@ -1,5 +1,29 @@
 package main;
 
+import states.GameModel;
+
+import java.awt.*;
+
+/**
+ * This Class is the entry point of the application.
+ * <p>
+ * This Class has the following primary responsibilities:
+ * 1. Serve as the entry for the Application
+ * <p>
+ * 2. Create the GameModel
+ * (For more information about the GameModel see /src/states/GameModel)
+ * <p>
+ * 3. Create the GameFrame (A JFrame Wrapper):
+ * (For more information about the GameFrame see /src/main/GameFrame)...
+ * <p>
+ * 4. Create the GamePanel (A JPanel Wrapper):
+ * (For more information about the GamePanel see /src/main/GamePanel)...
+ * <p>
+ * 5. Run the main loop of the game. 
+ * <p>
+ * https://gitlab.ida.liu.se/alomi60/ExempelProjekt-TDDE10
+ */
+
 public class Main {
 
 	public static void main(String[] args) {
