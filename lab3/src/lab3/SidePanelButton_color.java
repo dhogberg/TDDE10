@@ -2,7 +2,6 @@ package lab3;
 
 import java.awt.Color;
 import javax.swing.JPanel;
-
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
@@ -31,5 +30,4 @@ public class SidePanelButton_color extends SidePanelButton {
 	public void deselect() {
 		this.setBorder(null);
 	}
-
 }

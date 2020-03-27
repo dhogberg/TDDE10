@@ -5,7 +5,6 @@ import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.Dimension;
-
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
@@ -27,7 +26,6 @@ public class SidePanelButton_shape extends SidePanelButton {
 		this.type_of_shape = type_of_shape;
 		switch(type_of_shape){
 			case "square":
-				
 				this.add(square, BorderLayout.CENTER);
 				break;
 			case "triangle":
@@ -36,8 +34,6 @@ public class SidePanelButton_shape extends SidePanelButton {
 				break;
 			case "smiley":
 				this.add(circle2, BorderLayout.CENTER);
-				//Smiley smiley = new Smiley(13, 13, 26, 26, Color.BLACK, Color.BLACK);
-				//this.add(smiley, BorderLayout.CENTER);
 				break;
 			//  //  //  //  //  //  //  //  //  //  //
 			default: // circle
@@ -57,5 +53,4 @@ public class SidePanelButton_shape extends SidePanelButton {
 	public String get_type_of_shape(){
 		return this.type_of_shape;
 	}
-
 }

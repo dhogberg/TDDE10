@@ -5,7 +5,6 @@ import java.awt.Color;
 import javax.swing.JPanel;
 
 public class Smiley extends DrawComponent {
-	
 	public Smiley(Integer x, Integer y, Integer w, Integer h, Color bg_color, Color stroke_color) {
 		super(x, y, w, h, bg_color, stroke_color);
 		//this.setBounds(x, y, 200, 200);

@@ -4,14 +4,11 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JButton;
-
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
 import java.util.ArrayList;
 
 import drawComponents.*;
@@ -28,22 +25,19 @@ public class SidePanel extends JPanel implements MouseListener {
 	private SidePanelButton greenButton;
 	private SidePanelButton magentaButton;
 	private SidePanelButton cyanButton;
-
 	private SidePanelButton circleButton;
 	private SidePanelButton squareButton;
 	private SidePanelButton triangleButton;
 	private SidePanelButton smileyButton;
-	
-	private DrawSettings drawSettings;
+	private DrawModel drawModel;
 
-	public SidePanel(DrawSettings drawSettings) {
+	public SidePanel(DrawModel drawModel) {
 
-		this.drawSettings = drawSettings;
+		this.drawModel = drawModel;
 		
 		JPanel colorPanel = new JPanel();
 		colorPanel.setLayout(new GridLayout(9,1));
 		colorPanel.add(new JLabel("Färg"));
-		//colorPanel.addMouseListener(this);
 
 		blackButton = new SidePanelButton_color(Color.BLACK);
 		whiteButton = new SidePanelButton_color(Color.WHITE);
@@ -82,9 +76,6 @@ public class SidePanel extends JPanel implements MouseListener {
 		squareButton = new SidePanelButton_shape("square");
 		triangleButton = new SidePanelButton_shape("triangle");
 		smileyButton = new SidePanelButton_shape("smiley");
-		
-        setVisible(true);
- 
 
 		circleButton.addMouseListener(this);
 		squareButton.addMouseListener(this);
@@ -101,7 +92,9 @@ public class SidePanel extends JPanel implements MouseListener {
 
 		this.add(colorPanel);
 		this.add(shapePanel);
-		
+
+		setVisible(true);
+
 		circleButton.select();
 		blackButton.select();
 	}
@@ -113,10 +106,8 @@ public class SidePanel extends JPanel implements MouseListener {
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		if((e.getSource() instanceof SidePanelButton_color)){
-			System.out.print("INSTANCE OF SIDEPANELBTN COLOR WORKS! 1111\n");
 			this.pressButton((SidePanelButton_color) e.getSource());
 		}else if((e.getSource() instanceof SidePanelButton_shape)){
-			System.out.print("INSTANCE OF SIDEPANELBTN SHAPE WORKS! 2222\n");
 			this.pressButton((SidePanelButton_shape) e.getSource());
 		}
 	}
@@ -126,7 +117,7 @@ public class SidePanel extends JPanel implements MouseListener {
 	public void mouseExited(MouseEvent e) {}
 	
 	public void pressButton(SidePanelButton_color sidePanelButton_color) {
-		drawSettings.set_bg_color(sidePanelButton_color.get_color());
+		this.drawModel.set_bg_color(sidePanelButton_color.get_color());
 		blackButton.deselect();
 		whiteButton.deselect();
 		blueButton.deselect();
@@ -139,7 +130,7 @@ public class SidePanel extends JPanel implements MouseListener {
 	}
 	
 	public void pressButton(SidePanelButton_shape sidePanelButton_shape) {
-		drawSettings.set_draw_component(sidePanelButton_shape.get_type_of_shape());
+		this.drawModel.set_draw_component(sidePanelButton_shape.get_type_of_shape());
 		circleButton.deselect();
 		squareButton.deselect();
 		triangleButton.deselect();

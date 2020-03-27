@@ -8,20 +8,25 @@ import javax.swing.JLayeredPane;
 
 import drawComponents.*;
 
-public class MyDrawArea extends JLayeredPane {
+public class MyDrawArea extends JPanel {
+	
+	private Graphics g;
+	private DrawModel drawModel;
 
-	public MyDrawArea() {
+	public MyDrawArea(DrawModel drawModel) {
 		this.setLayout(new BorderLayout());
 		this.setBackground(Color.WHITE);
+		this.drawModel = drawModel;
 	}
 
-	public void clear() {
-		this.removeAll();
+	public void paintComponent() {
+		this.paintComponent(g);
+	}
+	
+	public void paintComponent(Graphics g) {
+		for (DrawComponent drawComponent : this.drawModel.getDrawComponents()) {
+			drawComponent.paintComponent(g);
+		}
 		this.repaint();
-	} 
-
-	public void redraw() {
-		this.revalidate();
 	}
-
 }
