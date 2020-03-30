@@ -43,8 +43,10 @@ public class Main {
 			long lastTime = System.currentTimeMillis();
 
 			// Perform game update and game rendering.
+			System.out.printf("Before model update & repaint: %s", System.currentTimeMillis());
 			model.update();
 			frame.repaint();
+			System.out.printf("After: %s\n", System.currentTimeMillis());
 
 			// Calculate the time it took to update and render
 			long timer = System.currentTimeMillis() - lastTime;

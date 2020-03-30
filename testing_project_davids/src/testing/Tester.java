@@ -28,20 +28,15 @@ public class Tester {
 	private Point position;
 	private Point bullet_pos;
 	
-	private BufferedImage hBanana;
-	private BufferedImage basket;
 	private BufferedImage spriteimage_bullet_enemy;
 	private BufferedImage spriteimage_life_mushroom;
 
 	public Tester(){
-		position = new Point(0, 0);
-		
+		position = new Point(0, 0);		
 		bullet_pos = new Point(1000, 300);
 
-		hBanana						= loadImage("h-banana.png");
-		basket   					= loadImage("Basket.png");
-		spriteimage_bullet_enemy	= loadImage("bullet_enemy_16x14.png");
-		spriteimage_life_mushroom	= loadImage("life_mushroom_18x18.png");
+		spriteimage_bullet_enemy	= loadImage("sprites/bullet_enemy_16x14.png");
+		spriteimage_life_mushroom	= loadImage("sprites/life_mushroom_18x18.png");
 	}
 
 	public void delegate(Graphics g){
@@ -69,12 +64,9 @@ public class Tester {
 
 	/* ====== USED FOR TESTING ====== */
 	private void testDraw(Graphics g) {
-		//	g.drawImage(basket, position.x, position.y, 80, 80, null);
 
 		//g.setColor(Color.BLUE);
 		//g.drawString("D-9", position.x + 20, position.y + 45);
-
-		//g.drawImage(hBanana, position.x + 200, position.y + 200, 100, 100, null);
 		
 		g.drawImage(spriteimage_life_mushroom, position.x + 200, position.y + 200, 30, 30, null);
 

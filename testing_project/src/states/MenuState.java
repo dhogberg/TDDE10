@@ -25,7 +25,7 @@ public class MenuState extends GameState {
 	public MenuState(GameModel model) {
 		super(model);
 
-		informationText = "Press Enter To Play";
+		informationText = "Welcome to Marioshooter!";
 		bgColor = new Color(78, 172, 176);
 		fontColor = new Color(200, 198, 130);
 	}
@@ -39,7 +39,7 @@ public class MenuState extends GameState {
 
 		g.setColor(fontColor);
 		g.setFont(new Font("Monospace", Font.PLAIN, 30));
-		g.drawString(informationText, (SCREEN_WIDTH / 2) - 150, SCREEN_HEIGHT / 2);
+		g.drawString(informationText, (SCREEN_WIDTH / 2) - 170, SCREEN_HEIGHT / 2);
 	}
 
 	/**
