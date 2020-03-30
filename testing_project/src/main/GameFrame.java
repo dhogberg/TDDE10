@@ -26,7 +26,7 @@ public class GameFrame extends JFrame {
 	public GameFrame(String gameName, GameModel model){
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Terminates the program when window closes
 		this.setResizable(false);
-
+		this.setSize(300,300);
 		this.add(new GamePanel(model)); // Create a new GamePanel and add's it to the frame
 
 		/*
