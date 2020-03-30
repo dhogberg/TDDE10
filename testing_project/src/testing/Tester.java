@@ -50,7 +50,7 @@ public class Tester {
 
 	private void update(){
 		/* ==== Used for testing ====*/
-		position.x += 2;
+		position.x += 0;
 		position.y += 2;
 	}
 
@@ -59,7 +59,7 @@ public class Tester {
 		g.drawImage(basket, position.x, position.y, 80, 80, null);
 
 		g.setColor(Color.BLUE);
-		g.drawString("D-9", position.x + 20, position.y + 45);
+		g.drawString("D-9", position.x + 0, position.y + 40);
 
 		g.drawImage(hBanana, position.x + 200, position.y + 200, 100, 100, null);
 	}
