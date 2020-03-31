@@ -9,6 +9,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import constants.Constants;
 
@@ -17,24 +19,41 @@ import static constants.Constants.SCREEN_WIDTH;
 
 import static constants.Constants.DEV_SHOW_ACTIVE_KEYS;
 
+import assets.GameObject;
 import assets.PlayerObject;
+import assets.PlayfieldObject;
+import assets.ActivedrawfieldObject;
+import assets.SidebarObject;
 import assets.BulletenemyObject;
 import states.GameModel;
 
 public class PlayStateModel {
 	
 	private PlayState playStateReference;
+	
 	private PlayerObject playerObject;
-	private PlayerObject playerObject2;
-	private BulletenemyObject bulletenemyObject;
+	private PlayfieldObject playfieldObject;
+	private ActivedrawfieldObject activedrawfieldObject;
+	private SidebarObject sidebarObject;
 	private Set<Integer> active_keys = new HashSet<Integer>();
+	
+	private ArrayList<GameObject> gameobjects;
 
 	public PlayStateModel(PlayState playState) {
 		this.playStateReference = playState;
 		this.playerObject = new PlayerObject();
-		this.playerObject2 = new PlayerObject();
-		this.playerObject2.get_position().setX(1510.0);
-		this.bulletenemyObject = new BulletenemyObject();
+		this.playfieldObject = new PlayfieldObject();
+		this.activedrawfieldObject = new ActivedrawfieldObject();
+		this.sidebarObject = new SidebarObject();
+		
+		gameobjects = new ArrayList<GameObject>();
+		
+		//this.playerObject2 = new PlayerObject();
+		//this.playerObject2.get_position().setX(1510.0);
+		
+		playerObject.set_name("Player1");
+		
+		this.gameobjects.add(new BulletenemyObject("bullet1"));
 	}
 	
 	public void draw(Graphics g) {
@@ -43,9 +62,25 @@ public class PlayStateModel {
 	}
 	
 	public void drawObjects(Graphics2D g2) {
-		bulletenemyObject.draw(g2);
+		// Draw active drawarea
+		//activedrawfieldObject.draw(g2);
+
+		// Draw playingfield
+		playfieldObject.draw(g2);
+		
+		// Draw active drawarea
+		activedrawfieldObject.draw(g2);
+		
+		// Draw gameobjects
+		for (GameObject obj : this.gameobjects) {
+			obj.draw(g2);
+		}
+		
+		// Draw playerobject
 		playerObject.draw(g2);
-		playerObject2.draw(g2);
+		
+		// Draw sidebar
+		sidebarObject.draw(g2);
 	}
 	
 	public void update(double executionTime) {
@@ -53,11 +88,39 @@ public class PlayStateModel {
 	}
 	
 	public void updateObjects(double executionTime, Set<Integer> active_keys) {
-		bulletenemyObject.update(executionTime);
-		playerObject.update(executionTime, active_keys);
-		playerObject2.update(executionTime, active_keys);
 		
-		if(DEV_SHOW_ACTIVE_KEYS){
+		// UPDATE PLAYER
+		playerObject.update(executionTime, active_keys);
+		
+		// UPDATE OBJECTS
+		for (GameObject obj : this.gameobjects) {
+			obj.update(executionTime);
+		}
+		
+		// UPDATE HITBOXES
+		for (GameObject obj : this.gameobjects) {
+			if(playerObject.hitbox().intersects(obj.hitbox())) {
+				playerObject.collideWithBulletenemy();
+				obj.collideWithPlayer();
+			}
+		}
+		
+		// DELETE OBJECTS WHICH ARE OUTSIDE SCREEN
+		for (GameObject obj : this.gameobjects) {
+			if(!obj.hitbox().intersects(activedrawfieldObject.hitbox())) {
+				System.out.printf("OBJECT with name %s IS OUTSIDE SCREEN!\n", obj.get_name());
+			}
+		}
+		
+		/*
+		if(playerObject.hitbox().intersects(bulletenemyObject.hitbox())) {
+			playerObject.collideWithBulletenemy();
+		}*/
+				
+		//System.out.printf("is Player1 colliding with Enemybullet? %s\n", playerObject.hitbox().intersects(bulletenemyObject.hitbox()));
+		System.out.printf("Player1 no of lifes: %s Immortal: %s ImmortalTimer: %s BlinkingIntervalTimer: %s\n", playerObject.get_lifes(), playerObject.get_immortal(), playerObject.get_immortaltimer(), playerObject.get_blinkingintervaltimer());
+
+		if(DEV_SHOW_ACTIVE_KEYS){ // Development test code
 			System.out.printf("Active keys: %s\n",active_keys);
 		}
 	}

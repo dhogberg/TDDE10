@@ -66,7 +66,11 @@ public class HitBox {
 
 	public Boolean intersects (HitBox comparison){
 		if(!this.disabled() && !comparison.disabled()){
-			return true;
+			if(this.x1 < comparison.x2 && this.x2 > comparison.x1 && this.y1 < comparison.y2 && this.y2 > comparison.y1){
+				return true;
+			}else{
+				return false;
+			}
 		}else{
 			return false;
 		}
@@ -83,5 +87,9 @@ public class HitBox {
 	// TODO: Delete this, not needed!
 	public void development_only_print_values_to_console(){
 		System.out.printf("Hitbox: disabled: %s, x1: %s y1: %s , x2: %s y2: %s \n", this.disabled, this.x1, this.y1, this.x2, this.y2 );
+	}
+
+	public void development_only_print_values_to_console_with_name(String name){
+		System.out.printf("%s - Hitbox: disabled: %s, x1: %s y1: %s , x2: %s y2: %s \n", name, this.disabled, this.x1, this.y1, this.x2, this.y2 );
 	}
 }

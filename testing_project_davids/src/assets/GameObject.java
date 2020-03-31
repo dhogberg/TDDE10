@@ -16,6 +16,7 @@ public abstract class GameObject {
 	private XYPoint velocity;
 	private HitBox hitbox;
 	private double scale;
+	private String name; // Used in development so we can identify different objects
 	
 	public GameObject() {
 		this.position = new XYPoint();
@@ -23,25 +24,49 @@ public abstract class GameObject {
 		this.hitbox = new HitBox();
 		this.scale = 1.0;
 	}
+
+	//public void dev_print_hitboxes() {
+		//System.out.print("Hitboxes: ");
+		//System.out.printf("%s %s\n", this.name, this.hitbox.development_only_get_values_as_string());
+	//}
+
+	public void set_name(String name) {
+		this.name = name;
+	}
+	
+	public String get_name() {
+		return this.name;
+	}
 	
 	public void draw(Graphics2D g2d) {
 		this.drawObject(g2d);
 	}
 	
 	public void update(double executionTime) {
-		
-		this.hitbox.update(this.get_leftupperXY(), get_rightlowerXY());
-		this.hitbox.development_only_print_values_to_console();
-		
+		// UPDATE POSITION
 		this.updatePosition(executionTime);
+
+		// UPDATE HITBOX
+		this.hitbox.update(this.get_leftupperXY(), get_rightlowerXY());
+		
+		// DEV 
+		//this.hitbox.development_only_print_values_to_console_with_name(this.name);
 	}
 	
 	public void updatePosition(double executionTime) {
 		this.position.add(this.velocity.multiply(executionTime));
 	}
 	
+	public void collideWithPlayer() {
+		// By default does nothing
+	}
+	
 	public void updateHitbox() {
 		this.hitbox.update(this.get_leftupperXY(), this.get_rightlowerXY());
+	}
+
+	public HitBox hitbox(){
+		return this.hitbox;
 	}
 	
 	public void enableHitbox() {
@@ -123,8 +148,13 @@ public abstract class GameObject {
 		return this.position;
 	}
 	
-	// TODO: Remove method, not needed ?
+	// TODO: Remove this method, not needed ?
 	public void set_position(double x, double y) {
+		this.position.setX(x);
+		this.position.setY(y);
+	}
+	
+	public void set_position(int x, int y) {
 		this.position.setX(x);
 		this.position.setY(y);
 	}

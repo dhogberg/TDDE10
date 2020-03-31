@@ -20,12 +20,41 @@ public interface Constants {
 	 */
 	int SCREEN_WIDTH = 1600;
 	int SCREEN_HEIGHT = 900;
+	
+	/*
+	 * Define the playingfield size and position
+	 */
+	int PLAYFIELD_WIDTH = 1200;
+	int PLAYFIELD_HEIGHT = 900;
+	int PLAYFIELD_XPOS = 400;
+	int PLAYFIELD_YPOS = 0;
+
+	/*
+	 * Define the drawingarea size and position
+	 */
+	int ACTIVEDRAWAREA_WIDTH = 1400;
+	int ACTIVEDRAWAREA_HEIGHT = 1100;
+	int ACTIVEDRAWAREA_XPOS = 300;
+	int ACTIVEDRAWAREA_YPOS = -100;
+	
+	/*
+	 * Define the sidebar size and position
+	 */
+	int SIDEBAR_WIDTH = 400;
+	int SIDEBAR_HEIGHT = 900;
+	int SIDEBAR_XPOS = 0;
+	int SIDEBAR_YPOS = 0;
 
 	/*
 	 * Define the desired FPS
 	 */
 	double FPS = 120.0;
 
+	/*
+	 * Define options for player
+	 */
+	int PLAYERLIFES = 5;
+	double PLAYER_BLINKINTERVAL = 0.15;
 
 	/*
 	 * Developer-options
