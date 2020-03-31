@@ -15,6 +15,8 @@ import constants.Constants;
 import static constants.Constants.SCREEN_HEIGHT;
 import static constants.Constants.SCREEN_WIDTH;
 
+import static constants.Constants.DEV_SHOW_ACTIVE_KEYS;
+
 import assets.PlayerObject;
 import assets.BulletenemyObject;
 import states.GameModel;
@@ -54,7 +56,10 @@ public class PlayStateModel {
 		bulletenemyObject.update(executionTime);
 		playerObject.update(executionTime, active_keys);
 		playerObject2.update(executionTime, active_keys);
-		System.out.printf("Active keys: %s\n",active_keys);
+		
+		if(DEV_SHOW_ACTIVE_KEYS){
+			System.out.printf("Active keys: %s\n",active_keys);
+		}
 	}
 
 	public void keyPressed(int keycode) {

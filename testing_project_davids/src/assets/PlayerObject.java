@@ -20,7 +20,8 @@ public class PlayerObject extends GameObject {
 		set_objectGraphic_height(18);
 		this.set_position(90.0, 90.0);
 		this.velocity = new XYPoint(0.0, 0.0); this.set_velocity(this.velocity);
-		 
+		this.updateHitbox();
+		this.enableHitbox();
 	}
 	
 	public double makePos(double d) {

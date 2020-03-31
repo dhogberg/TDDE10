@@ -24,5 +24,11 @@ public interface Constants {
 	/*
 	 * Define the desired FPS
 	 */
-	 double FPS = 120.0;
+	double FPS = 120.0;
+
+
+	/*
+	 * Developer-options
+	 */
+	Boolean DEV_SHOW_ACTIVE_KEYS = false;
 }
