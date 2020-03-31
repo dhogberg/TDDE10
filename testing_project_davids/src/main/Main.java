@@ -1,65 +1,42 @@
 package main;
 
+import java.awt.image.BufferedImage;
+import java.awt.Toolkit;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import constants.Constants;
 import states.GameModel;
 
-import java.awt.*;
-
-/**
- * This Class is the entry point of the application.
- * <p>
- * This Class has the following primary responsibilities:
- * 1. Serve as the entry for the Application
- * <p>
- * 2. Create the GameModel
- * (For more information about the GameModel see /src/states/GameModel)
- * <p>
- * 3. Create the GameFrame (A JFrame Wrapper):
- * (For more information about the GameFrame see /src/main/GameFrame)...
- * <p>
- * 4. Create the GamePanel (A JPanel Wrapper):
- * (For more information about the GamePanel see /src/main/GamePanel)...
- * <p>
- * 5. Run the main loop of the game. 
- * <p>
- * https://gitlab.ida.liu.se/alomi60/ExempelProjekt-TDDE10
- */
+// TEMP ! ! ! ! NEEDED WORKAROUND TO SKIP MENU AND PROCEED IMMEDIATELY TO THE RUNNING GAME
+import states.*;
 
 public class Main {
-
-	public static void main(String[] args) {
-		
+	public static void main(String[] args) {		
 		GameModel model = new GameModel();
-
 		GameFrame frame = new GameFrame("MarioShooter", model);
-
-		//Set the number of frames
-		final double fps = 60.0;
-
-		//Calculate frequency
-		double ms = 1000.0 / fps;
-
+		
+		// TEMP ! ! ! ! SKIP MENU AND PROCEED IMMEDIATELY TO RUNNING GAME
+		model.switchState(new PlayState(model));
+		
+		double ms = 1000.0 / Constants.FPS;
 		while (true) {
-			// Variable that will help us decide how long rendering and update took
 			long lastTime = System.currentTimeMillis();
-
-			// Perform game update and game rendering.
-			System.out.printf("Before model update & repaint: %s", System.currentTimeMillis());
 			model.update();
 			frame.repaint();
-			System.out.printf("After: %s\n", System.currentTimeMillis());
-
-			// Calculate the time it took to update and render
 			long timer = System.currentTimeMillis() - lastTime;
-
-			Toolkit.getDefaultToolkit().sync(); // Sync the graphics state (see java docs for more info)
-
+			Toolkit.getDefaultToolkit().sync();
 			try {
-				// The difference between ms and timer is how much faster/slower we are then 60 fps
-				// if we are faster, sleep that amount else sleep 0 seconds
 				Thread.sleep((long) Math.max(ms - timer, 0));
-			} catch (InterruptedException e) {
-				// Write to to log here
-			}
+			} catch (InterruptedException e) {}
 		}
+	}
+	public static BufferedImage loadImage(String path) {
+		try {
+			return ImageIO.read(new File(path));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

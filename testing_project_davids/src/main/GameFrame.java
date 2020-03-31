@@ -1,6 +1,8 @@
 package main;
 
 import states.GameModel;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.*;
 
@@ -41,5 +43,27 @@ public class GameFrame extends JFrame {
 		this.setLocationRelativeTo(null); // Sets location of frame to mid point of screen
 		this.setName(gameName);
 		this.setVisible(true); // Shows the frame
+		
+		this.addKeyListener(new KeyAdapter() {
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				model.keyPressed(e.getKeyCode());
+				//System.out.printf("KEY PRESSED: %s\n", e.getKeyChar());
+
+				
+				//keys.add(e.getKeyCode());
+				//model.setKeys(keys);
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				model.keyReleased(e.getKeyCode());
+				//keys.remove(e.getKeyCode());
+				//model.setKeys(keys);
+			}
+		});
+		
+		this.requestFocus();
 	}
 }

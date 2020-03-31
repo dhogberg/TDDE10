@@ -1,6 +1,8 @@
 package states;
 
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import static constants.Constants.SCREEN_HEIGHT;
 import static constants.Constants.SCREEN_WIDTH;
@@ -45,6 +47,10 @@ public abstract class GameState {
 	public abstract void update();
 
 	public abstract void draw(Graphics g);
+	
+	public abstract void keyPressed(int key);
+	
+	public abstract void keyReleased(int key);
 
 
 	/**
@@ -57,7 +63,8 @@ public abstract class GameState {
 	 * if a certain key has been pressed, the state needs to
 	 * check for that event inside this function.
 	 */
-	public abstract void keyPressed(int key);
+
+	//public abstract void keyPressed(int key);
 
 	/**
 	 *

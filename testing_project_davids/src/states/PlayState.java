@@ -36,52 +36,43 @@ import static constants.Constants.SCREEN_WIDTH;
  * are passed into the PlayState.
  */
 public class PlayState extends GameState {
-	private String informationText;
-	private Color bgColor;
-	private Color fontColor;
+	
+	private PlayStateModel playStateModel;
+	private long lastTime = System.currentTimeMillis();
 
-	/* Class only used for testing */
-	private Tester tester;
-
-	/**
-	 * The following three variables are just used to show that a
-	 * change of state can be made. The same variables also exist
-	 * in the MenuState, can you think of a way to make this more
-	 * general and not duplicate variables?????
-	 */
 	public PlayState(GameModel model) {
 		super(model);
-		informationText = "Press Escape To Return To The Menu";
-		bgColor = new Color(78, 87, 100);
-		fontColor = new Color(123, 178, 116);
-
-		tester = new Tester();
+		this.playStateModel = new PlayStateModel(this);
 	}
 
-	/*
-		Draws information text to the screen.
-	 */
 	@Override
 	public void draw(Graphics g) {
-		drawBg(g, bgColor);
-
-		g.setColor(fontColor);
-		g.setFont(new Font("Monospace", Font.PLAIN, 20));
-		g.drawString(informationText, (SCREEN_WIDTH / 2) - 200, SCREEN_HEIGHT / 2);
-
-		tester.delegate(g);
-	}
-
-	@Override
-	public void keyPressed(int key) {
-		System.out.println("Trycker på " + KeyEvent.getKeyText(key) + " i PlayState");
-
-		if (key == KeyEvent.VK_ESCAPE)
-			model.switchState(new MenuState(model));
+		this.playStateModel.draw(g);
 	}
 
 	@Override
 	public void update() {
-		tester.delegate(null);
+		long timeNow = System.currentTimeMillis();
+		double executionTime = (timeNow - this.lastTime) / 1000.0;
+		//TODO: Delete. Dev output//System.out.printf("timeNow: %s lastTime: %s delta: %s delta/1000: %s execTime: %s \n", timeNow, this.lastTime, (timeNow - this.lastTime), ((timeNow - this.lastTime) / 1000.0), executionTime );
+		this.playStateModel.update(executionTime);
+		this.lastTime = timeNow;
 	}
+	
+	public void keyPressed(int key) {
+		this.playStateModel.keyPressed(key);
+	}
+	public void keyReleased(int key) {
+		this.playStateModel.keyReleased(key);
+	}
+
+	
+	/*@Override
+	public void keyPressed(int key) {
+		System.out.println("Trycker på " + KeyEvent.getKeyText(key) + " i PlayState");
+		if (key == KeyEvent.VK_ESCAPE)
+			model.switchState(new MenuState(model));
+	}
+	*/
+	
 }

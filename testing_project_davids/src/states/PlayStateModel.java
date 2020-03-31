@@ -1,23 +1,76 @@
-package testing;
+package states;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
+
 import constants.Constants;
 
 import static constants.Constants.SCREEN_HEIGHT;
 import static constants.Constants.SCREEN_WIDTH;
 
+import assets.PlayerObject;
+import assets.BulletenemyObject;
 import states.GameModel;
 
-/**
- * This class is only used for testing that PlayState works as
- * intended.
- */
-public class Tester {
+public class PlayStateModel {
 	
+	private PlayState playStateReference;
+	private PlayerObject playerObject;
+	private BulletenemyObject bulletenemyObject;
+	private Set<Integer> active_keys = new HashSet<Integer>();
+
+	public PlayStateModel(PlayState playState) {
+		this.playStateReference = playState;
+		this.playerObject = new PlayerObject();
+		this.bulletenemyObject = new BulletenemyObject();
+	}
+	
+	public void draw(Graphics g) {
+		Graphics2D g2 = (Graphics2D) g;
+		this.drawObjects(g2);
+	}
+	
+	public void drawObjects(Graphics2D g2) {
+		bulletenemyObject.draw(g2);
+		playerObject.draw(g2);
+	}
+	
+	public void update(double executionTime) {
+		this.updateObjects(executionTime, this.active_keys);
+	}
+	
+	public void updateObjects(double executionTime, Set<Integer> active_keys) {
+		bulletenemyObject.update(executionTime);
+		playerObject.update(executionTime, active_keys);
+		System.out.printf("Active keys: %s\n",active_keys);
+	}
+
+	public void keyPressed(int keycode) {
+		//System.out.printf("%s pressed!\n", keycode);
+		active_keys.add(keycode);
+	}
+
+	public void keyReleased(int keycode) {
+		//System.out.printf("%s released!\n", keycode);
+		active_keys.remove(keycode);
+	}
+
+}
+
+
+
+
+
+
+
+	/*
 	public class Point {
 		int x;
 		int y;
@@ -77,12 +130,12 @@ public class Tester {
 		}
 	}
 
-	/*
-	private void draw(Graphics g, Long startTime_ms){
-		if (position.x < SCREEN_WIDTH && position.y < SCREEN_HEIGHT) {
-			testDraw(g, startTime_ms);
-		}
-	}*/
+	
+	//private void draw(Graphics g, Long startTime_ms){
+	//	if (position.x < SCREEN_WIDTH && position.y < SCREEN_HEIGHT) {
+	//		testDraw(g, startTime_ms);
+	//	}
+	//}
 
 	private void update(){
 		
@@ -107,13 +160,12 @@ public class Tester {
 		// Calculate the time it took to update and render
 	}
 
-	private void update(Long startTime_ms){
-		/*
-		position.x += 2;
-		position.y += 2;
+
+	private void update(double executionTime){
+		//position.x += 2;
+		//position.y += 2;
 		
-		bullet_pos.x += -10;
-		*/
+		//bullet_pos.x += -10;
 
 		//System.out.printf("TESTER.JAVA GOT: %s\n",startTime_ms);
 	}
@@ -132,10 +184,6 @@ public class Tester {
 		g.drawImage(spriteimage_bullet_enemy, bullet_pos.x + 10, bullet_pos.y + 370, 32, 28, null);
 	}
 
-	/* ====== USED FOR TESTING ======
-	this is not a good way for loading more than one image.
-	See the course web page for that information.
-	*/
 	private BufferedImage loadImage(String imgPath) {
 		try {
 			return ImageIO.read(new File(imgPath));
@@ -144,4 +192,4 @@ public class Tester {
 		}
 		return null;
 	}
-}
+	*/

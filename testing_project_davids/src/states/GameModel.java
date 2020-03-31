@@ -24,6 +24,8 @@ public class GameModel {
 
 	private GameState currentState;
 
+	protected Long lastTime;
+
 	public GameModel() {
 		this.currentState = new MenuState(this);
 	}
@@ -48,6 +50,11 @@ public class GameModel {
 	public void keyPressed(int key) {
 		currentState.keyPressed(key);
 	}
+	public void keyReleased(int key) {
+		currentState.keyReleased(key);
+	}
+
+
 
 	/**
 	 * The update function is called every iteration of the game loop.
@@ -58,10 +65,23 @@ public class GameModel {
 	}
 
 	/**
+	 * New version of update, takes in the start current time in ms
+	 * so we can calculate variance in speed depending on changes in fps
+	 */
+	public void update(Long startTime_ms) {
+		currentState.update();
+		this.lastTime = startTime_ms;
+	}
+
+	/**
 	 * @param g Graphics object passed from GamePanel
 	 *		  This function delegates drawing from the GamePanel to the current state
 	 */
 	public void draw(Graphics g) {
 		currentState.draw(g);
+	}
+	
+	public Long get_lastTime() {
+		return this.lastTime;
 	}
 }

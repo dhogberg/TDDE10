@@ -12,7 +12,13 @@ import static constants.Constants.SCREEN_WIDTH;
  * the user to swap state to the PlayState
  */
 public class MenuState extends GameState {
-	private String informationText;
+	
+	private String titel_text;
+	private String startgame_text;
+	private String highscores_text;
+	private String info_text;
+	private String quit_text;
+
 	private Color bgColor;
 	private Color fontColor;
 
@@ -25,41 +31,54 @@ public class MenuState extends GameState {
 	public MenuState(GameModel model) {
 		super(model);
 
-		informationText = "Welcome to Marioshooter!";
-		bgColor = new Color(78, 172, 176);
-		fontColor = new Color(200, 198, 130);
+		titel_text = "Marioshooter JAVA OOP Game";
+		startgame_text = "Start game";
+		highscores_text = "Highscores";
+		info_text = "Info";
+		quit_text = "Quit game";
+
+		bgColor = new Color(91, 149, 254);
+		fontColor = new Color(255, 255, 255);
+		
+		//model.switchState(new PlayState(model));
 	}
 
-	/*
-	Draws information text to the screen
-	 */
 	@Override
 	public void draw(Graphics g) {
 		drawBg(g, bgColor);
 
 		g.setColor(fontColor);
-		g.setFont(new Font("Monospace", Font.PLAIN, 30));
-		g.drawString(informationText, (SCREEN_WIDTH / 2) - 170, SCREEN_HEIGHT / 2);
-	}
+		g.setFont(new Font("Monospace", Font.PLAIN, 60));
+		g.drawString(titel_text, (SCREEN_WIDTH / 2) - 400, SCREEN_HEIGHT / 5 );
 
-	/**
-	 *
-	 * @param key Keycode of the pressed key
-	 *
-	 *			This function prints the pressed key to the console
-	 *			it's used to show that a change of state has been made
-	 *
-	 *			For more information see GameState
-	 */
-	@Override
+		g.drawString(startgame_text, (SCREEN_WIDTH / 2) - 150, SCREEN_HEIGHT / 10 * 4 );
+		g.drawString(highscores_text, (SCREEN_WIDTH / 2) - 150, SCREEN_HEIGHT / 10 * 5 );
+		g.drawString(info_text, (SCREEN_WIDTH / 2) - 150, SCREEN_HEIGHT / 10 * 6 );
+		g.drawString(quit_text, (SCREEN_WIDTH / 2) - 150, SCREEN_HEIGHT / 10 * 7 );
+
+	}
+	
 	public void keyPressed(int key) {
-		System.out.println("Trycker på " + KeyEvent.getKeyText(key) + " i MenuState");
-
-		if (key == KeyEvent.VK_ENTER)
-			model.switchState(new PlayState(model));
-		if (key == KeyEvent.VK_ESCAPE)
-			System.exit(0);
+		// TODO: Add keyboard functionality
 	}
+	public void keyReleased(int key) {
+		// TODO: Add keyboard functionality
+	}
+	
+	
+	// // // // // // // // // // // // // // // // // // // // // // // // // // // //
+	// // // // // // // // // // // // // // // // // // // // // // // // // // // //
+	//@Override
+	//public void keyPressed(int key) {
+	//	System.out.println("Trycker på " + KeyEvent.getKeyText(key) + " i MenuState");
+	//
+	//	if (key == KeyEvent.VK_ENTER)
+	//		model.switchState(new PlayState(model));
+	//	if (key == KeyEvent.VK_ESCAPE)
+	//		System.exit(0);
+	//}
+	// // // // // // // // // // // // // // // // // // // // // // // // // // // //
+	// // // // // // // // // // // // // // // // // // // // // // // // // // // //
 
 	@Override
 	public void update() { }
