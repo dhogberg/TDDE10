@@ -17,7 +17,7 @@ public class Main {
 		GameFrame frame = new GameFrame("MarioShooter", model);
 		
 		// TEMP ! ! ! ! SKIP MENU AND PROCEED IMMEDIATELY TO RUNNING GAME
-		model.switchState(new PlayState(model));
+		//model.switchState(new PlayState(model));
 		
 		double ms = 1000.0 / Constants.FPS;
 		while (true) {
