@@ -14,11 +14,13 @@ public abstract class GameObject {
 	private int objectGraphic_height;
 	private XYPoint position;
 	private XYPoint velocity;
+	private HitBox hitbox;
 	private double scale;
 	
 	public GameObject() {
 		this.position = new XYPoint();
 		this.velocity = new XYPoint();
+		this.hitbox = new HitBox();
 		this.scale = 1.0;
 	}
 	
@@ -27,11 +29,27 @@ public abstract class GameObject {
 	}
 	
 	public void update(double executionTime) {
+		
+		this.hitbox.update(this.get_leftupperXY(), get_rightlowerXY());
+		this.hitbox.development_only_print_values_to_console();
+		
 		this.updatePosition(executionTime);
 	}
 	
 	public void updatePosition(double executionTime) {
 		this.position.add(this.velocity.multiply(executionTime));
+	}
+	
+	public void updateHitbox() {
+		this.hitbox.update(this.get_leftupperXY(), this.get_rightlowerXY());
+	}
+	
+	public void enableHitbox() {
+		this.hitbox.enable();
+	}
+	
+	public void disableHitbox() {
+		this.hitbox.disable();
 	}
 	
 	public void drawObject(Graphics g) {
@@ -47,14 +65,44 @@ public abstract class GameObject {
 		this.objectGraphic = image;
 	}
 	
-	public int get_objectGraphic_scaledWidth() {
+
+	public XYPoint get_leftupperXY(){
+		final int x = this.position.x_as_int() - (this.get_width() / 2);
+		final int y = this.position.y_as_int() - (this.get_height() / 2);
+		
+		return new XYPoint(x, y);
+	}
+
+	public XYPoint get_rightlowerXY(){
+		final int x = this.position.x_as_int() + (this.get_width() / 2);
+		final int y = this.position.y_as_int() + (this.get_height() / 2);
+		
+		return new XYPoint(x, y);
+	}
+
+
+
+	public int get_width() {
 		return (int) Math.round( scale * this.objectGraphic_width ); 
 	}
 	
-	public int get_objectGraphic_scaledHeight() {
+	public int get_height() {
 		return (int) Math.round( scale * this.objectGraphic_height ); 
 	}
+
+
+	/* TODO: REMOVE LATER, DUPLICATES OF ABOVE*/
+	public int get_objectGraphic_scaledWidth() {
+		return (int) Math.round( scale * this.objectGraphic_width ); 
+	}/* REMOVE LATER, DUPLICATES OF ABOVE*/
 	
+	/* TODO: REMOVE LATER, DUPLICATES OF ABOVE*/
+	public int get_objectGraphic_scaledHeight() {
+		return (int) Math.round( scale * this.objectGraphic_height ); 
+	}/* REMOVE LATER, DUPLICATES OF ABOVE*/
+	
+
+
 	public void set_objectGraphic_width(int w) {
 		this.objectGraphic_width = w;
 	}

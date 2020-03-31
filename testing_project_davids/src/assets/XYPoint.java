@@ -15,6 +15,14 @@ public class XYPoint {
 		this.y = y;
 	}
 	
+	public int x_as_int() {
+		return (int) Math.round(this.x);
+	}
+	
+	public int y_as_int() {
+		return (int) Math.round(this.y);
+	}
+
 	public int x() {
 		return (int) Math.round(this.x);
 	}
