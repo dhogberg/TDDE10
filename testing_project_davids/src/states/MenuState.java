@@ -3,7 +3,7 @@ package states;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-
+import menu.MenuButton;
 
 import static constants.Constants.SCREEN_HEIGHT;
 import static constants.Constants.SCREEN_WIDTH;
@@ -20,6 +20,8 @@ public class MenuState extends GameState {
 	private String highscores_text;
 	private String info_text;
 	private String quit_text;
+	
+	private MenuButton startgame_text_2;
 
 	private Color bgColor;
 	private Color fontColor;
@@ -32,10 +34,10 @@ public class MenuState extends GameState {
 	 */
 	public MenuState(GameModel model) {
 		super(model);
-		
+
 		titel_text = "Marioshooter JAVA OOP Game";
 		
-		//startgame_text = new MenuButton("Start Game", new XYPoint(400.0, 600.0));
+		startgame_text_2 = new MenuButton("Start Game", new XYPoint(100.0, 100.0));
 		
 		startgame_text = "Start game";
 		highscores_text = "Highscores";
