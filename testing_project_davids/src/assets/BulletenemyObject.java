@@ -20,6 +20,7 @@ public class BulletenemyObject extends GameObject {
 	@Override
 	public void update(double executionTime) {
 		super.update(executionTime);
-		// TODO: Update specific things for the BulletenemyObject
+		
+		
 	}
 }

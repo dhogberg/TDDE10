@@ -23,12 +23,15 @@ public class PlayStateModel {
 	
 	private PlayState playStateReference;
 	private PlayerObject playerObject;
+	private PlayerObject playerObject2;
 	private BulletenemyObject bulletenemyObject;
 	private Set<Integer> active_keys = new HashSet<Integer>();
 
 	public PlayStateModel(PlayState playState) {
 		this.playStateReference = playState;
 		this.playerObject = new PlayerObject();
+		this.playerObject2 = new PlayerObject();
+		this.playerObject2.get_position().setX(1510.0);
 		this.bulletenemyObject = new BulletenemyObject();
 	}
 	
@@ -40,6 +43,7 @@ public class PlayStateModel {
 	public void drawObjects(Graphics2D g2) {
 		bulletenemyObject.draw(g2);
 		playerObject.draw(g2);
+		playerObject2.draw(g2);
 	}
 	
 	public void update(double executionTime) {
@@ -49,6 +53,7 @@ public class PlayStateModel {
 	public void updateObjects(double executionTime, Set<Integer> active_keys) {
 		bulletenemyObject.update(executionTime);
 		playerObject.update(executionTime, active_keys);
+		playerObject2.update(executionTime, active_keys);
 		System.out.printf("Active keys: %s\n",active_keys);
 	}
 

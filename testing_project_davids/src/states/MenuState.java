@@ -3,6 +3,8 @@ package states;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
+
+
 import static constants.Constants.SCREEN_HEIGHT;
 import static constants.Constants.SCREEN_WIDTH;
 
@@ -30,8 +32,11 @@ public class MenuState extends GameState {
 	 */
 	public MenuState(GameModel model) {
 		super(model);
-
+		
 		titel_text = "Marioshooter JAVA OOP Game";
+		
+		//startgame_text = new MenuButton("Start Game", new XYPoint(400.0, 600.0));
+		
 		startgame_text = "Start game";
 		highscores_text = "Highscores";
 		info_text = "Info";

@@ -14,7 +14,7 @@ public abstract class GameObject {
 	private int objectGraphic_height;
 	private XYPoint position;
 	private XYPoint velocity;
-	private double scale;	
+	private double scale;
 	
 	public GameObject() {
 		this.position = new XYPoint();

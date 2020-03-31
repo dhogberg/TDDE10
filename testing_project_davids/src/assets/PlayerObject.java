@@ -10,7 +10,6 @@ public class PlayerObject extends GameObject {
 	private BufferedImage objectGraphic;
 	private XYPoint position;
 	private XYPoint velocity;
-	private XYPoint acceleration;
 	
 	public PlayerObject() {
 		super();
@@ -21,7 +20,7 @@ public class PlayerObject extends GameObject {
 		set_objectGraphic_height(18);
 		this.set_position(90.0, 90.0);
 		this.velocity = new XYPoint(0.0, 0.0); this.set_velocity(this.velocity);
-		this.acceleration = new XYPoint(0.0, 0.0); 
+		 
 	}
 	
 	public double makePos(double d) {
@@ -66,13 +65,16 @@ public class PlayerObject extends GameObject {
 	*/
 	
 	public void update(double executionTime, Set<Integer> active_keys) {
+		
 		super.update(executionTime);
 		
-		if(active_keys.contains(40)) { // KEYDOWN	
+		if(active_keys.contains(40)) { // KEYDOWN
 			if(this.velocity.y() != 0.0) {
+				
 				if(this.velocity.y() < 0.0) {
 					this.velocity.setY(0.0);
 				}
+
 			}
 			this.velocity.add(new XYPoint(0.0, 5982.0 * executionTime));
 		}
@@ -145,6 +147,10 @@ public class PlayerObject extends GameObject {
 			this.velocity.setX(0.0);
 			this.get_position().setX(1510.0);
 		}
+
+
+
+
 		// UPDATE PARENT OBJECT
 		this.set_velocity( this.velocity );
 		

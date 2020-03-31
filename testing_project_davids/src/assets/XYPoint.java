@@ -34,14 +34,13 @@ public class XYPoint {
 	public XYPoint multiply(double constant) {
 		return new XYPoint(constant * this.x(), constant * this.y());
 	}
-	
+
 	public void add(XYPoint delta) {
 		this.setX(this.x() + delta.x());
 		this.setY(this.y() + delta.y());
 	}
 	
 	public void subtract(XYPoint delta) {
-		System.out.printf("VAD FAN this.y: %s delta.y %s total: %s \n",this.y(), delta.y(), this.y() - delta.y());
 		this.setX(this.x() - delta.x());
 		this.setY(this.y() - delta.y());
 	}
