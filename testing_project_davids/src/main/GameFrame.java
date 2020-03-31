@@ -1,10 +1,14 @@
 package main;
 
-import states.GameModel;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseEvent;
 
 import javax.swing.*;
+
+import states.GameModel;
 
 /**
  * This class Wraps a JFrame:
@@ -44,6 +48,12 @@ public class GameFrame extends JFrame {
 		this.setName(gameName);
 		this.setVisible(true); // Shows the frame
 		
+		this.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				System.out.println("hej");
+			}
+		});
+		
 		this.addKeyListener(new KeyAdapter() {
 
 			@Override
@@ -66,4 +76,36 @@ public class GameFrame extends JFrame {
 		
 		this.requestFocus();
 	}
+
+	/*
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}*/
+	
 }
