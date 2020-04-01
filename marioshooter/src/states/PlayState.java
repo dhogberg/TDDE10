@@ -1,7 +1,5 @@
 package states;
 
-import testing.Tester;
-
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -43,7 +41,7 @@ public class PlayState extends GameState {
 
 	public PlayState(GameModel model) {
 		super(model);
-		this.playStateModel = new PlayStateModel(this);
+		this.playStateModel = new PlayStateModel(model);
 	}
 
 	@Override

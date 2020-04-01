@@ -28,9 +28,19 @@ public class GameModel {
 	private GameState currentState;
 
 	protected Long lastTime;
+	
+	private int lastScore;
 
 	public GameModel() {
 		this.currentState = new MenuState(this);
+	}
+	
+	public void set_lastScore(int score) {
+		this.lastScore = score;
+	}
+	
+	public int get_lastScore() {
+		return this.lastScore;
 	}
 
 	/**
@@ -51,7 +61,7 @@ public class GameModel {
 		currentState.mouseClicked(e);
 		/*
 		if(e.getX()>=800-(350/2) && e.getX()<= 800+(350/2) && e.getY()>=SCREEN_HEIGTH/3-(75/2) && e.getY() <=SCREEN_HEIGTH/3+(75/2)  ){
-			System.out.println("innanför");
+			System.out.println("innanfï¿½r");
 		}else {
 			//int mousex = e.getX();
 			//int mousey = e.getY();
@@ -59,7 +69,7 @@ public class GameModel {
 			//Integer.toString(mousey);
 			//System.out.println(mousex);
 			//System.out.println(mousey);
-			System.out.println("utanför");
+			System.out.println("utanfï¿½r");
 		}*/
 	}
 	

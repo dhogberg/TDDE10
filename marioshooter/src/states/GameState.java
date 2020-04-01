@@ -40,7 +40,6 @@ public abstract class GameState {
 
 	protected GameModel model;
 
-
 	public GameState(GameModel model) {
 		this.model = model;
 	}

@@ -3,7 +3,9 @@ package states;
 import javax.imageio.ImageIO;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -30,7 +32,7 @@ import assets.StarObject;
 import assets.GameLevels;
 import states.GameModel;
 
-public class PlayStateModel {
+public class PlayStateModel extends GameState{
 	
 	private PlayState playStateReference;
 	
@@ -45,18 +47,19 @@ public class PlayStateModel {
 	
 	private GameLevels lvl; 
 
-	public PlayStateModel(PlayState playState) {
-		this.playStateReference = playState;
-
+	public PlayStateModel(GameModel model) {
+		super(model);
 		
 		gameobjects = new ArrayList<GameObject>();
+		
+		this.playfieldObject = new PlayfieldObject();
 		
 		this.lvl = new GameLevels(this);
 		
 		playerbullets = new ArrayList<GameObject>();
 		
-		this.playerObject = new PlayerObject(this.playerbullets);
-		this.playfieldObject = new PlayfieldObject();
+		this.playerObject = new PlayerObject(this.playerbullets, model);
+		
 		
 		this.sidebarObject = new SidebarObject(playerObject, lvl);
 		
@@ -66,8 +69,20 @@ public class PlayStateModel {
 		//this.gameobjects.add(new LifeupObject("life1"));
 	}
 	
+	public void mouseClicked(MouseEvent e) {
+		// Here we can add mouseclicks
+	}
+	
 	public int getCurrentLevel() {
 		return this.lvl.getLevel();
+	}
+	
+	public PlayfieldObject get_playfieldobject() {
+		return this.playfieldObject;
+	}
+	
+	public void change_playfieldobj_bgcolor(Color color) {
+		this.playfieldObject.set_bgcolor(color);
 	}
 
 	public ArrayList<GameObject> get_gameobjects(){
@@ -113,6 +128,10 @@ public class PlayStateModel {
 		
 		// Draw sidebar
 		sidebarObject.draw(g2);
+	}
+	
+	public void update() {
+		// Required
 	}
 	
 	public void update(double executionTime) {

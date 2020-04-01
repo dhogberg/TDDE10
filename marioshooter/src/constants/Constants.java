@@ -57,7 +57,7 @@ public interface Constants {
 	/*
 	 * Define options for player
 	 */
-	int PLAYERLIFES = 5;
+	int PLAYERLIFES = 1;
 	double PLAYER_BLINKINTERVAL = 0.15;
 	double PLAYER_SHOOTINTERVAL = 0.1;
 

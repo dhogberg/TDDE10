@@ -37,7 +37,7 @@ public class SidebarObject extends GameObject {
 	public void drawObject(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		
-		g2.setColor(new Color(200, 200, 200));
+		g2.setColor(new Color(255, 255, 255));
 		g2.fillRect( this.get_position().x_as_int() , this.get_position().y_as_int() , this.get_width(), this.get_height());
 		
 		
@@ -49,7 +49,7 @@ public class SidebarObject extends GameObject {
 		
 		final int all_text_x_pos = this.get_position().x_as_int() + 100;
 		
-		final int y_pos_score = this.get_position().y_as_int() + line_height;
+		final int y_pos_score = this.get_position().y_as_int() + line_height + 50;
 		
 		// PRINT SCORE
 		g2.drawString("Score:", all_text_x_pos , y_pos_score);
@@ -78,13 +78,4 @@ public class SidebarObject extends GameObject {
 	public boolean outsideDrawingArea() {
 		return false;
 	}
-	
-	/*
-	@Override
-	public void update(double executionTime) {
-		super.update(executionTime);
-
-		// Here we can add specifics to the playfield
-	}
-	*/
 }

@@ -6,6 +6,8 @@ import java.awt.image.BufferedImage;
 import java.util.Set;
 import java.util.ArrayList;
 import main.Main;
+import states.GameModel;
+import states.GameoverState;
 import assets.XYPoint;
 import assets.PlayerbulletObject;
 
@@ -40,9 +42,12 @@ public class PlayerObject extends GameObject {
 	private int score;
 	private double blinkinterval;
 	private ArrayList<GameObject> gameobjects_reference;
+	private GameModel model;
 
-	public PlayerObject(ArrayList<GameObject> gameobjects) {
+	public PlayerObject(ArrayList<GameObject> gameobjects, GameModel model) {
 		super();
+		
+		this.model = model;
 		
 		this.gameobjects_reference = gameobjects;
 
@@ -146,6 +151,11 @@ public class PlayerObject extends GameObject {
 	//////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////
 	
+	public void loseGame() {
+		model.set_lastScore(this.score);
+		model.switchState(new GameoverState(model));
+	}
+	
 	public void getaLife() {
 		this.lifes = this.lifes + 1;
 		System.out.println(">>> Player got a life");
@@ -158,7 +168,7 @@ public class PlayerObject extends GameObject {
 		}else {
 			// TODO: GAME OVER!
 			this.lifes = 0;
-			System.out.println("Game over! You are out of lifes");
+			this.loseGame();
 		}
 	}
 	
