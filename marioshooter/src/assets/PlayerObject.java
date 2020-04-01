@@ -40,6 +40,7 @@ public class PlayerObject extends GameObject {
 		this.invisible = false;
 		this.blinking = false;
 		this.immortal = false;
+		this.shooting = false;
 		
 		this.lifes = PLAYERLIFES;
 		this.blinkinterval = PLAYER_BLINKINTERVAL;
