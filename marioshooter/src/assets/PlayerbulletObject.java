@@ -23,15 +23,15 @@ public class PlayerbulletObject extends GameObject {
 	private boolean falling;
 	private PlayerObject player_reference;
 	
-	public PlayerbulletObject(PlayerObject player, int x, int y) {
+	public PlayerbulletObject(PlayerObject player, int x, int y, double scale) {
 		super();
 		
 		this.player_reference = player;
-		this.objectGraphic = Main.loadImage("sprites/bullet_enemy_16x14.png"); // TODO: SKRIV OM SKRIV OM
+		this.objectGraphic = Main.loadImage("sprites/playerbullet_16x7.png"); // TODO: SKRIV OM SKRIV OM
 		this.set_objectGraphic(this.objectGraphic);
-		this.set_scale(2.0);
+		this.set_scale(1.5 * scale);
 		set_objectGraphic_width(16);
-		set_objectGraphic_height(14);
+		set_objectGraphic_height(7);
 		
 		this.set_position(x, y);
 		

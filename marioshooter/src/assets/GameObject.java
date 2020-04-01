@@ -166,6 +166,10 @@ public abstract class GameObject {
 		this.scale = s;
 	}
 	
+	public double get_scale() {
+		return this.scale;
+	}
+	
 	public void set_position(XYPoint new_position) {
 		this.position = new_position;
 	}

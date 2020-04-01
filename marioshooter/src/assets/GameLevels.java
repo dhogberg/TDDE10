@@ -77,9 +77,22 @@ public class GameLevels {
 	public void updateSpawns(double executionTime){
 		
 		// SPAWN ENEMIES
+		Random ran7 = new Random();
+		int enemy_index = ran7.nextInt(2);
 		if(BULLETENEMY_spawn_pause_timer == 0.0){
 			// SPAWN!
-			playStateModel_reference.get_gameobjects().add(new BulletenemyObject("bullet1"));
+
+			
+			switch(enemy_index) {
+				case 0:
+					playStateModel_reference.get_gameobjects().add(new BulletenemyObject("bullet1"));
+					break;
+				case 1:
+					playStateModel_reference.get_gameobjects().add(new ShellenemyObject("shell1"));
+					break;
+			}
+
+
 			BULLETENEMY_spawn_pause_timer = BULLETENEMY_spawn_pause_interval / this.level;
 		}else{
 			if(BULLETENEMY_spawn_pause_timer < executionTime){
@@ -92,7 +105,7 @@ public class GameLevels {
 		
 		// SPAWN POWERUP
 		Random ran = new Random();
-		int powerup_index = ran.nextInt(2);
+		int powerup_index = ran.nextInt(3);
 		if(POWERUP_spawn_pause_timer == 0.0){
 			// SPAWN!
 			switch(powerup_index) {
@@ -101,6 +114,9 @@ public class GameLevels {
 					break;
 				case 1:
 					playStateModel_reference.get_gameobjects().add(new LifeupObject("life1"));
+					break;
+				case 2:
+					playStateModel_reference.get_gameobjects().add(new MushroomObject("mushroom1"));
 					break;
 			}
 			POWERUP_spawn_pause_timer = POWERUP_spawn_pause_interval;
@@ -116,13 +132,14 @@ public class GameLevels {
 	}
 
 	public void update (double executionTime){
-		System.out.printf("Elapsed time on level: %s\n",elapsed_time_on_level);
-		this.elapsed_time_on_level = this.elapsed_time_on_level + executionTime;
 
+		this.elapsed_time_on_level = this.elapsed_time_on_level + executionTime;
+		//System.out.printf("Elapsed time on level: %s\n",elapsed_time_on_level);
+		
 		// UPDATE SPAWNS
 		this.updateSpawns(executionTime);
 
-		if(this.elapsed_time_on_level > 2.0) {
+		if(this.elapsed_time_on_level > 10.0) {
 			loadLvl(this.level + 1);
 		}
 	}

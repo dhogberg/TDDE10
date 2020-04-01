@@ -32,8 +32,10 @@ public class PlayerObject extends GameObject {
 	private Boolean blinking;
 	private Boolean immortal;
 	private Boolean shooting;
+	private Boolean big;
 	private double immortaltimer;
 	private double invisibletimer;
+	private double bigtimer;
 	private double blinkingtimer;
 	private double blinkingintervaltimer;
 	private double shoottimer;
@@ -55,6 +57,7 @@ public class PlayerObject extends GameObject {
 		this.blinking = false;
 		this.immortal = false;
 		this.shooting = false;
+		this.big = false;
 		
 		this.score = 0;
 		
@@ -62,11 +65,11 @@ public class PlayerObject extends GameObject {
 		this.blinkinterval = PLAYER_BLINKINTERVAL;
 		this.shootinterval = PLAYER_SHOOTINTERVAL;
 		
-		this.objectGraphic = Main.loadImage("sprites/player_tmp_18x18.png"); // TODO: SKRIV OM SKRIV OM
+		this.objectGraphic = Main.loadImage("sprites/mariokart_28x30.png"); // TODO: SKRIV OM SKRIV OM
 		this.set_objectGraphic(this.objectGraphic);
-		this.set_scale(5.0);
-		set_objectGraphic_width(18);
-		set_objectGraphic_height(18);
+		this.set_scale(2.0);
+		set_objectGraphic_width(28);
+		set_objectGraphic_height(30);
 		this.set_position(500.0, 450.0);
 		this.velocity = new XYPoint(0.0, 0.0); this.set_velocity(this.velocity);
 		this.updateHitbox();
@@ -93,6 +96,11 @@ public class PlayerObject extends GameObject {
 				obj.disableHitbox();
 				System.out.println("Player has collided with 1UP!");
 				this.getaLife();
+				break;
+			case "mushroom":
+				obj.disableHitbox();
+				System.out.println("Player has collided with mushroom!");
+				this.powerup_mushroom();
 				break;
 			// 
 			default:
@@ -121,9 +129,6 @@ public class PlayerObject extends GameObject {
 		}
 	}
 	
-	//////////////////////////////////////////////////////////////////////////////
-	//////////////////////////////////////////////////////////////////////////////
-	//FOR DEV
 	public int get_lifes() {
 		return this.lifes;
 	}
@@ -147,9 +152,6 @@ public class PlayerObject extends GameObject {
 	public double get_blinkingintervaltimer() {
 		return this.blinkingintervaltimer;
 	}
-	//FOR DEV
-	//////////////////////////////////////////////////////////////////////////////
-	//////////////////////////////////////////////////////////////////////////////
 	
 	public void loseGame() {
 		model.set_lastScore(this.score);
@@ -169,6 +171,24 @@ public class PlayerObject extends GameObject {
 			// TODO: GAME OVER!
 			this.lifes = 0;
 			this.loseGame();
+		}
+	}
+	
+	public void powerup_mushroom() {
+		this.big = true;
+		this.set_scale(this.get_scale() * 2);
+		this.shootinterval = shootinterval / 2;
+		this.bigtimer = 6.0;
+	}
+	
+	public void updateBigTimer(double executionTime) {
+		if(this.bigtimer < executionTime) {
+			this.big = false;
+			this.set_scale(this.get_scale() / 2);
+			this.shootinterval = shootinterval * 2;
+			this.bigtimer = 0.0;
+		}else {
+			this.bigtimer = this.bigtimer - executionTime;
 		}
 	}
 	
@@ -245,7 +265,7 @@ public class PlayerObject extends GameObject {
 
 		if(shoottimer == 0.0){
 			System.out.print("SHOOT!\n");
-			this.gameobjects_reference.add(new PlayerbulletObject(this, this.get_position().x_as_int() , this.get_position().y_as_int()));
+			this.gameobjects_reference.add(new PlayerbulletObject(this, this.get_position().x_as_int() , this.get_position().y_as_int(), this.get_scale()));
 			this.holdShootingForSeconds(this.shootinterval);
 		}else{
 			System.out.printf("Hold up, you are already shooting. Shoottimer: %s\n",this.shoottimer);
@@ -284,6 +304,10 @@ public class PlayerObject extends GameObject {
 			this.updateShooting(executionTime);
 		}
 		
+		if(this.big) {
+			this.updateBigTimer(executionTime);
+		}
+		
 		if(active_keys.contains(32)) { // SPACEBAR
 			//System.out.println("Spacebar pressed!");
 			this.shoot();
@@ -313,7 +337,7 @@ public class PlayerObject extends GameObject {
 					this.velocity.setX(0.0);
 				}
 			}
-			this.velocity.subtract(new XYPoint(5982.0 * executionTime, 0.0));
+			this.velocity.subtract(new XYPoint(2000.0 * executionTime, 0.0));
 		}
 		
 		if(active_keys.contains(39)) { // KEYRIGHT	
@@ -322,7 +346,7 @@ public class PlayerObject extends GameObject {
 					this.velocity.setX(0.0);
 				}
 			}
-			this.velocity.add(new XYPoint(5982.0 * executionTime, 0.0));
+			this.velocity.add(new XYPoint(2000.0 * executionTime, 0.0));
 		}
 		
 		// SUBTRACT VELOCITY WITH TIME
