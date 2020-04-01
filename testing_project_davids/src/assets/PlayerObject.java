@@ -7,8 +7,16 @@ import java.util.Set;
 import main.Main;
 import assets.XYPoint;
 
+import static constants.Constants.ACTIVEDRAWAREA_HEIGHT;
+import static constants.Constants.ACTIVEDRAWAREA_WIDTH;
+import static constants.Constants.ACTIVEDRAWAREA_XPOS;
+import static constants.Constants.ACTIVEDRAWAREA_YPOS;
 import static constants.Constants.PLAYERLIFES;
 import static constants.Constants.PLAYER_BLINKINTERVAL;
+import static constants.Constants.PLAYFIELD_WIDTH;
+import static constants.Constants.PLAYFIELD_HEIGHT;
+import static constants.Constants.PLAYFIELD_XPOS;
+import static constants.Constants.PLAYFIELD_YPOS;
 
 public class PlayerObject extends GameObject {
 
@@ -18,6 +26,7 @@ public class PlayerObject extends GameObject {
 	private Boolean invisible;
 	private Boolean blinking;
 	private Boolean immortal;
+	private Boolean shooting;
 	private double immortaltimer;
 	private double invisibletimer;
 	private double blinkingtimer;
@@ -40,17 +49,49 @@ public class PlayerObject extends GameObject {
 		this.set_scale(5.0);
 		set_objectGraphic_width(18);
 		set_objectGraphic_height(18);
-		this.set_position(90.0, 90.0);
+		this.set_position(500.0, 450.0);
 		this.velocity = new XYPoint(0.0, 0.0); this.set_velocity(this.velocity);
 		this.updateHitbox();
-		this.enableHitbox();
+		//this.enableHitbox();
+	}
+	
+	public void collideWithGameobject(GameObject obj) {
+		switch(obj.get_type_of_object()) {
+			case "bulletenemy":
+				obj.disableHitbox();
+				this.collideWithBulletenemy();
+				System.out.println("Player has collided with a bulletenemy!");
+				break;
+			case "1up":
+				obj.disableHitbox();
+				System.out.println("Player has collided with 1UP!");
+				this.getaLife();
+				break;
+			// 
+			default:
+				System.out.println("Player has collided with something!");
+		}
 	}
 	
 	public void collideWithBulletenemy() {
+		System.out.println("Noooooooo");
 		if(!immortal) {
 			this.loseLife();
 			this.makeImmortalForSeconds(4.0);
 			this.makeBlinkingForSeconds(4.0);
+		}
+	}
+	
+	public boolean outsideDrawingArea() {
+		if(
+			this.get_position().x_as_int() < ACTIVEDRAWAREA_XPOS || 
+			this.get_position().x_as_int() > ACTIVEDRAWAREA_XPOS + ACTIVEDRAWAREA_WIDTH || 
+			this.get_position().y_as_int() < ACTIVEDRAWAREA_YPOS || 
+			this.get_position().y_as_int() > ACTIVEDRAWAREA_YPOS + ACTIVEDRAWAREA_HEIGHT
+		) {
+			return true;
+		}else {
+			return false;
 		}
 	}
 	
@@ -84,8 +125,14 @@ public class PlayerObject extends GameObject {
 	//////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////
 	
+	public void getaLife() {
+		this.lifes = this.lifes + 1;
+		System.out.println(">>> Player got a life");
+	}
+	
 	public void loseLife() {
 		if(this.lifes > 1) {
+			System.out.println(">>> Player lost a life");
 			this.lifes = this.lifes - 1;
 		}else {
 			// TODO: GAME OVER!
@@ -193,6 +240,16 @@ public class PlayerObject extends GameObject {
 	}
 	*/
 	
+	public void shoot() {
+		this.shooting = true;
+	}
+	
+	public void updateShooting(double executionTime) {
+		
+	}
+	
+	
+	
 	public void update(double executionTime, Set<Integer> active_keys) {
 		
 		super.update(executionTime);
@@ -205,6 +262,19 @@ public class PlayerObject extends GameObject {
 			this.updateBlinking(executionTime);
 		}
 		
+		if(this.shooting){
+			this.updateShooting(executionTime);
+		}
+		
+		
+		if(active_keys.contains(32)) { // SPACEBAR					
+			this.velocity.setY(100.0);
+			this.shoot();
+			this.shooting = true;
+			
+		}else{
+			this.shooting = false;
+		}
 		
 		if(active_keys.contains(40)) { // KEYDOWN
 			if(this.velocity.y() != 0.0) {
@@ -244,9 +314,6 @@ public class PlayerObject extends GameObject {
 			this.velocity.add(new XYPoint(5982.0 * executionTime, 0.0));
 		}
 		
-		// REMOVE ACCELERATION BASED ON TIME
-		//this.acceleration.subtract(new XYPoint(0.0, this.acceleration.y() / 2 * executionTime));
-		
 		// SUBTRACT VELOCITY WITH TIME
 		
 		final double subtraction_constant = 500.0;
@@ -285,19 +352,27 @@ public class PlayerObject extends GameObject {
 		}
 		
 		// RESTRICT PLAYER TO PLAYFIELD
-		if(this.get_position().y() > 810.0) {
+		if(this.get_position().y() > PLAYFIELD_YPOS + PLAYFIELD_HEIGHT - this.get_height() / 2) {
 			this.velocity.setY(0.0);
-			this.get_position().setY(810.0);
-		}else if(this.get_position().y() < 90.0) {
+			this.get_position().setY(PLAYFIELD_YPOS + PLAYFIELD_HEIGHT - this.get_height() / 2);
+		}else if(this.get_position().y() < PLAYFIELD_YPOS + this.get_height() / 2) {
 			this.velocity.setY(0.0);
-			this.get_position().setY(90.0);
-		}else if(this.get_position().x() < 90.0) {
+			this.get_position().setY(PLAYFIELD_YPOS + this.get_height() / 2);
+		}else if(this.get_position().x() < PLAYFIELD_XPOS + this.get_width() / 2) {
 			this.velocity.setX(0.0);
-			this.get_position().setX(90.0);
-		}else if(this.get_position().x() > 1510.0) {
+			this.get_position().setX(PLAYFIELD_XPOS + this.get_width() / 2);
+		}else if(this.get_position().x() > PLAYFIELD_XPOS + PLAYFIELD_WIDTH - this.get_width() / 2) {
 			this.velocity.setX(0.0);
-			this.get_position().setX(1510.0);
+			this.get_position().setX(PLAYFIELD_XPOS + PLAYFIELD_WIDTH - this.get_width() / 2);
 		}
+/*
+		this.get_width()
+		this.get_height()
+		PLAYFIELD_WIDTH
+		PLAYFIELD_HEIGHT
+		PLAYFIELD_XPOS
+		PLAYFIELD_YPOS
+		*/
 
 
 		// UPDATE PARENT OBJECT

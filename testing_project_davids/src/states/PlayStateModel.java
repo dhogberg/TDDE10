@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import constants.Constants;
 
@@ -22,9 +23,10 @@ import static constants.Constants.DEV_SHOW_ACTIVE_KEYS;
 import assets.GameObject;
 import assets.PlayerObject;
 import assets.PlayfieldObject;
-import assets.ActivedrawfieldObject;
 import assets.SidebarObject;
 import assets.BulletenemyObject;
+import assets.LifeupObject;
+import assets.StarObject;
 import states.GameModel;
 
 public class PlayStateModel {
@@ -33,7 +35,6 @@ public class PlayStateModel {
 	
 	private PlayerObject playerObject;
 	private PlayfieldObject playfieldObject;
-	private ActivedrawfieldObject activedrawfieldObject;
 	private SidebarObject sidebarObject;
 	private Set<Integer> active_keys = new HashSet<Integer>();
 	
@@ -43,17 +44,14 @@ public class PlayStateModel {
 		this.playStateReference = playState;
 		this.playerObject = new PlayerObject();
 		this.playfieldObject = new PlayfieldObject();
-		this.activedrawfieldObject = new ActivedrawfieldObject();
 		this.sidebarObject = new SidebarObject();
 		
 		gameobjects = new ArrayList<GameObject>();
 		
-		//this.playerObject2 = new PlayerObject();
-		//this.playerObject2.get_position().setX(1510.0);
-		
 		playerObject.set_name("Player1");
 		
 		this.gameobjects.add(new BulletenemyObject("bullet1"));
+		this.gameobjects.add(new LifeupObject("life1"));
 	}
 	
 	public void draw(Graphics g) {
@@ -62,17 +60,16 @@ public class PlayStateModel {
 	}
 	
 	public void drawObjects(Graphics2D g2) {
-		// Draw active drawarea
-		//activedrawfieldObject.draw(g2);
-
 		// Draw playingfield
 		playfieldObject.draw(g2);
 		
-		// Draw active drawarea
-		activedrawfieldObject.draw(g2);
-		
 		// Draw gameobjects
-		for (GameObject obj : this.gameobjects) {
+		final ArrayList<GameObject> copyof_gameobjects = new ArrayList<GameObject>(this.gameobjects);
+		/*
+		 * To avoid concurrentModification, we copy the list
+		 * beforehand and then we loop through the copy
+		 */
+		for (GameObject obj : copyof_gameobjects) {
 			obj.draw(g2);
 		}
 		
@@ -84,6 +81,9 @@ public class PlayStateModel {
 	}
 	
 	public void update(double executionTime) {
+		//this.gameobjects.add(new LifeupObject("life1"));
+		//this.gameobjects.add(new StarObject("star1"));
+		//this.gameobjects.add(new BulletenemyObject("bullet1"));
 		this.updateObjects(executionTime, this.active_keys);
 	}
 	
@@ -100,16 +100,33 @@ public class PlayStateModel {
 		// UPDATE HITBOXES
 		for (GameObject obj : this.gameobjects) {
 			if(playerObject.hitbox().intersects(obj.hitbox())) {
-				playerObject.collideWithBulletenemy();
+				
+				playerObject.collideWithGameobject(obj);
 				obj.collideWithPlayer();
+				
 			}
 		}
 		
-		// DELETE OBJECTS WHICH ARE OUTSIDE SCREEN
-		for (GameObject obj : this.gameobjects) {
-			if(!obj.hitbox().intersects(activedrawfieldObject.hitbox())) {
+		// ADD OBJECTS FOR DELETION WHICH ARE OUTSIDE SCREEN
+		
+		final ArrayList<GameObject> tmp_remove_objs = new ArrayList<GameObject>();
+		
+		for (GameObject obj : this.gameobjects) {	
+			/*if(!obj.hitbox().intersects(activedrawfieldObject.hitbox())) {
 				System.out.printf("OBJECT with name %s IS OUTSIDE SCREEN!\n", obj.get_name());
+			}*/
+			if(obj.outsideDrawingArea()) {
+				System.out.printf("OBJECT with name %s IS OUTSIDE SCREEN!\n", obj.get_name());
+				tmp_remove_objs.add(obj);
 			}
+			
+			
+		}
+		
+		// DELETE THE OBJECTS
+		for (GameObject obj : tmp_remove_objs) {
+			System.out.printf("OBJECT with name %s GOT DELETED FROM GAMEOBJECTS ARRAYLIST!\n", obj.get_name());
+			this.gameobjects.remove(obj);
 		}
 		
 		/*
@@ -118,7 +135,7 @@ public class PlayStateModel {
 		}*/
 				
 		//System.out.printf("is Player1 colliding with Enemybullet? %s\n", playerObject.hitbox().intersects(bulletenemyObject.hitbox()));
-		System.out.printf("Player1 no of lifes: %s Immortal: %s ImmortalTimer: %s BlinkingIntervalTimer: %s\n", playerObject.get_lifes(), playerObject.get_immortal(), playerObject.get_immortaltimer(), playerObject.get_blinkingintervaltimer());
+		//System.out.printf("Player1 no of lifes: %s Immortal: %s ImmortalTimer: %s BlinkingIntervalTimer: %s\n", playerObject.get_lifes(), playerObject.get_immortal(), playerObject.get_immortaltimer(), playerObject.get_blinkingintervaltimer());
 
 		if(DEV_SHOW_ACTIVE_KEYS){ // Development test code
 			System.out.printf("Active keys: %s\n",active_keys);

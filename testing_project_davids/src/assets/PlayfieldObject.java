@@ -33,6 +33,10 @@ public class PlayfieldObject extends GameObject {
 		g2.fillRect( this.get_position().x_as_int() , this.get_position().y_as_int() , this.get_width(), this.get_height());
 	}
 	
+	public boolean outsideDrawingArea() {
+		return false;
+	}
+	
 	/*
 	@Override
 	public void update(double executionTime) {

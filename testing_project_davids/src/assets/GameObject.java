@@ -6,6 +6,11 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
+import static constants.Constants.ACTIVEDRAWAREA_WIDTH;
+import static constants.Constants.ACTIVEDRAWAREA_HEIGHT;
+import static constants.Constants.ACTIVEDRAWAREA_XPOS;
+import static constants.Constants.ACTIVEDRAWAREA_YPOS;
+
 
 public abstract class GameObject {
 	
@@ -16,9 +21,11 @@ public abstract class GameObject {
 	private XYPoint velocity;
 	private HitBox hitbox;
 	private double scale;
+	private String type_of_object;
 	private String name; // Used in development so we can identify different objects
 	
 	public GameObject() {
+		this.type_of_object = null;
 		this.position = new XYPoint();
 		this.velocity = new XYPoint();
 		this.hitbox = new HitBox();
@@ -29,10 +36,31 @@ public abstract class GameObject {
 		//System.out.print("Hitboxes: ");
 		//System.out.printf("%s %s\n", this.name, this.hitbox.development_only_get_values_as_string());
 	//}
+	
+	public abstract boolean outsideDrawingArea();
+	
+	public void moveOutsideDrawArea(){
+		this.position = new XYPoint(ACTIVEDRAWAREA_WIDTH + ACTIVEDRAWAREA_XPOS + 1, ACTIVEDRAWAREA_HEIGHT + ACTIVEDRAWAREA_YPOS + 1);
+		/*
+		ACTIVEDRAWAREA_WIDTH
+		ACTIVEDRAWAREA_HEIGHT
+		ACTIVEDRAWAREA_XPOS
+		ACTIVEDRAWAREA_YPOS
+		*/
+	}
 
 	public void set_name(String name) {
 		this.name = name;
 	}
+	
+	public String get_type_of_object() {
+		return this.type_of_object;
+	}
+	
+	public void set_type_of_object(String type_of_object) {
+		this.type_of_object = type_of_object;
+	}
+	
 	
 	public String get_name() {
 		return this.name;
