@@ -5,6 +5,14 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.awt.Color;
 
+/** 
+ * 
+ * TODO: Describe what this class does!
+ * 
+ * @author David & Johan
+ * @version 1.0
+ * @since 1.0
+ */
 public class GameLevels {
 	
 	private int level;
@@ -63,7 +71,6 @@ public class GameLevels {
 				b = 200 + ran.nextInt(56);
 				break;
 			default:
-				System.out.println("FUCK!");
 				r = 255;
 				g = 255;
 				b = 255;
@@ -81,8 +88,6 @@ public class GameLevels {
 		int enemy_index = ran7.nextInt(2);
 		if(BULLETENEMY_spawn_pause_timer == 0.0){
 			// SPAWN!
-
-			
 			switch(enemy_index) {
 				case 0:
 					playStateModel_reference.get_gameobjects().add(new BulletenemyObject("bullet1"));
@@ -91,8 +96,6 @@ public class GameLevels {
 					playStateModel_reference.get_gameobjects().add(new ShellenemyObject("shell1"));
 					break;
 			}
-
-
 			BULLETENEMY_spawn_pause_timer = BULLETENEMY_spawn_pause_interval / this.level;
 		}else{
 			if(BULLETENEMY_spawn_pause_timer < executionTime){
@@ -101,7 +104,6 @@ public class GameLevels {
 				BULLETENEMY_spawn_pause_timer = BULLETENEMY_spawn_pause_timer - executionTime;
 			}
 		}
-		
 		
 		// SPAWN POWERUP
 		Random ran = new Random();
@@ -132,7 +134,6 @@ public class GameLevels {
 	}
 
 	public void update (double executionTime){
-
 		this.elapsed_time_on_level = this.elapsed_time_on_level + executionTime;
 		//System.out.printf("Elapsed time on level: %s\n",elapsed_time_on_level);
 		

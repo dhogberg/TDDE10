@@ -13,6 +13,14 @@ import static constants.Constants.SIDEBAR_HEIGHT;
 import static constants.Constants.SIDEBAR_XPOS;
 import static constants.Constants.SIDEBAR_YPOS;
 
+/** 
+ * 
+ * TODO: Describe what this class does!
+ * 
+ * @author David & Johan
+ * @version 1.0
+ * @since 1.0
+ */
 public class SidebarObject extends GameObject {
 
 	private PlayerObject playerobject_reference;
@@ -20,17 +28,12 @@ public class SidebarObject extends GameObject {
 	
 	public SidebarObject(PlayerObject player, GameLevels currentlevel) {
 		super();
-		
 		this.playerobject_reference = player;
 		this.lvl_reference = currentlevel;
-		
 		this.set_scale(1.0);
 		set_objectGraphic_width(SIDEBAR_WIDTH);
 		set_objectGraphic_height(SIDEBAR_HEIGHT);
-		
 		this.set_position(SIDEBAR_XPOS, SIDEBAR_YPOS);
-		//this.updateHitbox();
-		//this.enableHitbox();
 	}
 
 	@Override

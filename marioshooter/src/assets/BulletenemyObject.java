@@ -16,24 +16,19 @@ import static constants.Constants.PLAYFIELD_HEIGHT;
 import static constants.Constants.PLAYFIELD_XPOS;
 import static constants.Constants.PLAYFIELD_YPOS;
 
+/** 
+ * 
+ * TODO: Describe what this class does!
+ * 
+ * @author David & Johan
+ * @version 1.0
+ * @since 1.0
+ */
 public class BulletenemyObject extends GameObject {
 	
 	private BufferedImage objectGraphic;
 	private XYPoint velocity;
 	private boolean falling;
-	
-	/*public BulletenemyObject() {
-		super();
-		this.objectGraphic = Main.loadImage("sprites/bullet_enemy_16x14.png"); // TODO: SKRIV OM SKRIV OM
-		this.set_objectGraphic(this.objectGraphic);
-		this.set_scale(2.0);
-		set_objectGraphic_width(16);
-		set_objectGraphic_height(14);
-		this.set_position(600.0, 400.0);
-		this.falling = false;
-		this.updateHitbox();
-		this.enableHitbox();
-	}*/
 	
 	public BulletenemyObject(String name) {
 		super();
@@ -79,9 +74,6 @@ public class BulletenemyObject extends GameObject {
 				this.fallOfScreen();
 				System.out.println("Enemybullet has collided with a playerbullet!");
 				break;
-			case "1up":
-				break;
-			// 
 			default:
 				System.out.println("Enemybullet has collided with something!");
 		}
@@ -103,8 +95,6 @@ public class BulletenemyObject extends GameObject {
 			
 			this.velocity.add(new XYPoint(0.0, 5982.0 * executionTime)); // FOR DEVELOPMENT //this.velocity.setY(100.0);
 			
-
-
 			// UPDATE PARENT OBJECT VELOCITY
 			this.set_velocity( this.velocity );
 		}

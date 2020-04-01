@@ -36,6 +36,14 @@ import static constants.Constants.SCREEN_WIDTH;
  * mentioned above.
  */
 
+/** 
+ * 
+ * TODO: Describe what this class does!
+ * 
+ * @author David & Johan
+ * @version 1.0
+ * @since 1.0
+ */
 public abstract class GameState {
 
 	protected GameModel model;

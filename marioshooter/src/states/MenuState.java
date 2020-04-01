@@ -2,7 +2,6 @@ package states;
 
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.swing.*; 
 
 import menu.MenuButton;
@@ -15,6 +14,15 @@ import static constants.Constants.SCREEN_WIDTH;
  * This state represents the menu of the Game
  * The main responsibility of this class is to allow
  * the user to swap state to the PlayState
+ */
+
+/** 
+ * 
+ * TODO: Describe what this class does!
+ * 
+ * @author David & Johan
+ * @version 1.0
+ * @since 1.0
  */
 public class MenuState extends GameState{
 	
@@ -36,8 +44,6 @@ public class MenuState extends GameState{
 	 * in the PlayState, can you think of a way to make this more
 	 * general and not duplicate variables?????
 	 */
-
-
 	
 	public MenuState(GameModel model) {
 		super(model);
@@ -84,8 +90,6 @@ public class MenuState extends GameState{
 		
 	}
 
-	
-
 	@Override
 	public void draw(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
@@ -101,17 +105,6 @@ public class MenuState extends GameState{
 		highscores_text_2.draw(g2);
 		quit_text_2.draw(g2);		
 		
-		/*public void draw (Grapgics g) {
-		 
-		}*/
-		
-		//g.fillRect(startgame_text_2.get_x(), startgame_text_2.get_y(), startgame_text_2.get_width(), startgame_text_2.get_height());
-		
-		//g.drawString(startgame_text, (SCREEN_WIDTH / 2) - 150, SCREEN_HEIGHT / 10 * 4 );
-		//g.drawString(highscores_text, (SCREEN_WIDTH / 2) - 150, SCREEN_HEIGHT / 10 * 5 );
-		//g.drawString(info_text, (SCREEN_WIDTH / 2) - 150, SCREEN_HEIGHT / 10 * 6 );
-		//g.drawString(quit_text, (SCREEN_WIDTH / 2) - 150, SCREEN_HEIGHT / 10 * 7 );
-
 	}
 	
 	
@@ -121,31 +114,7 @@ public class MenuState extends GameState{
 	public void keyReleased(int key) {
 		// TODO: Add keyboard functionality
 	}
-	
-	public void startPressed(MouseEvent e) {
-		//if(e.getX()>=800 && e.getX()<= 800+350) {
-			System.out.println("d�");
-		//}
-	}
-	
-	
-	// // // // // // // // // // // // // // // // // // // // // // // // // // // //
-	// // // // // // // // // // // // // // // // // // // // // // // // // // // //
-	//@Override
-	//public void keyPressed(int key) {
-	//	System.out.println("Trycker på " + KeyEvent.getKeyText(key) + " i MenuState");
-	//
-	//	if (key == KeyEvent.VK_ENTER)
-	//		model.switchState(new PlayState(model));
-	//	if (key == KeyEvent.VK_ESCAPE)
-	//		System.exit(0);
-	//}
-	// // // // // // // // // // // // // // // // // // // // // // // // // // // //
-	// // // // // // // // // // // // // // // // // // // // // // // // // // // //
 
 	@Override
-	public void update() { }
-
-	
-	
+	public void update() { }	
 }

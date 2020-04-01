@@ -10,12 +10,19 @@ import static constants.Constants.ACTIVEDRAWAREA_WIDTH;
 import static constants.Constants.ACTIVEDRAWAREA_HEIGHT;
 import static constants.Constants.ACTIVEDRAWAREA_XPOS;
 import static constants.Constants.ACTIVEDRAWAREA_YPOS;
-
 import static constants.Constants.PLAYFIELD_WIDTH;
 import static constants.Constants.PLAYFIELD_HEIGHT;
 import static constants.Constants.PLAYFIELD_XPOS;
 import static constants.Constants.PLAYFIELD_YPOS;
 
+/** 
+ * 
+ * TODO: Describe what this class does!
+ * 
+ * @author David & Johan
+ * @version 1.0
+ * @since 1.0
+ */
 public class PlayerbulletObject extends GameObject {
 	
 	private BufferedImage objectGraphic;
@@ -77,23 +84,8 @@ public class PlayerbulletObject extends GameObject {
 		}
 	}
 
-	/*
-	public void collideWithPlayer() {
-		this.fallOfScreen();
-	}
-	*/
-	
 	@Override
 	public void update(double executionTime) {
 		super.update(executionTime);
-		
-		/*if(this.falling) {
-			
-			this.velocity.add(new XYPoint(0.0, 5982.0 * executionTime)); // FOR DEVELOPMENT //this.velocity.setY(100.0);
-
-			// UPDATE PARENT OBJECT VELOCITY
-			this.set_velocity( this.velocity );
-		}
-		*/
 	}
 }

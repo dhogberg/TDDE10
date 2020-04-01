@@ -32,41 +32,34 @@ import assets.StarObject;
 import assets.GameLevels;
 import states.GameModel;
 
+/** 
+ * 
+ * TODO: Describe what this class does!
+ * 
+ * @author David & Johan
+ * @version 1.0
+ * @since 1.0
+ */
 public class PlayStateModel extends GameState{
 	
 	private PlayState playStateReference;
-	
 	private PlayerObject playerObject;
 	private PlayfieldObject playfieldObject;
 	private SidebarObject sidebarObject;
 	private Set<Integer> active_keys = new HashSet<Integer>();
-	
 	private ArrayList<GameObject> gameobjects;
-	
 	private ArrayList<GameObject> playerbullets;
-	
 	private GameLevels lvl; 
 
 	public PlayStateModel(GameModel model) {
 		super(model);
-		
 		gameobjects = new ArrayList<GameObject>();
-		
 		this.playfieldObject = new PlayfieldObject();
-		
 		this.lvl = new GameLevels(this);
-		
 		playerbullets = new ArrayList<GameObject>();
-		
 		this.playerObject = new PlayerObject(this.playerbullets, model);
-		
-		
 		this.sidebarObject = new SidebarObject(playerObject, lvl);
-		
 		playerObject.set_name("Player1");
-		
-		//this.gameobjects.add(new BulletenemyObject("bullet1"));
-		//this.gameobjects.add(new LifeupObject("life1"));
 	}
 	
 	public void mouseClicked(MouseEvent e) {
@@ -135,9 +128,6 @@ public class PlayStateModel extends GameState{
 	}
 	
 	public void update(double executionTime) {
-		//this.gameobjects.add(new LifeupObject("life1"));
-		//this.gameobjects.add(new StarObject("star1"));
-		//this.gameobjects.add(new BulletenemyObject("bullet1"));
 		this.updateObjects(executionTime, this.active_keys);
 	}
 	
@@ -192,7 +182,6 @@ public class PlayStateModel extends GameState{
 			System.out.printf("OBJECT with name %s GOT DELETED FROM GAMEOBJECTS ARRAYLIST!\n", obj.get_name());
 			this.gameobjects.remove(obj);
 		}
-		//System.out.printf("Player1 no of lifes: %s Immortal: %s ImmortalTimer: %s BlinkingIntervalTimer: %s\n", playerObject.get_lifes(), playerObject.get_immortal(), playerObject.get_immortaltimer(), playerObject.get_blinkingintervaltimer());
 
 		if(DEV_SHOW_ACTIVE_KEYS){ // Development test code
 			System.out.printf("Active keys: %s\n",active_keys);
@@ -200,12 +189,10 @@ public class PlayStateModel extends GameState{
 	}
 
 	public void keyPressed(int keycode) {
-		//System.out.printf("%s pressed!\n", keycode);
 		active_keys.add(keycode);
 	}
 
 	public void keyReleased(int keycode) {
-		//System.out.printf("%s released!\n", keycode);
 		active_keys.remove(keycode);
 	}
 

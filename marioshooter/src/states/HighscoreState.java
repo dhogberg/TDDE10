@@ -2,10 +2,8 @@ package states;
 
 import java.awt.*;
 import java.awt.event.*;
-
 import java.util.ArrayList;
 import java.util.Collections;
-
 import javax.swing.*; 
 
 import menu.MenuButton;
@@ -18,6 +16,15 @@ import static constants.Constants.SCREEN_WIDTH;
  * This state represents the menu of the Game
  * The main responsibility of this class is to allow
  * the user to swap state to the PlayState
+ */
+
+/** 
+ * 
+ * TODO: Describe what this class does!
+ * 
+ * @author David & Johan
+ * @version 1.0
+ * @since 1.0
  */
 public class HighscoreState extends GameState{
 	
@@ -131,22 +138,8 @@ public class HighscoreState extends GameState{
 		g.setFont(new Font("Monospace", Font.PLAIN, 60));
 		g.drawString(titel_text, (SCREEN_WIDTH / 2) - 400, SCREEN_HEIGHT / 5 );
 		
-		/*
-		ArrayList<int> testarray = new ArrayList<int>;
-		
-		testarray = new ArrayList<int>;
-		*/
-		// Print highscores
-		
-		//for(ArrayList<int> x : )
-		
 		this.draw_highscores(g);
 		back_to_menu.draw(g2);
-	
-		
-		//highscores_text.draw(g2);
-		//quit_text.draw(g2);
-
 	}
 	
 	
@@ -157,30 +150,7 @@ public class HighscoreState extends GameState{
 		// TODO: Add keyboard functionality
 	}
 	
-	public void startPressed(MouseEvent e) {
-		//if(e.getX()>=800 && e.getX()<= 800+350) {
-			System.out.println("d�");
-		//}
-	}
-	
-	
-	// // // // // // // // // // // // // // // // // // // // // // // // // // // //
-	// // // // // // // // // // // // // // // // // // // // // // // // // // // //
-	//@Override
-	//public void keyPressed(int key) {
-	//	System.out.println("Trycker på " + KeyEvent.getKeyText(key) + " i MenuState");
-	//
-	//	if (key == KeyEvent.VK_ENTER)
-	//		model.switchState(new PlayState(model));
-	//	if (key == KeyEvent.VK_ESCAPE)
-	//		System.exit(0);
-	//}
-	// // // // // // // // // // // // // // // // // // // // // // // // // // // //
-	// // // // // // // // // // // // // // // // // // // // // // // // // // // //
-
 	@Override
 	public void update() { }
-
-	
 	
 }

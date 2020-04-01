@@ -23,6 +23,14 @@ import static constants.Constants.PLAYFIELD_HEIGHT;
 import static constants.Constants.PLAYFIELD_XPOS;
 import static constants.Constants.PLAYFIELD_YPOS;
 
+/** 
+ * 
+ * TODO: Describe what this class does!
+ * 
+ * @author David & Johan
+ * @version 1.0
+ * @since 1.0
+ */
 public class PlayerObject extends GameObject {
 
 	private BufferedImage objectGraphic;
@@ -48,23 +56,17 @@ public class PlayerObject extends GameObject {
 
 	public PlayerObject(ArrayList<GameObject> gameobjects, GameModel model) {
 		super();
-		
 		this.model = model;
-		
 		this.gameobjects_reference = gameobjects;
-
 		this.invisible = false;
 		this.blinking = false;
 		this.immortal = false;
 		this.shooting = false;
 		this.big = false;
-		
 		this.score = 0;
-		
 		this.lifes = PLAYERLIFES;
 		this.blinkinterval = PLAYER_BLINKINTERVAL;
 		this.shootinterval = PLAYER_SHOOTINTERVAL;
-		
 		this.objectGraphic = Main.loadImage("sprites/mariokart_28x30.png"); // TODO: SKRIV OM SKRIV OM
 		this.set_objectGraphic(this.objectGraphic);
 		this.set_scale(2.0);
@@ -337,7 +339,7 @@ public class PlayerObject extends GameObject {
 					this.velocity.setX(0.0);
 				}
 			}
-			this.velocity.subtract(new XYPoint(2000.0 * executionTime, 0.0));
+			this.velocity.subtract(new XYPoint(3000.0 * executionTime, 0.0));
 		}
 		
 		if(active_keys.contains(39)) { // KEYRIGHT	
@@ -346,7 +348,7 @@ public class PlayerObject extends GameObject {
 					this.velocity.setX(0.0);
 				}
 			}
-			this.velocity.add(new XYPoint(2000.0 * executionTime, 0.0));
+			this.velocity.add(new XYPoint(3000.0 * executionTime, 0.0));
 		}
 		
 		// SUBTRACT VELOCITY WITH TIME

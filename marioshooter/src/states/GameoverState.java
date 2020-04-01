@@ -18,6 +18,15 @@ import static constants.Constants.SCREEN_WIDTH;
  * The main responsibility of this class is to allow
  * the user to swap state to the PlayState
  */
+
+/** 
+ * 
+ * TODO: Describe what this class does!
+ * 
+ * @author David & Johan
+ * @version 1.0
+ * @since 1.0
+ */
 public class GameoverState extends GameState{
 	
 	private String titel_text;
@@ -84,9 +93,7 @@ public class GameoverState extends GameState{
 	}
 	
 	public void startPressed(MouseEvent e) {
-		//if(e.getX()>=800 && e.getX()<= 800+350) {
-			System.out.println("d�");
-		//}
+		System.out.println("d�");
 	}
 	
 	@Override

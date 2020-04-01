@@ -8,6 +8,14 @@ import java.awt.Graphics2D;
 
 import assets.XYPoint;
 
+/** 
+ * 
+ * TODO: Describe what this class does!
+ * 
+ * @author David & Johan
+ * @version 1.0
+ * @since 1.0
+ */
 public class MenuButton extends JPanel{
 	
 	private XYPoint position;
@@ -35,13 +43,6 @@ public class MenuButton extends JPanel{
 		return str.length();
 	}
 	
-	
-	/*public XYPoint calculateCenteredTextPosition(String str) {
-		
-	
-		
-	}*/
-	
 	public int get_x(){
 		return this.position.x_as_int();
 	}
@@ -63,34 +64,16 @@ public class MenuButton extends JPanel{
 	}
 
 	public boolean containsXY(int x, int y){
-		
-		
-		
 	
 		final int x1 =  (get_x())-(get_width()/2);
 		final int y1 = (get_y()) - (get_height()/2);
 		final int x2 =  (get_x())+(get_width()/2);
 		final int y2 = (get_y()) + (get_height()/2);
 		if(x>x1 && x<x2 && y>y1 && y<y2) {
-
 			return true;
 		}
 		
 		else {
-			/*
-			String ex = Integer.toString(x1);
-			String ex2 = Integer.toString(x2);
-			String ey = Integer.toString(y1);
-			String ey2 = Integer.toString(y2);
-			
-			System.out.println(ex);
-			System.out.println(ex2);
-			System.out.println(ey);
-			System.out.println(ey2);
-			System.out.println("\n");
-			System.out.println(x);
-			System.out.println(y);
-			*/
 			return false;
 		}
 		

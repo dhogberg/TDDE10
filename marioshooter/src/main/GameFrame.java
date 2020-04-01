@@ -27,6 +27,15 @@ import states.GameModel;
  * with the desired properties. For more information see Comments below.
  *
  */
+
+/** 
+ * 
+ * TODO: Describe what this class does!
+ * 
+ * @author David & Johan
+ * @version 1.0
+ * @since 1.0
+ */
 public class GameFrame extends JFrame {
 
 	public GameFrame(String gameName, GameModel model){
@@ -53,19 +62,6 @@ public class GameFrame extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 			
 			model.mouseClicked(e);
-			/*
-			if(e.getX()>=800-(350/2) && e.getX()<= 800+(350/2) && e.getY()>=SCREEN_HEIGTH/3-(75/2) && e.getY() <=SCREEN_HEIGTH/3+(75/2)  ){
-				System.out.println("innanför");
-			}else {
-				//int mousex = e.getX();
-				//int mousey = e.getY();
-				//Integer.toString(mousex);
-				//Integer.toString(mousey);
-				//System.out.println(mousex);
-				//System.out.println(mousey);
-				System.out.println("utanför");
-			}
-			*/
 			}});
 		
 		
@@ -90,37 +86,5 @@ public class GameFrame extends JFrame {
 		});
 		
 		this.requestFocus();
-	}
-
-	/*
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}*/
-	
+	}	
 }

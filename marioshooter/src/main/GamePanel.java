@@ -17,6 +17,15 @@ import static constants.Constants.SCREEN_WIDTH;
  *	  - Handle events (e.g. key events and mouse events)
  *	  - Suplying the game with a Graphics object for painting different states
  */
+
+/** 
+ * 
+ * TODO: Describe what this class does!
+ * 
+ * @author David & Johan
+ * @version 1.0
+ * @since 1.0
+ */
 public class GamePanel extends JPanel {
 
 	private GameModel model;

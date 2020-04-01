@@ -23,6 +23,14 @@ import java.awt.event.MouseEvent;
  *
  */
 
+/** 
+ * 
+ * TODO: Describe what this class does!
+ * 
+ * @author David & Johan
+ * @version 1.0
+ * @since 1.0
+ */
 public class GameModel {
 
 	private GameState currentState;
@@ -59,18 +67,6 @@ public class GameModel {
 	
 	public void mouseClicked(MouseEvent e) {
 		currentState.mouseClicked(e);
-		/*
-		if(e.getX()>=800-(350/2) && e.getX()<= 800+(350/2) && e.getY()>=SCREEN_HEIGTH/3-(75/2) && e.getY() <=SCREEN_HEIGTH/3+(75/2)  ){
-			System.out.println("innanf�r");
-		}else {
-			//int mousex = e.getX();
-			//int mousey = e.getY();
-			//Integer.toString(mousex);
-			//Integer.toString(mousey);
-			//System.out.println(mousex);
-			//System.out.println(mousey);
-			System.out.println("utanf�r");
-		}*/
 	}
 	
 	
@@ -84,8 +80,6 @@ public class GameModel {
 	public void keyReleased(int key) {
 		currentState.keyReleased(key);
 	}
-
-
 
 	/**
 	 * The update function is called every iteration of the game loop.

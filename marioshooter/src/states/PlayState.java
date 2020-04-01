@@ -34,6 +34,15 @@ import static constants.Constants.SCREEN_WIDTH;
  * based on what parameters
  * are passed into the PlayState.
  */
+
+/** 
+ * 
+ * TODO: Describe what this class does!
+ * 
+ * @author David & Johan
+ * @version 1.0
+ * @since 1.0
+ */
 public class PlayState extends GameState {
 	
 	private PlayStateModel playStateModel;
@@ -68,14 +77,4 @@ public class PlayState extends GameState {
 	public void keyReleased(int key) {
 		this.playStateModel.keyReleased(key);
 	}
-
-	
-	/*@Override
-	public void keyPressed(int key) {
-		System.out.println("Trycker på " + KeyEvent.getKeyText(key) + " i PlayState");
-		if (key == KeyEvent.VK_ESCAPE)
-			model.switchState(new MenuState(model));
-	}
-	*/
-	
 }

@@ -15,6 +15,14 @@ import static constants.Constants.PLAYFIELD_WIDTH;
 import static constants.Constants.PLAYFIELD_YPOS;
 import static constants.Constants.PLAYFIELD_XPOS;
 
+/** 
+ * 
+ * TODO: Describe what this class does!
+ * 
+ * @author David & Johan
+ * @version 1.0
+ * @since 1.0
+ */
 public class MushroomObject extends GameObject {
 	
 	private BufferedImage objectGraphic;
@@ -67,14 +75,5 @@ public class MushroomObject extends GameObject {
 	@Override
 	public void update(double executionTime) {
 		super.update(executionTime);
-		if(this.falling) {
-			
-			//this.velocity.add(new XYPoint(0.0, 5982.0 * executionTime));
-			this.velocity.setY(100.0);
-
-
-			// UPDATE PARENT OBJECT VELOCITY
-			this.set_velocity( this.velocity );
-		}
 	}
 }

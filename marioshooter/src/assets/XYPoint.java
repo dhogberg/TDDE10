@@ -1,5 +1,13 @@
 package assets;
 
+/** 
+ * 
+ * A class that can hold XY coordinates and methods to interact with the coordinates
+ * 
+ * @author David & Johan
+ * @version 1.0
+ * @since 1.0
+ */
 public class XYPoint {
 
 	private double x;

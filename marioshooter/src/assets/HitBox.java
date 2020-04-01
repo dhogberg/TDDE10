@@ -1,5 +1,13 @@
 package assets;
 
+/** 
+ * 
+ * TODO: Describe what this class does!
+ * 
+ * @author David & Johan
+ * @version 1.0
+ * @since 1.0
+ */
 public class HitBox {
 
 	private int x1;

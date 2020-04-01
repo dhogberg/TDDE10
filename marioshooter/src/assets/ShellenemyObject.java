@@ -16,6 +16,14 @@ import static constants.Constants.PLAYFIELD_HEIGHT;
 import static constants.Constants.PLAYFIELD_XPOS;
 import static constants.Constants.PLAYFIELD_YPOS;
 
+/** 
+ * 
+ * TODO: Describe what this class does!
+ * 
+ * @author David & Johan
+ * @version 1.0
+ * @since 1.0
+ */
 public class ShellenemyObject extends GameObject {
 	
 	private BufferedImage objectGraphic;
@@ -85,10 +93,8 @@ public class ShellenemyObject extends GameObject {
 		super.update(executionTime);
 		if(this.falling) {
 			
-			this.velocity.add(new XYPoint(0.0, 5982.0 * executionTime)); // FOR DEVELOPMENT //this.velocity.setY(100.0);
+			this.velocity.add(new XYPoint(0.0, 5982.0 * executionTime));
 			
-
-
 			// UPDATE PARENT OBJECT VELOCITY
 			this.set_velocity( this.velocity );
 		}

@@ -8,16 +8,18 @@ import javax.imageio.ImageIO;
 import constants.Constants;
 import states.GameModel;
 
-// TEMP ! ! ! ! NEEDED WORKAROUND TO SKIP MENU AND PROCEED IMMEDIATELY TO THE RUNNING GAME
-import states.*;
-
+/** 
+ * 
+ * TODO: Describe what this class does!
+ * 
+ * @author David & Johan
+ * @version 1.0
+ * @since 1.0
+ */
 public class Main {
 	public static void main(String[] args) {		
 		GameModel model = new GameModel();
 		GameFrame frame = new GameFrame("MarioShooter", model);
-		
-		// TEMP ! ! ! ! SKIP MENU AND PROCEED IMMEDIATELY TO RUNNING GAME
-		model.switchState(new PlayState(model));
 		
 		double ms = 1000.0 / Constants.FPS;
 		while (true) {

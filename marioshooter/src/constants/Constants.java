@@ -13,6 +13,15 @@ package constants;
  * change them, and therefore they stay the same during
  * the entire execution of the program.
  */
+
+/** 
+ * 
+ * TODO: Describe what this class does!
+ * 
+ * @author David & Johan
+ * @version 1.0
+ * @since 1.0
+ */
 public interface Constants {
 
 	/*
