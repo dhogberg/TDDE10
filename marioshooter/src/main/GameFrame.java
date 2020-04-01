@@ -47,12 +47,27 @@ public class GameFrame extends JFrame {
 		this.setLocationRelativeTo(null); // Sets location of frame to mid point of screen
 		this.setName(gameName);
 		this.setVisible(true); // Shows the frame
+	
 		
 		this.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("hej");
+			
+			model.mouseClicked(e);
+			/*
+			if(e.getX()>=800-(350/2) && e.getX()<= 800+(350/2) && e.getY()>=SCREEN_HEIGTH/3-(75/2) && e.getY() <=SCREEN_HEIGTH/3+(75/2)  ){
+				System.out.println("innanför");
+			}else {
+				//int mousex = e.getX();
+				//int mousey = e.getY();
+				//Integer.toString(mousex);
+				//Integer.toString(mousey);
+				//System.out.println(mousex);
+				//System.out.println(mousey);
+				System.out.println("utanför");
 			}
-		});
+			*/
+			}});
+		
 		
 		this.addKeyListener(new KeyAdapter() {
 

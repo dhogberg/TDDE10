@@ -16,6 +16,9 @@ import java.awt.event.MouseListener;
 
 import drawComponents.*;
 
+import java.awt.*; 
+import java.awt.event.*; 
+import javax.swing.*; 
 public class MyFrame extends JFrame implements MouseListener {
 	private BottomPanel bottomPanel;
 	private SidePanel sidePanel;

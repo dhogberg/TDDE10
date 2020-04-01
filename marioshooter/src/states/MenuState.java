@@ -21,7 +21,6 @@ public class MenuState extends GameState{
 	private String titel_text;
 	private String startgame_text;
 	private String highscores_text;
-	private String info_text;
 	private String quit_text;
 	
 	private MenuButton startgame_text_2;
@@ -50,22 +49,59 @@ public class MenuState extends GameState{
 		
 		startgame_text = "Start game";
 		highscores_text = "Highscores";
-		//info_text = "Info";
 		quit_text = "Quit game";
 		
 		int startX = SCREEN_WIDTH/2;
 		int startY = SCREEN_HEIGHT/3;
 		int space = 100;
 		
-		startgame_text_2 = new MenuButton(startgame_text, new XYPoint(800,startY), new XYPoint(350,75));
-		highscores_text_2 = new MenuButton(highscores_text, new XYPoint(800,startY+(space)), new XYPoint(350,75));
-		quit_text_2 = new MenuButton("funkar", new XYPoint(800,startY+(space*2)), new XYPoint(350,75));
+		startgame_text_2 = new MenuButton(startgame_text, new XYPoint(startX,startY), new XYPoint(350,75));
+		highscores_text_2 = new MenuButton(highscores_text, new XYPoint(startX,startY+(space)), new XYPoint(350,75));
+		quit_text_2 = new MenuButton(quit_text, new XYPoint(startX,startY+(space*2)), new XYPoint(350,75));
 		
 		
 		bgColor = new Color(91, 149, 254);
 		fontColor = new Color(255, 255, 255);
 		
 		//model.switchState(new PlayState(model));
+	}
+	
+	public void mouseClicked(MouseEvent e) {
+		
+		if(startgame_text_2.containsXY(e.getX(), e.getY())) {
+			System.out.println("changeState to PlayState");
+			model.switchState(new PlayState(model));
+		}
+		if(highscores_text_2.containsXY(e.getX(), e.getY())) {
+			System.out.println("changeState to HighscoreState");
+		}
+				
+		/*
+		startgame_text_2.get_x()
+		
+		startgame_text_2.get_y()
+		
+		startgame_text_2.get_width()
+		
+		startgame_text_2.get_height()
+		*/
+		
+		/*
+		//if {
+			if(e.getX()>=800-(350/2) && e.getX()<= 800+(350/2) && e.getY()>=SCREEN_HEIGHT/3-(75/2) && e.getY() <=SCREEN_HEIGHT/3+(75/2)  ){
+			
+				System.out.println("klickar på" + e.getX,);
+			}else {
+				//int mousex = e.getX();
+				//int mousey = e.getY();
+				//Integer.toString(mousex);
+				//Integer.toString(mousey);
+				//System.out.println(mousex);
+				//System.out.println(mousey);
+				System.out.println("utanför");
+			}
+		}
+		*/
 	}
 
 	@Override
@@ -104,7 +140,11 @@ public class MenuState extends GameState{
 		// TODO: Add keyboard functionality
 	}
 	
-	
+	public void startPressed(MouseEvent e) {
+		//if(e.getX()>=800 && e.getX()<= 800+350) {
+			System.out.println("då");
+		//}
+	}
 	
 	
 	// // // // // // // // // // // // // // // // // // // // // // // // // // // //

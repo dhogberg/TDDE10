@@ -4,6 +4,7 @@ import testing.Tester;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 
 import static constants.Constants.SCREEN_HEIGHT;
 import static constants.Constants.SCREEN_WIDTH;
@@ -57,6 +58,10 @@ public class PlayState extends GameState {
 		//TODO: Delete. Dev output//System.out.printf("timeNow: %s lastTime: %s delta: %s delta/1000: %s execTime: %s \n", timeNow, this.lastTime, (timeNow - this.lastTime), ((timeNow - this.lastTime) / 1000.0), executionTime );
 		this.playStateModel.update(executionTime);
 		this.lastTime = timeNow;
+	}
+	
+	public void mouseClicked(MouseEvent e) {
+		// Here we can add mouseclick events
 	}
 	
 	public void keyPressed(int key) {

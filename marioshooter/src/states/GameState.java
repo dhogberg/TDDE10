@@ -3,6 +3,7 @@ package states;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 
 import static constants.Constants.SCREEN_HEIGHT;
 import static constants.Constants.SCREEN_WIDTH;
@@ -51,6 +52,8 @@ public abstract class GameState {
 	public abstract void keyPressed(int key);
 	
 	public abstract void keyReleased(int key);
+	
+	public abstract void mouseClicked(MouseEvent e);
 
 
 	/**

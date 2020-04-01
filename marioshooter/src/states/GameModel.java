@@ -1,6 +1,9 @@
 package states;
 
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseEvent;
 
 /**
  * This class represents the current state of the game.
@@ -43,6 +46,24 @@ public class GameModel {
 		currentState.activate();
 	}
 
+	
+	public void mouseClicked(MouseEvent e) {
+		currentState.mouseClicked(e);
+		/*
+		if(e.getX()>=800-(350/2) && e.getX()<= 800+(350/2) && e.getY()>=SCREEN_HEIGTH/3-(75/2) && e.getY() <=SCREEN_HEIGTH/3+(75/2)  ){
+			System.out.println("innanför");
+		}else {
+			//int mousex = e.getX();
+			//int mousey = e.getY();
+			//Integer.toString(mousex);
+			//Integer.toString(mousey);
+			//System.out.println(mousex);
+			//System.out.println(mousey);
+			System.out.println("utanför");
+		}*/
+	}
+	
+	
 	/**
 	 * Delegates the keyPress from GamePanel to the current state
 	 * @param key

@@ -14,7 +14,7 @@ public class MenuButton extends JPanel{
 	private XYPoint dimensions;
 	private String text;
 	
-	//private Jpanel Menubotton;
+	
 	
 	public MenuButton(String text, XYPoint position, XYPoint dimensions) {
 		this.position = position;
@@ -61,4 +61,43 @@ public class MenuButton extends JPanel{
 	public String get_text(){
 		return this.text;
 	}
-}
+
+	public boolean containsXY(int x, int y){
+		
+		
+		
+	
+		final int x1 =  (get_x())-(get_width()/2);
+		final int y1 = (get_y()) - (get_height()/2);
+		final int x2 =  (get_x())+(get_width()/2);
+		final int y2 = (get_y()) + (get_height()/2);
+		if(x>x1 && x<x2 && y>y1 && y<y2) {
+
+			return true;
+		}
+		
+		else {
+			/*
+			String ex = Integer.toString(x1);
+			String ex2 = Integer.toString(x2);
+			String ey = Integer.toString(y1);
+			String ey2 = Integer.toString(y2);
+			
+			System.out.println(ex);
+			System.out.println(ex2);
+			System.out.println(ey);
+			System.out.println(ey2);
+			System.out.println("\n");
+			System.out.println(x);
+			System.out.println(y);
+			*/
+			return false;
+		}
+		
+		/*this.position
+		this.height
+		this.width*/
+		
+		}
+	}
+
