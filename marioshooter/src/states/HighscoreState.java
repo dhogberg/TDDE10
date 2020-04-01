@@ -3,6 +3,8 @@ package states;
 import java.awt.*;
 import java.awt.event.*;
 
+import java.util.ArrayList;
+
 import javax.swing.*; 
 
 import menu.MenuButton;
@@ -16,7 +18,7 @@ import static constants.Constants.SCREEN_WIDTH;
  * The main responsibility of this class is to allow
  * the user to swap state to the PlayState
  */
-public class MenuState extends GameState{
+public class HighscoreState extends GameState{
 	
 	private String titel_text;
 	private String startgame_text;
@@ -39,17 +41,17 @@ public class MenuState extends GameState{
 
 
 	
-	public MenuState(GameModel model) {
+	public HighscoreState(GameModel model) {
 		super(model);
 		
 		
-		titel_text = "Marioshooter JAVA OOP Game";
+		titel_text = "Highscores:";
 		String test = Integer.toString(SCREEN_WIDTH); //1600
 		String test2 = Integer.toString(SCREEN_HEIGHT); //900
 		
-		startgame_text = "Start game";
-		highscores_text = "Highscores";
-		quit_text = "Quit game";
+		startgame_text = "1";
+		highscores_text = "2";
+		quit_text = "3";
 		
 		int startX = SCREEN_WIDTH/2;
 		int startY = SCREEN_HEIGHT/3;
@@ -74,38 +76,39 @@ public class MenuState extends GameState{
 		}
 		if(highscores_text_2.containsXY(e.getX(), e.getY())) {
 			System.out.println("changeState to HighscoreState");
-			model.switchState(new HighscoreState(model));
 		}
-				
-		/*
-		startgame_text_2.get_x()
+	}
+	
+	
+	public ArrayList<Integer> get_highscores(){
+		final ArrayList<Integer> arrlist;
 		
-		startgame_text_2.get_y()
+		arrlist = new ArrayList<Integer>();
 		
-		startgame_text_2.get_width()
+		arrlist.add(1337);
+		arrlist.add(242);
+		arrlist.add(22);
+		arrlist.add(20);
+		arrlist.add(19);
+		arrlist.add(17);
+		//arrlist.add(15);
+		//arrlist.add(13);
+		//arrlist.add(10);
 		
-		startgame_text_2.get_height()
-		*/
-		
-		/*
-		//if {
-			if(e.getX()>=800-(350/2) && e.getX()<= 800+(350/2) && e.getY()>=SCREEN_HEIGHT/3-(75/2) && e.getY() <=SCREEN_HEIGHT/3+(75/2)  ){
-			
-				System.out.println("klickar p�" + e.getX,);
-			}else {
-				//int mousex = e.getX();
-				//int mousey = e.getY();
-				//Integer.toString(mousex);
-				//Integer.toString(mousey);
-				//System.out.println(mousex);
-				//System.out.println(mousey);
-				System.out.println("utanf�r");
-			}
-		}
-		*/
+		return arrlist; 
 	}
 
 	
+	public void draw_highscores(Graphics g) {
+		Graphics2D g2 = (Graphics2D) g;
+		final ArrayList<Integer> tmp_scores; 
+		
+		tmp_scores = new ArrayList<Integer>(get_highscores());
+	
+		g.setColor(fontColor);
+		g.setFont(new Font("Monospace", Font.PLAIN, 60));
+		g.drawString("TEST !!", 250, 250);
+	}
 
 	@Override
 	public void draw(Graphics g) {
@@ -117,21 +120,21 @@ public class MenuState extends GameState{
 		g.setFont(new Font("Monospace", Font.PLAIN, 60));
 		g.drawString(titel_text, (SCREEN_WIDTH / 2) - 400, SCREEN_HEIGHT / 5 );
 		
+		/*
+		ArrayList<int> testarray = new ArrayList<int>;
+		
+		testarray = new ArrayList<int>;
+		*/
+		// Print highscores
+		
+		//for(ArrayList<int> x : )
+		
+		this.draw_highscores(g);
+		
 		
 		startgame_text_2.draw(g2);
 		highscores_text_2.draw(g2);
-		quit_text_2.draw(g2);		
-		
-		/*public void draw (Grapgics g) {
-		 
-		}*/
-		
-		//g.fillRect(startgame_text_2.get_x(), startgame_text_2.get_y(), startgame_text_2.get_width(), startgame_text_2.get_height());
-		
-		//g.drawString(startgame_text, (SCREEN_WIDTH / 2) - 150, SCREEN_HEIGHT / 10 * 4 );
-		//g.drawString(highscores_text, (SCREEN_WIDTH / 2) - 150, SCREEN_HEIGHT / 10 * 5 );
-		//g.drawString(info_text, (SCREEN_WIDTH / 2) - 150, SCREEN_HEIGHT / 10 * 6 );
-		//g.drawString(quit_text, (SCREEN_WIDTH / 2) - 150, SCREEN_HEIGHT / 10 * 7 );
+		quit_text_2.draw(g2);
 
 	}
 	
