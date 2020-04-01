@@ -52,7 +52,6 @@ public abstract class GameState {
 	
 	public abstract void keyReleased(int key);
 
-
 	/**
 	 * This function is called for each keyPressed event which occurs
 	 * on the GamePanel. It is the responsibility of the state
