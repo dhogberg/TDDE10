@@ -76,33 +76,12 @@ public class MenuState extends GameState{
 			System.out.println("changeState to HighscoreState");
 			model.switchState(new HighscoreState(model));
 		}
-				
-		/*
-		startgame_text_2.get_x()
 		
-		startgame_text_2.get_y()
-		
-		startgame_text_2.get_width()
-		
-		startgame_text_2.get_height()
-		*/
-		
-		/*
-		//if {
-			if(e.getX()>=800-(350/2) && e.getX()<= 800+(350/2) && e.getY()>=SCREEN_HEIGHT/3-(75/2) && e.getY() <=SCREEN_HEIGHT/3+(75/2)  ){
-			
-				System.out.println("klickar p�" + e.getX,);
-			}else {
-				//int mousex = e.getX();
-				//int mousey = e.getY();
-				//Integer.toString(mousex);
-				//Integer.toString(mousey);
-				//System.out.println(mousex);
-				//System.out.println(mousey);
-				System.out.println("utanf�r");
-			}
+		if(quit_text_2.containsXY(e.getX(), e.getY())) {
+			System.exit(1);
 		}
-		*/
+		
+		
 	}
 
 	

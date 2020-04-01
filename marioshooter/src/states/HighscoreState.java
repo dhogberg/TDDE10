@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.swing.*; 
 
@@ -24,10 +25,10 @@ public class HighscoreState extends GameState{
 	private String startgame_text;
 	private String highscores_text;
 	private String quit_text;
+	private String menu;
 	
-	private MenuButton startgame_text_2;
-	private MenuButton highscores_text_2;
-	private MenuButton quit_text_2;
+	private MenuButton back_to_menu;
+	
 
 	private Color bgColor;
 	private Color fontColor;
@@ -48,18 +49,17 @@ public class HighscoreState extends GameState{
 		titel_text = "Highscores:";
 		String test = Integer.toString(SCREEN_WIDTH); //1600
 		String test2 = Integer.toString(SCREEN_HEIGHT); //900
-		
+				
 		startgame_text = "1";
 		highscores_text = "2";
 		quit_text = "3";
+		menu = "Menu";
 		
-		int startX = SCREEN_WIDTH/2;
-		int startY = SCREEN_HEIGHT/3;
-		int space = 100;
+		int startX = SCREEN_WIDTH-350;
+		int startY = SCREEN_HEIGHT-250;
 		
-		startgame_text_2 = new MenuButton(startgame_text, new XYPoint(startX,startY), new XYPoint(350,75));
-		highscores_text_2 = new MenuButton(highscores_text, new XYPoint(startX,startY+(space)), new XYPoint(350,75));
-		quit_text_2 = new MenuButton(quit_text, new XYPoint(startX,startY+(space*2)), new XYPoint(350,75));
+		back_to_menu = new MenuButton(menu, new XYPoint(startX,startY), new XYPoint(200,75));
+		
 		
 		
 		bgColor = new Color(91, 149, 254);
@@ -70,13 +70,11 @@ public class HighscoreState extends GameState{
 	
 	public void mouseClicked(MouseEvent e) {
 		
-		if(startgame_text_2.containsXY(e.getX(), e.getY())) {
-			System.out.println("changeState to PlayState");
-			model.switchState(new PlayState(model));
+		if(back_to_menu.containsXY(e.getX(), e.getY())) {
+			System.out.println("changeState to Menustate");
+			model.switchState(new MenuState(model));
 		}
-		if(highscores_text_2.containsXY(e.getX(), e.getY())) {
-			System.out.println("changeState to HighscoreState");
-		}
+		
 	}
 	
 	
@@ -89,11 +87,15 @@ public class HighscoreState extends GameState{
 		arrlist.add(242);
 		arrlist.add(22);
 		arrlist.add(20);
-		arrlist.add(19);
-		arrlist.add(17);
-		//arrlist.add(15);
-		//arrlist.add(13);
-		//arrlist.add(10);
+		
+		arrlist.add(500);
+		arrlist.add(13);
+		arrlist.add(73);
+		
+		arrlist.add(2);
+		arrlist.add(7);
+		arrlist.add(6);
+		arrlist.add(9);
 		
 		return arrlist; 
 	}
@@ -102,14 +104,23 @@ public class HighscoreState extends GameState{
 	public void draw_highscores(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		final ArrayList<Integer> tmp_scores; 
-		
-		tmp_scores = new ArrayList<Integer>(get_highscores());
-	
+		ArrayList<Integer> highscore = get_highscores();
+		Collections.sort(highscore);
+		Collections.reverse(highscore);
+		int space = 50;
+		if(highscore.size() == 0) {
+			g.drawString("0", SCREEN_WIDTH/2-200,250+space);
+		}
+		else {
+		for(int i = 0; i<10; ++i) {
+			g.drawString(Integer.toString(highscore.get(i)),SCREEN_WIDTH/2-200,250+space*i);
+		}
+		}
 		g.setColor(fontColor);
 		g.setFont(new Font("Monospace", Font.PLAIN, 60));
-		g.drawString("TEST !!", 250, 250);
+		
 	}
-
+	
 	@Override
 	public void draw(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
@@ -130,11 +141,11 @@ public class HighscoreState extends GameState{
 		//for(ArrayList<int> x : )
 		
 		this.draw_highscores(g);
+		back_to_menu.draw(g2);
+	
 		
-		
-		startgame_text_2.draw(g2);
-		highscores_text_2.draw(g2);
-		quit_text_2.draw(g2);
+		//highscores_text.draw(g2);
+		//quit_text.draw(g2);
 
 	}
 	
