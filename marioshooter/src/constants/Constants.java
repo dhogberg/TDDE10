@@ -20,6 +20,10 @@ public interface Constants {
 	 */
 	int SCREEN_WIDTH = 1600;
 	int SCREEN_HEIGHT = 900;
+	/*
+	 * Define visual options
+	 */
+	String font = "Monospace";
 	
 	/*
 	 * Define the playingfield size and position
@@ -55,6 +59,7 @@ public interface Constants {
 	 */
 	int PLAYERLIFES = 5;
 	double PLAYER_BLINKINTERVAL = 0.15;
+	double PLAYER_SHOOTINTERVAL = 0.1;
 
 	/*
 	 * Developer-options

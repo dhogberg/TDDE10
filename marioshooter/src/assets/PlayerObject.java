@@ -4,14 +4,17 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.Set;
+import java.util.ArrayList;
 import main.Main;
 import assets.XYPoint;
+import assets.PlayerbulletObject;
 
 import static constants.Constants.ACTIVEDRAWAREA_HEIGHT;
 import static constants.Constants.ACTIVEDRAWAREA_WIDTH;
 import static constants.Constants.ACTIVEDRAWAREA_XPOS;
 import static constants.Constants.ACTIVEDRAWAREA_YPOS;
 import static constants.Constants.PLAYERLIFES;
+import static constants.Constants.PLAYER_SHOOTINTERVAL;
 import static constants.Constants.PLAYER_BLINKINTERVAL;
 import static constants.Constants.PLAYFIELD_WIDTH;
 import static constants.Constants.PLAYFIELD_HEIGHT;
@@ -31,19 +34,28 @@ public class PlayerObject extends GameObject {
 	private double invisibletimer;
 	private double blinkingtimer;
 	private double blinkingintervaltimer;
+	private double shoottimer;
+	private double shootinterval;
 	private int lifes;
+	private int score;
 	private double blinkinterval;
-	
-	public PlayerObject() {
+	private ArrayList<GameObject> gameobjects_reference;
+
+	public PlayerObject(ArrayList<GameObject> gameobjects) {
 		super();
 		
+		this.gameobjects_reference = gameobjects;
+
 		this.invisible = false;
 		this.blinking = false;
 		this.immortal = false;
 		this.shooting = false;
 		
+		this.score = 0;
+		
 		this.lifes = PLAYERLIFES;
 		this.blinkinterval = PLAYER_BLINKINTERVAL;
+		this.shootinterval = PLAYER_SHOOTINTERVAL;
 		
 		this.objectGraphic = Main.loadImage("sprites/player_tmp_18x18.png"); // TODO: SKRIV OM SKRIV OM
 		this.set_objectGraphic(this.objectGraphic);
@@ -53,9 +65,18 @@ public class PlayerObject extends GameObject {
 		this.set_position(500.0, 450.0);
 		this.velocity = new XYPoint(0.0, 0.0); this.set_velocity(this.velocity);
 		this.updateHitbox();
-		//this.enableHitbox();
+		this.enableHitbox();
 	}
 	
+	public int get_score() {
+		return this.score;
+	}
+	
+	public void add_score(int x) {
+		this.score = this.score + x;
+	}
+	
+	@Override
 	public void collideWithGameobject(GameObject obj) {
 		switch(obj.get_type_of_object()) {
 			case "bulletenemy":
@@ -75,7 +96,6 @@ public class PlayerObject extends GameObject {
 	}
 	
 	public void collideWithBulletenemy() {
-		System.out.println("Noooooooo");
 		if(!immortal) {
 			this.loseLife();
 			this.makeImmortalForSeconds(4.0);
@@ -210,46 +230,33 @@ public class PlayerObject extends GameObject {
 		}
 	}
 	
-	
-	/*
-	@Override
-	public void update(double executionTime) {
-		super.update(executionTime);
-		// TODO: Update specific things for the playerObject
-		
-		if(this.get_position().x() > 1510.0) {
-			this.get_velocity().setY(this.get_velocity().x());
-			this.get_velocity().setX(0.0);
-			this.get_position().setX(1510.0);
-			this.set_velocity(this.get_velocity().multiply(1.25));
-		}else if(this.get_position().y() > 810.0) {
-			this.get_velocity().setX(this.get_velocity().y() * -1.0);
-			this.get_velocity().setY(0.0);
-			this.get_position().setY(810.0);
-			this.set_velocity(this.get_velocity().multiply(1.25));
-		}else if(this.get_position().x() < 90.0) {
-			this.get_velocity().setY(this.get_velocity().x());
-			this.get_velocity().setX(0.0);
-			this.get_position().setX(90.0);
-			this.set_velocity(this.get_velocity().multiply(1.25));
-		}else if(this.get_position().y() < 90.0) {
-			this.get_velocity().setX(this.get_velocity().y() * -1.0);
-			this.get_velocity().setY(0.0);
-			this.get_position().setY(90.0);
-			this.set_velocity(this.get_velocity().multiply(1.25));
-		}
-	}
-	*/
-	
 	public void shoot() {
 		this.shooting = true;
+
+		if(shoottimer == 0.0){
+			System.out.print("SHOOT!\n");
+			this.gameobjects_reference.add(new PlayerbulletObject(this, this.get_position().x_as_int() , this.get_position().y_as_int()));
+			this.holdShootingForSeconds(this.shootinterval);
+		}else{
+			System.out.printf("Hold up, you are already shooting. Shoottimer: %s\n",this.shoottimer);
+		}
+	}
+
+	public void holdShootingForSeconds(double seconds) {
+		this.shoottimer = seconds;
 	}
 	
 	public void updateShooting(double executionTime) {
-		
+		if(this.shooting) {
+			if(executionTime < this.shoottimer) {
+				this.shoottimer = this.shoottimer - executionTime;
+			}else {
+				System.out.print("Shoottimer was reset to 0.0!\n");
+				this.shoottimer = 0.0;
+				this.shooting = false;
+			}
+		}
 	}
-	
-	
 	
 	public void update(double executionTime, Set<Integer> active_keys) {
 		
@@ -267,23 +274,16 @@ public class PlayerObject extends GameObject {
 			this.updateShooting(executionTime);
 		}
 		
-		
-		if(active_keys.contains(32)) { // SPACEBAR					
-			this.velocity.setY(100.0);
+		if(active_keys.contains(32)) { // SPACEBAR
+			//System.out.println("Spacebar pressed!");
 			this.shoot();
-			this.shooting = true;
-			
-		}else{
-			this.shooting = false;
 		}
 		
 		if(active_keys.contains(40)) { // KEYDOWN
 			if(this.velocity.y() != 0.0) {
-				
 				if(this.velocity.y() < 0.0) {
 					this.velocity.setY(0.0);
 				}
-
 			}
 			this.velocity.add(new XYPoint(0.0, 5982.0 * executionTime));
 		}
@@ -316,7 +316,6 @@ public class PlayerObject extends GameObject {
 		}
 		
 		// SUBTRACT VELOCITY WITH TIME
-		
 		final double subtraction_constant = 500.0;
 		
 		if(this.velocity.y() != 0.0) {
@@ -366,41 +365,8 @@ public class PlayerObject extends GameObject {
 			this.velocity.setX(0.0);
 			this.get_position().setX(PLAYFIELD_XPOS + PLAYFIELD_WIDTH - this.get_width() / 2);
 		}
-/*
-		this.get_width()
-		this.get_height()
-		PLAYFIELD_WIDTH
-		PLAYFIELD_HEIGHT
-		PLAYFIELD_XPOS
-		PLAYFIELD_YPOS
-		*/
-
 
 		// UPDATE PARENT OBJECT
 		this.set_velocity( this.velocity );
-		
-		
-		
-		/*if(this.get_position().x() > 1510.0) {
-			this.get_velocity().setY(this.get_velocity().x());
-			this.get_velocity().setX(0.0);
-			this.get_position().setX(1510.0);
-			this.set_velocity(this.get_velocity().multiply(1.25));
-		}else if(this.get_position().y() > 810.0) {
-			this.get_velocity().setX(this.get_velocity().y() * -1.0);
-			this.get_velocity().setY(0.0);
-			this.get_position().setY(810.0);
-			this.set_velocity(this.get_velocity().multiply(1.25));
-		}else if(this.get_position().x() < 90.0) {
-			this.get_velocity().setY(this.get_velocity().x());
-			this.get_velocity().setX(0.0);
-			this.get_position().setX(90.0);
-			this.set_velocity(this.get_velocity().multiply(1.25));
-		}else if(this.get_position().y() < 90.0) {
-			this.get_velocity().setX(this.get_velocity().y() * -1.0);
-			this.get_velocity().setY(0.0);
-			this.get_position().setY(90.0);
-			this.set_velocity(this.get_velocity().multiply(1.25));
-		}*/
 	}
 }

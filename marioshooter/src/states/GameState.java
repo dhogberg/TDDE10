@@ -55,7 +55,6 @@ public abstract class GameState {
 	
 	public abstract void mouseClicked(MouseEvent e);
 
-
 	/**
 	 * This function is called for each keyPressed event which occurs
 	 * on the GamePanel. It is the responsibility of the state

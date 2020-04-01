@@ -41,12 +41,6 @@ public abstract class GameObject {
 	
 	public void moveOutsideDrawArea(){
 		this.position = new XYPoint(ACTIVEDRAWAREA_WIDTH + ACTIVEDRAWAREA_XPOS + 1, ACTIVEDRAWAREA_HEIGHT + ACTIVEDRAWAREA_YPOS + 1);
-		/*
-		ACTIVEDRAWAREA_WIDTH
-		ACTIVEDRAWAREA_HEIGHT
-		ACTIVEDRAWAREA_XPOS
-		ACTIVEDRAWAREA_YPOS
-		*/
 	}
 
 	public void set_name(String name) {
@@ -86,6 +80,10 @@ public abstract class GameObject {
 	}
 	
 	public void collideWithPlayer() {
+		// By default does nothing
+	}
+	
+	public void collideWithGameobject(GameObject obj) {
 		// By default does nothing
 	}
 	

@@ -104,6 +104,8 @@ public class MenuState extends GameState{
 		*/
 	}
 
+	
+
 	@Override
 	public void draw(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
