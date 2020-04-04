@@ -26,7 +26,8 @@ import static constants.Constants.SCREEN_WIDTH;
  * @since 1.0
  */
 public class GamePanel extends JPanel {
-
+	private static final long serialVersionUID = -8434811743093339203L;
+	
 	private GameModel model;
 
 	public GamePanel(final GameModel model) {

@@ -1,11 +1,7 @@
 package states;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-
-import static constants.Constants.SCREEN_HEIGHT;
-import static constants.Constants.SCREEN_WIDTH;
 
 /**
  * This state represents the Playing State of the Game
@@ -62,13 +58,12 @@ public class PlayState extends GameState {
 	public void update() {
 		long timeNow = System.currentTimeMillis();
 		double executionTime = (timeNow - this.lastTime) / 1000.0;
-		//TODO: Delete. Dev output//System.out.printf("timeNow: %s lastTime: %s delta: %s delta/1000: %s execTime: %s \n", timeNow, this.lastTime, (timeNow - this.lastTime), ((timeNow - this.lastTime) / 1000.0), executionTime );
 		this.playStateModel.update(executionTime);
 		this.lastTime = timeNow;
 	}
 	
 	public void mouseClicked(MouseEvent e) {
-		// Here we can add mouseclick events
+		// Here it is possible to add mouseclick events
 	}
 	
 	public void keyPressed(int key) {

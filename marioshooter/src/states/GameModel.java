@@ -1,12 +1,9 @@
 package states;
 
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseListener;
+import java.awt.event.MouseEvent;
 
 import codeassets.Highscores;
-
-import java.awt.event.MouseEvent;
 
 /**
  * This class represents the current state of the game.

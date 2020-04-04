@@ -3,8 +3,6 @@ package gameobjects;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
-import codeassets.XYPoint;
-
 import java.awt.Color;
 
 import static constants.Constants.PLAYFIELD_WIDTH;

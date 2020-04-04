@@ -1,8 +1,6 @@
 package states;
 
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 import static constants.Constants.SCREEN_HEIGHT;
@@ -62,49 +60,12 @@ public abstract class GameState {
 	
 	public abstract void mouseClicked(MouseEvent e);
 
-	/**
-	 * This function is called for each keyPressed event which occurs
-	 * on the GamePanel. It is the responsibility of the state
-	 * to filter out any keys it is interested in, since
-	 * no filtering is performed before calling this function.
-	 *
-	 * What this means is that if a state only wants to know
-	 * if a certain key has been pressed, the state needs to
-	 * check for that event inside this function.
-	 */
-
-	//public abstract void keyPressed(int key);
-
-	/**
-	 *
-	 * @param g Graphics object provided by the current state
-	 * @param color The color of the background
-	 *
-	 *			  This function is used in all states that
-	 *			  want to draw a background therefor it
-	 *			  is moved to the super class. Having this function
-	 *			  in the super class instead of each state
-	 *			  removes redundancy.
-	 */
 	public void drawBg(Graphics g, Color color) {
 		g.setColor(color);
 		g.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 	}
-
-	/**
-	 * This function is called whenever this state
-	 * becomes the active one in the state machine.
-	 *
-	 * By default it does nothing, but can be useful
-	 * sometimes (see MenuState for examples of how this
-	 * can be used).
-	 * TODO: Implementera detta
-	 */
+	
 	public void activate() { }
 
-	/**
-	 * This function is called whenever this state
-	 * is replaced with another state in the state machine.
-	 */
 	public void deactivate() { }
 }

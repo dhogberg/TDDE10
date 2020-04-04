@@ -17,12 +17,11 @@ import java.awt.Graphics2D;
  * @since 1.0
  */
 public class MenuButton extends JPanel{
+	private static final long serialVersionUID = -698123737808235385L;
 	
 	private XYPoint position;
 	private XYPoint dimensions;
 	private String text;
-	
-	
 	
 	public MenuButton(String text, XYPoint position, XYPoint dimensions) {
 		this.position = position;
@@ -64,7 +63,6 @@ public class MenuButton extends JPanel{
 	}
 
 	public boolean containsXY(int x, int y){
-	
 		final int x1 =  (get_x())-(get_width()/2);
 		final int y1 = (get_y()) - (get_height()/2);
 		final int x2 =  (get_x())+(get_width()/2);
@@ -72,15 +70,8 @@ public class MenuButton extends JPanel{
 		if(x>x1 && x<x2 && y>y1 && y<y2) {
 			return true;
 		}
-		
 		else {
 			return false;
 		}
-		
-		/*this.position
-		this.height
-		this.width*/
-		
 		}
-	}
-
+}

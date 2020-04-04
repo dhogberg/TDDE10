@@ -5,7 +5,6 @@ import java.awt.Graphics2D;
 import java.awt.Color;
 import java.awt.Font;
 
-import codeassets.XYPoint;
 import levels.GameLevels;
 
 import static constants.Constants.SIDEBAR_WIDTH;

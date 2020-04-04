@@ -25,7 +25,6 @@ public class GameLevels {
 	
 	private int level;
 	private PlayStateModel playStateModel_reference;
-	private ArrayList<GameObject> gameobjects_reference;
 	
 	private double BULLETENEMY_spawn_pause_timer;
 	private double BULLETENEMY_spawn_pause_interval;

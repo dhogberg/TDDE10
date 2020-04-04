@@ -4,7 +4,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Collections;
-import javax.swing.*;
 
 import codeassets.XYPoint;
 import menu.MenuButton;
@@ -12,63 +11,30 @@ import menu.MenuButton;
 import static constants.Constants.SCREEN_HEIGHT;
 import static constants.Constants.SCREEN_WIDTH;
 
-
-
 /** 
  * 
- * TODO: This state represents the highscore menu of the game.
+ * This state represents the highscore menu of the game.
  * 
  * @author David & Johan
  * @version 1.0
  * @since 1.0
  */
 public class HighscoreState extends GameState{
-	
 	private String titel_text;
-	private String startgame_text;
-	private String highscores_text;
-	private String quit_text;
 	private String menu;
-	
 	private MenuButton back_to_menu;
-	
-
 	private Color bgColor;
 	private Color fontColor;
-
-	/**
-	 * The following three variables are just used to show that a
-	 * change of state can be made. The same variables also exist
-	 * in the PlayState, can you think of a way to make this more
-	 * general and not duplicate variables?????
-	 */
-
-
 	
 	public HighscoreState(GameModel model) {
 		super(model);
-		
-		
 		titel_text = "Highscores:";
-		String test = Integer.toString(SCREEN_WIDTH); //1600
-		String test2 = Integer.toString(SCREEN_HEIGHT); //900
-				
-		startgame_text = "1";
-		highscores_text = "2";
-		quit_text = "3";
 		menu = "Menu";
-		
 		int startX = SCREEN_WIDTH-350;
 		int startY = SCREEN_HEIGHT-250;
-		
 		back_to_menu = new MenuButton(menu, new XYPoint(startX,startY), new XYPoint(200,75));
-		
-		
-		
 		bgColor = new Color(91, 149, 254);
 		fontColor = new Color(255, 255, 255);
-		
-		//model.switchState(new PlayState(model));
 	}
 	
 	public void mouseClicked(MouseEvent e) {
@@ -80,48 +46,35 @@ public class HighscoreState extends GameState{
 		
 	}
 	
-	
 	public ArrayList<Integer> get_highscores(){
 		final ArrayList<Integer> arrlist;
 		arrlist = new ArrayList<Integer>(model.get_highscores_object().get_highscores());
 		return arrlist; 
 	}
 
-	
-	public void draw_highscores(Graphics g) {
-		Graphics2D g2 = (Graphics2D) g;
-		final ArrayList<Integer> tmp_scores; 
-		
+	public void draw_highscores(Graphics g) {		
 		ArrayList<Integer> highscore = get_highscores();
-		
 		Collections.sort(highscore);
 		Collections.reverse(highscore);
 		int space = 50;
-		
 		for(int i = 0; i<highscore.size(); ++i) {
 			g.drawString(Integer.toString(highscore.get(i)),SCREEN_WIDTH/2-200,250+space*i);
 		}
-
 		g.setColor(fontColor);
 		g.setFont(new Font("Monospace", Font.PLAIN, 60));
-		
 	}
 	
 	@Override
 	public void draw(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
-		
 		drawBg(g, bgColor);
-
 		g.setColor(fontColor);
 		g.setFont(new Font("Monospace", Font.PLAIN, 60));
 		g.drawString(titel_text, (SCREEN_WIDTH / 2) - 400, SCREEN_HEIGHT / 5 );
-		
 		this.draw_highscores(g);
 		back_to_menu.draw(g2);
 	}
-	
-	
+		
 	public void keyPressed(int key) {
 		// TODO: Add keyboard functionality
 	}

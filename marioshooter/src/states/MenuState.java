@@ -2,7 +2,6 @@ package states;
 
 import java.awt.*;
 import java.awt.event.*;
-import javax.swing.*;
 
 import codeassets.XYPoint;
 import menu.MenuButton;
@@ -48,10 +47,7 @@ public class MenuState extends GameState{
 	public MenuState(GameModel model) {
 		super(model);
 		
-		
 		titel_text = "Marioshooter JAVA OOP Game";
-		String test = Integer.toString(SCREEN_WIDTH); //1600
-		String test2 = Integer.toString(SCREEN_HEIGHT); //900
 		
 		startgame_text = "Start game";
 		highscores_text = "Highscores";
@@ -73,21 +69,19 @@ public class MenuState extends GameState{
 	}
 	
 	public void mouseClicked(MouseEvent e) {
-		
-		if(startgame_text_2.containsXY(e.getX(), e.getY())) {
+		int x = e.getX();
+		int y = e.getY();
+		if(startgame_text_2.containsXY(x, y)) {
 			System.out.println("changeState to PlayState");
 			model.switchState(new PlayState(model));
 		}
-		if(highscores_text_2.containsXY(e.getX(), e.getY())) {
+		if(highscores_text_2.containsXY(x, y)) {
 			System.out.println("changeState to HighscoreState");
 			model.switchState(new HighscoreState(model));
 		}
-		
-		if(quit_text_2.containsXY(e.getX(), e.getY())) {
+		if(quit_text_2.containsXY(x, y)) {
 			System.exit(1);
 		}
-		
-		
 	}
 
 	@Override

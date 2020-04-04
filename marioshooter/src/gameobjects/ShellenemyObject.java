@@ -4,10 +4,6 @@ import java.util.Random;
 
 import codeassets.XYPoint;
 
-import static constants.Constants.ACTIVEDRAWAREA_WIDTH;
-import static constants.Constants.ACTIVEDRAWAREA_HEIGHT;
-import static constants.Constants.ACTIVEDRAWAREA_XPOS;
-import static constants.Constants.ACTIVEDRAWAREA_YPOS;
 import static constants.Constants.PLAYFIELD_WIDTH;
 import static constants.Constants.PLAYFIELD_HEIGHT;
 import static constants.Constants.PLAYFIELD_XPOS;

@@ -1,15 +1,9 @@
 package gameobjects;
 
-import java.awt.image.BufferedImage;
 import java.util.Random;
 
 import codeassets.XYPoint;
-import main.Main;
 
-import static constants.Constants.ACTIVEDRAWAREA_WIDTH;
-import static constants.Constants.ACTIVEDRAWAREA_HEIGHT;
-import static constants.Constants.ACTIVEDRAWAREA_XPOS;
-import static constants.Constants.ACTIVEDRAWAREA_YPOS;
 import static constants.Constants.PLAYFIELD_HEIGHT;
 import static constants.Constants.PLAYFIELD_WIDTH;
 import static constants.Constants.PLAYFIELD_YPOS;

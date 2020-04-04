@@ -3,7 +3,6 @@ package main;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
-import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 
 import javax.swing.*;
@@ -35,6 +34,7 @@ import states.GameModel;
  * @since 1.0
  */
 public class GameFrame extends JFrame {
+	private static final long serialVersionUID = -8178608055426346257L;
 
 	public GameFrame(String gameName, GameModel model){
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Terminates the program when window closes
@@ -57,11 +57,12 @@ public class GameFrame extends JFrame {
 	
 		
 		this.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
 			
-			model.mouseClicked(e);
-			}});
-		
+			public void mouseClicked(MouseEvent e) {
+				System.out.println("CLICK! < > < > < >");
+				model.mouseClicked(e);
+			}
+		});
 		
 		this.addKeyListener(new KeyAdapter() {
 
