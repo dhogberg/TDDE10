@@ -12,15 +12,11 @@ import assets.XYPoint;
 import static constants.Constants.SCREEN_HEIGHT;
 import static constants.Constants.SCREEN_WIDTH;
 
-/**
- * This state represents the menu of the Game
- * The main responsibility of this class is to allow
- * the user to swap state to the PlayState
- */
+
 
 /** 
  * 
- * TODO: Describe what this class does!
+ * TODO: This state represents the highscore menu of the game.
  * 
  * @author David & Johan
  * @version 1.0

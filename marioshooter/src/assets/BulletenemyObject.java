@@ -18,7 +18,7 @@ import static constants.Constants.PLAYFIELD_YPOS;
 
 /** 
  * 
- * TODO: Describe what this class does!
+ * TODO: Represent the enemy bullet that can hurt the player
  * 
  * @author David & Johan
  * @version 1.0

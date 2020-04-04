@@ -34,7 +34,8 @@ import states.GameModel;
 
 /** 
  * 
- * TODO: Describe what this class does!
+ * TODO: This an important class used to represent the current state
+ * of the game when playing. It contains the data of the player and all the objects on the playfield
  * 
  * @author David & Johan
  * @version 1.0

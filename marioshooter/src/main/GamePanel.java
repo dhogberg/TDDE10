@@ -20,7 +20,6 @@ import static constants.Constants.SCREEN_WIDTH;
 
 /** 
  * 
- * TODO: Describe what this class does!
  * 
  * @author David & Johan
  * @version 1.0

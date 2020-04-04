@@ -17,7 +17,7 @@ import static constants.Constants.PLAYFIELD_XPOS;
 
 /** 
  * 
- * TODO: Describe what this class does!
+ * TODO: Represent the item life up. The player gets an extra life when picked up.
  * 
  * @author David & Johan
  * @version 1.0

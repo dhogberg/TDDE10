@@ -17,7 +17,7 @@ import static constants.Constants.PLAYFIELD_YPOS;
 
 /** 
  * 
- * TODO: Describe what this class does!
+ * TODO: Represents the shot coming from the player!
  * 
  * @author David & Johan
  * @version 1.0

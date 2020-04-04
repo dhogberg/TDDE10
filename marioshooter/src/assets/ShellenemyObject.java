@@ -18,7 +18,7 @@ import static constants.Constants.PLAYFIELD_YPOS;
 
 /** 
  * 
- * TODO: Describe what this class does!
+ * TODO: Represent a shell.
  * 
  * @author David & Johan
  * @version 1.0
