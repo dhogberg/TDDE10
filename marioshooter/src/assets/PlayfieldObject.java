@@ -44,7 +44,7 @@ public class PlayfieldObject extends GameObject {
 	public void set_bgcolor(Color color) {
 		this.bgcolor = color;
 	}
-	
+	@Override
 	public boolean outsideDrawingArea() {
 		return false;
 	}

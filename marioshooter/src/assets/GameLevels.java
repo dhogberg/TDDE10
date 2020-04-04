@@ -24,7 +24,7 @@ public class GameLevels {
 	
 	private double POWERUP_spawn_pause_timer;
 	private double POWERUP_spawn_pause_interval;
-	
+
 	private double elapsed_time_on_level;
 	
 	public GameLevels(PlayStateModel playStateModel) {
