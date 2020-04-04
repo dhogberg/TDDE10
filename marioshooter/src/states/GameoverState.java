@@ -5,10 +5,10 @@ import java.awt.event.*;
 
 import java.util.ArrayList;
 
-import javax.swing.*; 
+import javax.swing.*;
 
+import codeassets.XYPoint;
 import menu.MenuButton;
-import assets.XYPoint;
 
 import static constants.Constants.SCREEN_HEIGHT;
 import static constants.Constants.SCREEN_WIDTH;

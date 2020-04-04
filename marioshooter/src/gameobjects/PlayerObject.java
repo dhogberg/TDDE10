@@ -1,20 +1,13 @@
-package assets;
+package gameobjects;
 
 import java.awt.Graphics2D;
 import java.util.Set;
 import java.util.ArrayList;
 import states.GameModel;
 import states.GameoverState;
-import assets.XYPoint;
-import assets.PlayerbulletObject;
-import java.io.IOException;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
+import codeassets.XYPoint;
+import gameobjects.PlayerbulletObject;
 
-import static constants.Constants.ACTIVEDRAWAREA_HEIGHT;
-import static constants.Constants.ACTIVEDRAWAREA_WIDTH;
-import static constants.Constants.ACTIVEDRAWAREA_XPOS;
-import static constants.Constants.ACTIVEDRAWAREA_YPOS;
 import static constants.Constants.PLAYERLIFES;
 import static constants.Constants.PLAYER_SHOOTINTERVAL;
 import static constants.Constants.PLAYER_BLINKINTERVAL;
@@ -63,7 +56,7 @@ public class PlayerObject extends GameObject {
 		this.lifes = PLAYERLIFES;
 		this.blinkinterval = PLAYER_BLINKINTERVAL;
 		this.shootinterval = PLAYER_SHOOTINTERVAL;
-		load_objectGraphic_and_calc_dimensions("sprites/mariokart_28x30.png");
+		load_objectGraphic_and_calc_dimensions("src/graphicassets/mariokart_28x30.png");
 		this.set_scale(2.0);
 		this.set_position(500.0, 450.0);
 		this.velocity = new XYPoint(0.0, 0.0); this.set_velocity(this.velocity);
@@ -111,19 +104,6 @@ public class PlayerObject extends GameObject {
 		}
 	}
 	
-	public boolean outsideDrawingArea() {
-		if(
-			this.get_position().x_as_int() < ACTIVEDRAWAREA_XPOS || 
-			this.get_position().x_as_int() > ACTIVEDRAWAREA_XPOS + ACTIVEDRAWAREA_WIDTH || 
-			this.get_position().y_as_int() < ACTIVEDRAWAREA_YPOS || 
-			this.get_position().y_as_int() > ACTIVEDRAWAREA_YPOS + ACTIVEDRAWAREA_HEIGHT
-		) {
-			return true;
-		}else {
-			return false;
-		}
-	}
-	
 	public int get_lifes() {
 		return this.lifes;
 	}
@@ -149,18 +129,7 @@ public class PlayerObject extends GameObject {
 	}
 	
 	public void loseGame() {
-		ArrayList<Integer> highscores = new ArrayList<Integer>(this.model.get_highscores_object().get_highscores());
-		highscores.add(this.score);
-
-		try {
-			FileOutputStream file = new FileOutputStream("src/data/highscores.ser");
-			ObjectOutputStream outfile = new ObjectOutputStream(file);
-			outfile.writeObject(highscores);
-			outfile.close();
-			file.close();
-		} catch (IOException i) {
-			i.printStackTrace();
-		}
+		model.get_highscores_object().save_score(this.score);
 		model.set_lastScore(this.score);
 		model.switchState(new GameoverState(model));
 	}
@@ -266,13 +235,9 @@ public class PlayerObject extends GameObject {
 	
 	public void shoot() {
 		this.shooting = true;
-
 		if(shoottimer == 0.0){
-			System.out.print("SHOOT!\n");
 			this.gameobjects_reference.add(new PlayerbulletObject(this, this.get_position().x_as_int() , this.get_position().y_as_int(), this.get_scale()));
 			this.holdShootingForSeconds(this.shootinterval);
-		}else{
-			System.out.printf("Hold up, you are already shooting. Shoottimer: %s\n",this.shoottimer);
 		}
 	}
 
@@ -285,7 +250,6 @@ public class PlayerObject extends GameObject {
 			if(executionTime < this.shoottimer) {
 				this.shoottimer = this.shoottimer - executionTime;
 			}else {
-				System.out.print("Shoottimer was reset to 0.0!\n");
 				this.shoottimer = 0.0;
 				this.shooting = false;
 			}

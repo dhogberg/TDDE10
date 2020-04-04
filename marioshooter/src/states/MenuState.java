@@ -2,10 +2,10 @@ package states;
 
 import java.awt.*;
 import java.awt.event.*;
-import javax.swing.*; 
+import javax.swing.*;
 
+import codeassets.XYPoint;
 import menu.MenuButton;
-import assets.XYPoint;
 
 import static constants.Constants.SCREEN_HEIGHT;
 import static constants.Constants.SCREEN_WIDTH;

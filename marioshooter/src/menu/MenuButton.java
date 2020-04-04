@@ -1,12 +1,12 @@
 package menu;
 
 import javax.swing.JPanel;
+
+import codeassets.XYPoint;
+
 import java.awt.*;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-
-
-import assets.XYPoint;
 
 /** 
  * 

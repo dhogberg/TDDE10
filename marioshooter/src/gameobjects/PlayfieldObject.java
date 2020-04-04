@@ -1,10 +1,11 @@
-package assets;
+package gameobjects;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Color;
 
-import assets.XYPoint;
+import codeassets.XYPoint;
+
+import java.awt.Color;
 
 import static constants.Constants.PLAYFIELD_WIDTH;
 import static constants.Constants.PLAYFIELD_HEIGHT;

@@ -1,8 +1,10 @@
-package assets;
+package codeassets;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 /** 
@@ -38,10 +40,18 @@ public class Highscores {
 		
 		return this.highscores;
 	}
-	// TODO: Move savescore from PlayerObject to this method 
-	/*
-	public save_score(int score){
-		
+	
+	public void save_score(int score){
+		ArrayList<Integer> highscores = new ArrayList<Integer>(this.get_highscores());
+		highscores.add(score);
+		try {
+			FileOutputStream file = new FileOutputStream("src/data/highscores.ser");
+			ObjectOutputStream outfile = new ObjectOutputStream(file);
+			outfile.writeObject(highscores);
+			outfile.close();
+			file.close();
+		} catch (IOException i) {
+			i.printStackTrace();
+		}
 	}
-	*/
 }

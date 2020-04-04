@@ -4,10 +4,10 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Collections;
-import javax.swing.*; 
+import javax.swing.*;
 
+import codeassets.XYPoint;
 import menu.MenuButton;
-import assets.XYPoint;
 
 import static constants.Constants.SCREEN_HEIGHT;
 import static constants.Constants.SCREEN_WIDTH;
@@ -83,7 +83,7 @@ public class HighscoreState extends GameState{
 	
 	public ArrayList<Integer> get_highscores(){
 		final ArrayList<Integer> arrlist;
-		arrlist = new ArrayList<Integer>(model.get_highscores_object().get_highscores());		
+		arrlist = new ArrayList<Integer>(model.get_highscores_object().get_highscores());
 		return arrlist; 
 	}
 

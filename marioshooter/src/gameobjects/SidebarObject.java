@@ -1,12 +1,12 @@
-package assets;
+package gameobjects;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Color;
 import java.awt.Font;
 
-import assets.XYPoint;
-import assets.GameLevels;
+import codeassets.XYPoint;
+import levels.GameLevels;
 
 import static constants.Constants.SIDEBAR_WIDTH;
 import static constants.Constants.SIDEBAR_HEIGHT;
@@ -77,7 +77,7 @@ public class SidebarObject extends GameObject {
 		g2.drawString(Integer.toString(playerobject_reference.get_lifes()), all_text_x_pos , y_pos_lives + line_height + line_spacing);
 	}
 	
-	
+	@Override
 	public boolean outsideDrawingArea() {
 		return false;
 	}

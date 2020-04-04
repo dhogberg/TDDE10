@@ -9,11 +9,11 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-import assets.PlayfieldObject;
-import assets.SidebarObject;
-import assets.PlayerObject;
-import assets.GameLevels;
-import assets.GameObject;
+import gameobjects.GameObject;
+import gameobjects.PlayerObject;
+import gameobjects.PlayfieldObject;
+import gameobjects.SidebarObject;
+import levels.GameLevels;
 import states.GameModel;
 
 import static constants.Constants.DEV_SHOW_ACTIVE_KEYS;

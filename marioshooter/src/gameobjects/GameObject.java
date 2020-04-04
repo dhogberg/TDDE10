@@ -1,10 +1,12 @@
-package assets;
+package gameobjects;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
-import assets.Imageloader;
+import codeassets.HitBox;
+import codeassets.Imageloader;
+import codeassets.XYPoint;
 
 import static constants.Constants.ACTIVEDRAWAREA_WIDTH;
 import static constants.Constants.ACTIVEDRAWAREA_HEIGHT;
