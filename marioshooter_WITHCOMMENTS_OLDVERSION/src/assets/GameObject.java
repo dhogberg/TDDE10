@@ -1,25 +1,17 @@
 package assets;
 
 import constants.Constants;
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-
-import assets.Imageloader;
 
 import static constants.Constants.ACTIVEDRAWAREA_WIDTH;
 import static constants.Constants.ACTIVEDRAWAREA_HEIGHT;
 import static constants.Constants.ACTIVEDRAWAREA_XPOS;
 import static constants.Constants.ACTIVEDRAWAREA_YPOS;
 
-/** 
- * 
- * TODO: Describe what this class does!
- * 
- * @author David & Johan
- * @version 1.0
- * @since 1.0
- */
+
 public abstract class GameObject {
 	
 	private BufferedImage objectGraphic;
@@ -39,6 +31,11 @@ public abstract class GameObject {
 		this.hitbox = new HitBox();
 		this.scale = 1.0;
 	}
+
+	//public void dev_print_hitboxes() {
+		//System.out.print("Hitboxes: ");
+		//System.out.printf("%s %s\n", this.name, this.hitbox.development_only_get_values_as_string());
+	//}
 	
 	public abstract boolean outsideDrawingArea();
 	
@@ -58,6 +55,7 @@ public abstract class GameObject {
 		this.type_of_object = type_of_object;
 	}
 	
+	
 	public String get_name() {
 		return this.name;
 	}
@@ -72,6 +70,9 @@ public abstract class GameObject {
 
 		// UPDATE HITBOX
 		this.hitbox.update(this.get_leftupperXY(), get_rightlowerXY());
+		
+		// DEV 
+		//this.hitbox.development_only_print_values_to_console_with_name(this.name);
 	}
 	
 	public void updatePosition(double executionTime) {
@@ -79,11 +80,11 @@ public abstract class GameObject {
 	}
 	
 	public void collideWithPlayer() {
-		// By default do nothing
+		// By default does nothing
 	}
 	
 	public void collideWithGameobject(GameObject obj) {
-		// By default do nothing
+		// By default does nothing
 	}
 	
 	public void updateHitbox() {
@@ -104,7 +105,7 @@ public abstract class GameObject {
 	
 	public void drawObject(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
-		g2.drawImage(this.get_objectGraphic(), position.x_as_int() - get_objectGraphic_scaledWidth() / 2, position.y_as_int() - get_objectGraphic_scaledHeight() / 2, get_objectGraphic_scaledWidth(), get_objectGraphic_scaledHeight(), null);
+		g2.drawImage(this.get_objectGraphic(), position.x() - get_objectGraphic_scaledWidth() / 2, position.y() - get_objectGraphic_scaledHeight() / 2, get_objectGraphic_scaledWidth(), get_objectGraphic_scaledHeight(), null);
 	}
 	
 	public BufferedImage get_objectGraphic() {
@@ -115,11 +116,6 @@ public abstract class GameObject {
 		this.objectGraphic = image;
 	}
 	
-	public void load_objectGraphic_and_calc_dimensions(String image_path){
-		this.objectGraphic = Imageloader.loadImage(image_path);
-		set_objectGraphic_width(this.objectGraphic.getWidth());
-		set_objectGraphic_height(this.objectGraphic.getHeight());
-	}
 
 	public XYPoint get_leftupperXY(){
 		final int x = this.position.x_as_int() - (this.get_width() / 2);
@@ -135,6 +131,8 @@ public abstract class GameObject {
 		return new XYPoint(x, y);
 	}
 
+
+
 	public int get_width() {
 		return (int) Math.round( scale * this.objectGraphic_width ); 
 	}
@@ -143,13 +141,18 @@ public abstract class GameObject {
 		return (int) Math.round( scale * this.objectGraphic_height ); 
 	}
 
+
+	/* TODO: REMOVE LATER, DUPLICATES OF ABOVE*/
 	public int get_objectGraphic_scaledWidth() {
 		return (int) Math.round( scale * this.objectGraphic_width ); 
-	}
+	}/* REMOVE LATER, DUPLICATES OF ABOVE*/
 	
+	/* TODO: REMOVE LATER, DUPLICATES OF ABOVE*/
 	public int get_objectGraphic_scaledHeight() {
 		return (int) Math.round( scale * this.objectGraphic_height ); 
-	}
+	}/* REMOVE LATER, DUPLICATES OF ABOVE*/
+	
+
 
 	public void set_objectGraphic_width(int w) {
 		this.objectGraphic_width = w;
@@ -174,7 +177,8 @@ public abstract class GameObject {
 	public XYPoint get_position() {
 		return this.position;
 	}
-
+	
+	// TODO: Remove this method, not needed ?
 	public void set_position(double x, double y) {
 		this.position.setX(x);
 		this.position.setY(y);

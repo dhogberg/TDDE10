@@ -1,8 +1,6 @@
 package assets;
 
-import java.awt.image.BufferedImage;
 import java.util.Random;
-import main.Main;
 
 import assets.XYPoint;
 
@@ -24,30 +22,21 @@ import static constants.Constants.PLAYFIELD_XPOS;
  * @since 1.0
  */
 public class StarObject extends GameObject {
-	
-	private BufferedImage objectGraphic;
 	private XYPoint velocity;
 	private boolean falling;
 
 	public StarObject(String name) {
 		super();
-		this.objectGraphic = Main.loadImage("sprites/star_16x16.png"); // TODO: SKRIV OM SKRIV OM
-		this.set_objectGraphic(this.objectGraphic);
+		load_objectGraphic_and_calc_dimensions("sprites/star_16x16.png");
 		this.set_scale(2.0);
-		set_objectGraphic_width(16);
-		set_objectGraphic_height(16);
-		
 		Random ran = new Random();
 		int randomX = PLAYFIELD_XPOS + ran.nextInt( PLAYFIELD_WIDTH + 1 - this.get_width() ) + this.get_width() / 2; // Random integer
 		int randomY = PLAYFIELD_YPOS + ran.nextInt( PLAYFIELD_HEIGHT + 1 - this.get_height() ) +  this.get_height() / 2; // Random integer
 		this.set_position(randomX, randomY);
-		
 		this.updateHitbox();
 		this.enableHitbox();
-		
 		this.set_name(name);
 		this.set_type_of_object("star");
-		
 		this.velocity = new XYPoint(0.0, 0.0); this.set_velocity(this.velocity);
 	}
 	

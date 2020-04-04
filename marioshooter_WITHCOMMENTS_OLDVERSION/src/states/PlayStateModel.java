@@ -1,54 +1,76 @@
 package states;
 
-import java.awt.event.MouseEvent;
-import java.awt.Graphics2D;
+import javax.imageio.ImageIO;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Color;
-
-import java.util.ArrayList;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 
-import assets.PlayfieldObject;
-import assets.SidebarObject;
-import assets.PlayerObject;
-import assets.GameLevels;
-import assets.GameObject;
-import states.GameModel;
+import constants.Constants;
 
+import static constants.Constants.SCREEN_HEIGHT;
+import static constants.Constants.SCREEN_WIDTH;
 import static constants.Constants.DEV_SHOW_ACTIVE_KEYS;
 
-/** 
- * 
- * TODO: This an important class used to represent the current state
- * of the game when playing. It contains the data of the player and all the objects on the playfield
- * 
- * @author David & Johan
- * @version 1.0
- * @since 1.0
- */
+import assets.GameObject;
+import assets.PlayerObject;
+import assets.PlayerbulletObject;
+import assets.PlayfieldObject;
+import assets.SidebarObject;
+import assets.BulletenemyObject;
+import assets.LifeupObject;
+import assets.StarObject;
+import assets.GameLevels;
+import states.GameModel;
+
 public class PlayStateModel extends GameState{
-	private GameLevels lvl; 
+	
+	private PlayState playStateReference;
+	
 	private PlayerObject playerObject;
-	private SidebarObject sidebarObject;
 	private PlayfieldObject playfieldObject;
-	private ArrayList<GameObject> gameobjects;
-	private ArrayList<GameObject> playerbullets;
+	private SidebarObject sidebarObject;
 	private Set<Integer> active_keys = new HashSet<Integer>();
+	
+	private ArrayList<GameObject> gameobjects;
+	
+	private ArrayList<GameObject> playerbullets;
+	
+	private GameLevels lvl; 
 
 	public PlayStateModel(GameModel model) {
 		super(model);
+		
 		gameobjects = new ArrayList<GameObject>();
+		
 		this.playfieldObject = new PlayfieldObject();
+		
 		this.lvl = new GameLevels(this);
+		
 		playerbullets = new ArrayList<GameObject>();
+		
 		this.playerObject = new PlayerObject(this.playerbullets, model);
+		
+		
 		this.sidebarObject = new SidebarObject(playerObject, lvl);
+		
 		playerObject.set_name("Player1");
+		
+		//this.gameobjects.add(new BulletenemyObject("bullet1"));
+		//this.gameobjects.add(new LifeupObject("life1"));
 	}
 	
 	public void mouseClicked(MouseEvent e) {
-		// Here we can add mouseclickevents in the future
+		// Here we can add mouseclicks
 	}
 	
 	public int getCurrentLevel() {
@@ -78,19 +100,25 @@ public class PlayStateModel extends GameState{
 	
 	public void drawObjects(Graphics2D g2) {
 		// Draw playingfield
-		playfieldObject.draw(g2);	
+		playfieldObject.draw(g2);
 		
-		// To avoid concurrentModification, we copy the list
-		// beforehand and then we loop through the copy
+		
+		/*
+		 * To avoid concurrentModification, we copy the list
+		 * beforehand and then we loop through the copy
+		 */
+		
+		
+		// Draw gameobjects
 		final ArrayList<GameObject> copyof_gameobjects = new ArrayList<GameObject>(this.gameobjects);
+		
+		// Draw playerbullets
 		final ArrayList<GameObject> copyof_playerbullets = new ArrayList<GameObject>(this.playerbullets);
 		
-		// Draw gameobjects 
 		for (GameObject obj : copyof_gameobjects) {
 			obj.draw(g2);
 		}
 		
-		// Draw playerbullets
 		for (GameObject obj : copyof_playerbullets) {
 			obj.draw(g2);
 		}
@@ -107,7 +135,9 @@ public class PlayStateModel extends GameState{
 	}
 	
 	public void update(double executionTime) {
-		//gameobjects.add(new BulletenemyObject("bullet1"));
+		//this.gameobjects.add(new LifeupObject("life1"));
+		//this.gameobjects.add(new StarObject("star1"));
+		//this.gameobjects.add(new BulletenemyObject("bullet1"));
 		this.updateObjects(executionTime, this.active_keys);
 	}
 	
@@ -157,11 +187,12 @@ public class PlayStateModel extends GameState{
 			}
 		}
 		
-		// DELETE THE OBJECTS OUTSIDE SCREEN FROM LIST GENERATED ABOVE
+		// DELETE THE OBJECTS
 		for (GameObject obj : tmp_remove_objs) {
 			System.out.printf("OBJECT with name %s GOT DELETED FROM GAMEOBJECTS ARRAYLIST!\n", obj.get_name());
 			this.gameobjects.remove(obj);
 		}
+		//System.out.printf("Player1 no of lifes: %s Immortal: %s ImmortalTimer: %s BlinkingIntervalTimer: %s\n", playerObject.get_lifes(), playerObject.get_immortal(), playerObject.get_immortaltimer(), playerObject.get_blinkingintervaltimer());
 
 		if(DEV_SHOW_ACTIVE_KEYS){ // Development test code
 			System.out.printf("Active keys: %s\n",active_keys);
@@ -169,10 +200,12 @@ public class PlayStateModel extends GameState{
 	}
 
 	public void keyPressed(int keycode) {
+		//System.out.printf("%s pressed!\n", keycode);
 		active_keys.add(keycode);
 	}
 
 	public void keyReleased(int keycode) {
+		//System.out.printf("%s released!\n", keycode);
 		active_keys.remove(keycode);
 	}
 

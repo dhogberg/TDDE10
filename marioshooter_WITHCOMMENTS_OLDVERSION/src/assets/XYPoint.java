@@ -1,13 +1,5 @@
 package assets;
 
-/** 
- * 
- * A class that can hold XY coordinates and methods to interact with the coordinates
- * 
- * @author David & Johan
- * @version 1.0
- * @since 1.0
- */
 public class XYPoint {
 
 	private double x;
@@ -31,12 +23,12 @@ public class XYPoint {
 		return (int) Math.round(this.y);
 	}
 
-	public double x() {
-		return this.x;
+	public int x() {
+		return (int) Math.round(this.x);
 	}
 	
-	public double y() {
-		return this.y;
+	public int y() {
+		return (int) Math.round(this.y);
 	}
 	
 	public void setX (double x) {
