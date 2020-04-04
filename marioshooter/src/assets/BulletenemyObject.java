@@ -36,8 +36,8 @@ public class BulletenemyObject extends GameObject {
 		this.objectGraphic = Main.loadImage("sprites/bullet_enemy_16x14.png"); // TODO: SKRIV OM SKRIV OM
 		this.set_objectGraphic(this.objectGraphic);
 		this.set_scale(2.0);
-		set_objectGraphic_width(16);
-		set_objectGraphic_height(14);
+		set_objectGraphic_width(this.objectGraphic.getWidth());
+		set_objectGraphic_height(this.objectGraphic.getHeight());
 		
 		Random ran = new Random();
 		int randomHeight = PLAYFIELD_YPOS + ran.nextInt( PLAYFIELD_HEIGHT + 1 - this.get_height() ) +  this.get_height() / 2; // Random integer 

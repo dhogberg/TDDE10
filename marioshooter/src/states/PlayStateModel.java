@@ -1,36 +1,22 @@
 package states;
 
-import javax.imageio.ImageIO;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Color;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.awt.Graphics2D;
+import java.awt.Graphics;
+import java.awt.Color;
+
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 
-import constants.Constants;
-
-import static constants.Constants.SCREEN_HEIGHT;
-import static constants.Constants.SCREEN_WIDTH;
-import static constants.Constants.DEV_SHOW_ACTIVE_KEYS;
-
-import assets.GameObject;
-import assets.PlayerObject;
-import assets.PlayerbulletObject;
 import assets.PlayfieldObject;
 import assets.SidebarObject;
-import assets.BulletenemyObject;
-import assets.LifeupObject;
-import assets.StarObject;
+import assets.PlayerObject;
 import assets.GameLevels;
+import assets.GameObject;
 import states.GameModel;
+
+import static constants.Constants.DEV_SHOW_ACTIVE_KEYS;
 
 /** 
  * 
@@ -41,15 +27,13 @@ import states.GameModel;
  * @since 1.0
  */
 public class PlayStateModel extends GameState{
-	
-	private PlayState playStateReference;
+	private GameLevels lvl; 
 	private PlayerObject playerObject;
-	private PlayfieldObject playfieldObject;
 	private SidebarObject sidebarObject;
-	private Set<Integer> active_keys = new HashSet<Integer>();
+	private PlayfieldObject playfieldObject;
 	private ArrayList<GameObject> gameobjects;
 	private ArrayList<GameObject> playerbullets;
-	private GameLevels lvl; 
+	private Set<Integer> active_keys = new HashSet<Integer>();
 
 	public PlayStateModel(GameModel model) {
 		super(model);
@@ -63,7 +47,7 @@ public class PlayStateModel extends GameState{
 	}
 	
 	public void mouseClicked(MouseEvent e) {
-		// Here we can add mouseclicks
+		// Here we can add mouseclickevents in the future
 	}
 	
 	public int getCurrentLevel() {
@@ -93,25 +77,19 @@ public class PlayStateModel extends GameState{
 	
 	public void drawObjects(Graphics2D g2) {
 		// Draw playingfield
-		playfieldObject.draw(g2);
+		playfieldObject.draw(g2);	
 		
-		
-		/*
-		 * To avoid concurrentModification, we copy the list
-		 * beforehand and then we loop through the copy
-		 */
-		
-		
-		// Draw gameobjects
+		// To avoid concurrentModification, we copy the list
+		// beforehand and then we loop through the copy
 		final ArrayList<GameObject> copyof_gameobjects = new ArrayList<GameObject>(this.gameobjects);
-		
-		// Draw playerbullets
 		final ArrayList<GameObject> copyof_playerbullets = new ArrayList<GameObject>(this.playerbullets);
 		
+		// Draw gameobjects 
 		for (GameObject obj : copyof_gameobjects) {
 			obj.draw(g2);
 		}
 		
+		// Draw playerbullets
 		for (GameObject obj : copyof_playerbullets) {
 			obj.draw(g2);
 		}
@@ -178,7 +156,7 @@ public class PlayStateModel extends GameState{
 			}
 		}
 		
-		// DELETE THE OBJECTS
+		// DELETE THE OBJECTS OUTSIDE SCREEN FROM LIST GENERATED ABOVE
 		for (GameObject obj : tmp_remove_objs) {
 			System.out.printf("OBJECT with name %s GOT DELETED FROM GAMEOBJECTS ARRAYLIST!\n", obj.get_name());
 			this.gameobjects.remove(obj);
