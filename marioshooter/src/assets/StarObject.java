@@ -15,7 +15,7 @@ import static constants.Constants.PLAYFIELD_XPOS;
 
 /** 
  * 
- * TODO: Describe what this class does!
+ * TODO: Represent the item star. Prevents the player to take damage for some time!
  * 
  * @author David & Johan
  * @version 1.0

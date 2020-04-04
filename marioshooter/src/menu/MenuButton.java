@@ -10,7 +10,7 @@ import assets.XYPoint;
 
 /** 
  * 
- * TODO: Describe what this class does!
+ * TODO: Represents the menu button. Draws the menu botton and its size/hitbox
  * 
  * @author David & Johan
  * @version 1.0

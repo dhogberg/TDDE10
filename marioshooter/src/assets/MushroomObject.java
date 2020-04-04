@@ -17,7 +17,7 @@ import static constants.Constants.PLAYFIELD_XPOS;
 
 /** 
  * 
- * TODO: Describe what this class does!
+ * TODO: Represents the item mushroom. Increases sze and fire rate for the player when picked up.
  * 
  * @author David & Johan
  * @version 1.0

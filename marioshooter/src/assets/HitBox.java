@@ -2,7 +2,7 @@ package assets;
 
 /** 
  * 
- * TODO: Describe what this class does!
+ * TODO: Creates hitboxes!
  * 
  * @author David & Johan
  * @version 1.0
