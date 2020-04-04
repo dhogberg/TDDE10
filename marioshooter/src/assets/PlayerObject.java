@@ -10,6 +10,11 @@ import states.GameModel;
 import states.GameoverState;
 import assets.XYPoint;
 import assets.PlayerbulletObject;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 
 import static constants.Constants.ACTIVEDRAWAREA_HEIGHT;
 import static constants.Constants.ACTIVEDRAWAREA_WIDTH;
@@ -156,21 +161,30 @@ public class PlayerObject extends GameObject {
 	}
 	
 	public void loseGame() {
+		ArrayList<Integer> highscores = new ArrayList<Integer>(this.model.get_highscores_object().get_highscores());
+		highscores.add(this.score);
+
+		try {
+			FileOutputStream file = new FileOutputStream("src/data/highscores.ser");
+			ObjectOutputStream outfile = new ObjectOutputStream(file);
+			outfile.writeObject(highscores);
+			outfile.close();
+			file.close();
+		} catch (IOException i) {
+			i.printStackTrace();
+		}
 		model.set_lastScore(this.score);
 		model.switchState(new GameoverState(model));
 	}
 	
 	public void getaLife() {
 		this.lifes = this.lifes + 1;
-		System.out.println(">>> Player got a life");
 	}
 	
 	public void loseLife() {
 		if(this.lifes > 1) {
-			System.out.println(">>> Player lost a life");
 			this.lifes = this.lifes - 1;
 		}else {
-			// TODO: GAME OVER!
 			this.lifes = 0;
 			this.loseGame();
 		}

@@ -87,23 +87,7 @@ public class HighscoreState extends GameState{
 	
 	public ArrayList<Integer> get_highscores(){
 		final ArrayList<Integer> arrlist;
-		
-		arrlist = new ArrayList<Integer>();
-		
-		arrlist.add(1337);
-		arrlist.add(242);
-		arrlist.add(22);
-		arrlist.add(20);
-		
-		arrlist.add(500);
-		arrlist.add(13);
-		arrlist.add(73);
-		
-		arrlist.add(2);
-		arrlist.add(7);
-		arrlist.add(6);
-		arrlist.add(9);
-		
+		arrlist = new ArrayList<Integer>(model.get_highscores_object().get_highscores());		
 		return arrlist; 
 	}
 
@@ -111,18 +95,17 @@ public class HighscoreState extends GameState{
 	public void draw_highscores(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		final ArrayList<Integer> tmp_scores; 
+		
 		ArrayList<Integer> highscore = get_highscores();
+		
 		Collections.sort(highscore);
 		Collections.reverse(highscore);
 		int space = 50;
-		if(highscore.size() == 0) {
-			g.drawString("0", SCREEN_WIDTH/2-200,250+space);
-		}
-		else {
-		for(int i = 0; i<10; ++i) {
+		
+		for(int i = 0; i<highscore.size(); ++i) {
 			g.drawString(Integer.toString(highscore.get(i)),SCREEN_WIDTH/2-200,250+space*i);
 		}
-		}
+
 		g.setColor(fontColor);
 		g.setFont(new Font("Monospace", Font.PLAIN, 60));
 		

@@ -66,7 +66,7 @@ public class PlayerbulletObject extends GameObject {
 	@Override
 	public void collideWithGameobject(GameObject obj) {
 		switch(obj.get_type_of_object()) {
-			case "bulletenemy":
+			case "bulletenemy" : case "shellenemy":
 				this.disableHitbox();
 				this.moveOutsideDrawArea();
 				

@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
+import assets.Highscores;
 
 /**
  * This class represents the current state of the game.
@@ -38,9 +39,15 @@ public class GameModel {
 	protected Long lastTime;
 	
 	private int lastScore;
+	private Highscores highscores_object;
 
 	public GameModel() {
 		this.currentState = new MenuState(this);
+		this.highscores_object = new Highscores();
+	}
+	
+	public Highscores get_highscores_object() {
+		return this.highscores_object;
 	}
 	
 	public void set_lastScore(int score) {

@@ -128,6 +128,7 @@ public class PlayStateModel extends GameState{
 	}
 	
 	public void update(double executionTime) {
+		//gameobjects.add(new BulletenemyObject("bullet1"));
 		this.updateObjects(executionTime, this.active_keys);
 	}
 	

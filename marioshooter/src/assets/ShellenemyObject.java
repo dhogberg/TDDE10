@@ -28,7 +28,8 @@ public class ShellenemyObject extends GameObject {
 	
 	private BufferedImage objectGraphic;
 	private XYPoint velocity;
-	private boolean falling;
+	private boolean sliding;
+	private boolean stopped;
 	
 	public ShellenemyObject(String name) {
 		super();
@@ -38,6 +39,8 @@ public class ShellenemyObject extends GameObject {
 		this.set_scale(2.0);
 		set_objectGraphic_width(16);
 		set_objectGraphic_height(16);
+		this.sliding = false;
+		this.stopped = false;
 		
 		Random ran = new Random();
 		int randomHeight = PLAYFIELD_YPOS + ran.nextInt( PLAYFIELD_HEIGHT + 1 - this.get_height() ) +  this.get_height() / 2; // Random integer 
@@ -70,8 +73,14 @@ public class ShellenemyObject extends GameObject {
 	public void collideWithGameobject(GameObject obj) {
 		switch(obj.get_type_of_object()) {
 			case "playerbullet":
-				this.disableHitbox();
-				this.velocity.setX(0.0);
+				
+				if(!this.stopped){
+					this.stopped = true;
+					this.velocity.setX(0.0);
+				}else{
+					this.disableHitbox();
+					this.sliding = true;
+				}
 				System.out.println("Enemybullet has collided with a playerbullet!");
 				break; 
 			default:
@@ -79,21 +88,17 @@ public class ShellenemyObject extends GameObject {
 		}
 	}
 	
-	public void collideWithPlayer() {
-		this.fallOfScreen();
-	}
-	
-	public void fallOfScreen() {
-		this.falling = true;
+	public void slideOfScreen() {
+		this.sliding = true;
 		this.velocity.setX(0.0);
 	}
 	
 	@Override
 	public void update(double executionTime) {
 		super.update(executionTime);
-		if(this.falling) {
+		if(this.sliding) {
 			
-			this.velocity.add(new XYPoint(0.0, 5982.0 * executionTime));
+			this.velocity.setX(2000.0);
 			
 			// UPDATE PARENT OBJECT VELOCITY
 			this.set_velocity( this.velocity );
