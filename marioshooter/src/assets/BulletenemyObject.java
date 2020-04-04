@@ -46,19 +46,6 @@ public class BulletenemyObject extends GameObject {
 		this.set_type_of_object("bulletenemy");
 	}
 	
-	public boolean outsideDrawingArea() {
-		if(
-			this.get_position().x_as_int() < ACTIVEDRAWAREA_XPOS || 
-			this.get_position().x_as_int() > ACTIVEDRAWAREA_XPOS + ACTIVEDRAWAREA_WIDTH || 
-			this.get_position().y_as_int() < ACTIVEDRAWAREA_YPOS || 
-			this.get_position().y_as_int() > ACTIVEDRAWAREA_YPOS + ACTIVEDRAWAREA_HEIGHT
-		) {
-			return true;
-		}else {
-			return false;
-		}
-	}
-	
 	@Override
 	public void collideWithGameobject(GameObject obj) {
 		switch(obj.get_type_of_object()) {

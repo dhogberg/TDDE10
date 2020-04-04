@@ -40,19 +40,6 @@ public class StarObject extends GameObject {
 		this.velocity = new XYPoint(0.0, 0.0); this.set_velocity(this.velocity);
 	}
 	
-	public boolean outsideDrawingArea() {
-		if(
-			this.get_position().x_as_int() < ACTIVEDRAWAREA_XPOS || 
-			this.get_position().x_as_int() > ACTIVEDRAWAREA_XPOS + ACTIVEDRAWAREA_WIDTH || 
-			this.get_position().y_as_int() < ACTIVEDRAWAREA_YPOS || 
-			this.get_position().y_as_int() > ACTIVEDRAWAREA_YPOS + ACTIVEDRAWAREA_HEIGHT
-		) {
-			return true;
-		}else {
-			return false;
-		}
-	}
-	
 	public void collideWithPlayer() {
 		this.disappear();
 	}
