@@ -1,18 +1,14 @@
 package assets;
 
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.Set;
 import java.util.ArrayList;
-import main.Main;
 import states.GameModel;
 import states.GameoverState;
 import assets.XYPoint;
 import assets.PlayerbulletObject;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 
@@ -37,9 +33,6 @@ import static constants.Constants.PLAYFIELD_YPOS;
  * @since 1.0
  */
 public class PlayerObject extends GameObject {
-
-	private BufferedImage objectGraphic;
-	private XYPoint position;
 	private XYPoint velocity;
 	private Boolean invisible;
 	private Boolean blinking;
@@ -47,7 +40,6 @@ public class PlayerObject extends GameObject {
 	private Boolean shooting;
 	private Boolean big;
 	private double immortaltimer;
-	private double invisibletimer;
 	private double bigtimer;
 	private double blinkingtimer;
 	private double blinkingintervaltimer;
@@ -72,11 +64,8 @@ public class PlayerObject extends GameObject {
 		this.lifes = PLAYERLIFES;
 		this.blinkinterval = PLAYER_BLINKINTERVAL;
 		this.shootinterval = PLAYER_SHOOTINTERVAL;
-		this.objectGraphic = Main.loadImage("sprites/mariokart_28x30.png"); // TODO: SKRIV OM SKRIV OM
-		this.set_objectGraphic(this.objectGraphic);
+		load_objectGraphic_and_calc_dimensions("sprites/mariokart_28x30.png");
 		this.set_scale(2.0);
-		set_objectGraphic_width(28);
-		set_objectGraphic_height(30);
 		this.set_position(500.0, 450.0);
 		this.velocity = new XYPoint(0.0, 0.0); this.set_velocity(this.velocity);
 		this.updateHitbox();
@@ -325,7 +314,6 @@ public class PlayerObject extends GameObject {
 		}
 		
 		if(active_keys.contains(32)) { // SPACEBAR
-			//System.out.println("Spacebar pressed!");
 			this.shoot();
 		}
 		

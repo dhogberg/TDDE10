@@ -31,12 +31,12 @@ public class XYPoint {
 		return (int) Math.round(this.y);
 	}
 
-	public int x() {
-		return (int) Math.round(this.x);
+	public double x() {
+		return this.x;
 	}
 	
-	public int y() {
-		return (int) Math.round(this.y);
+	public double y() {
+		return this.y;
 	}
 	
 	public void setX (double x) {

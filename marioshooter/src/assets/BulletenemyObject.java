@@ -25,20 +25,13 @@ import static constants.Constants.PLAYFIELD_YPOS;
  * @since 1.0
  */
 public class BulletenemyObject extends GameObject {
-	
-	private BufferedImage objectGraphic;
 	private XYPoint velocity;
 	private boolean falling;
 	
 	public BulletenemyObject(String name) {
 		super();
-		
-		this.objectGraphic = Main.loadImage("sprites/bullet_enemy_16x14.png"); // TODO: SKRIV OM SKRIV OM
-		this.set_objectGraphic(this.objectGraphic);
+		load_objectGraphic_and_calc_dimensions("sprites/bullet_enemy_16x14.png");
 		this.set_scale(2.0);
-		set_objectGraphic_width(this.objectGraphic.getWidth());
-		set_objectGraphic_height(this.objectGraphic.getHeight());
-		
 		Random ran = new Random();
 		int randomHeight = PLAYFIELD_YPOS + ran.nextInt( PLAYFIELD_HEIGHT + 1 - this.get_height() ) +  this.get_height() / 2; // Random integer 
 		

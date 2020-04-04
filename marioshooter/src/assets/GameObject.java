@@ -4,6 +4,9 @@ import constants.Constants;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+
+import assets.Imageloader;
+
 import static constants.Constants.ACTIVEDRAWAREA_WIDTH;
 import static constants.Constants.ACTIVEDRAWAREA_HEIGHT;
 import static constants.Constants.ACTIVEDRAWAREA_XPOS;
@@ -55,7 +58,6 @@ public abstract class GameObject {
 		this.type_of_object = type_of_object;
 	}
 	
-	
 	public String get_name() {
 		return this.name;
 	}
@@ -77,11 +79,11 @@ public abstract class GameObject {
 	}
 	
 	public void collideWithPlayer() {
-		// By default does nothing
+		// By default do nothing
 	}
 	
 	public void collideWithGameobject(GameObject obj) {
-		// By default does nothing
+		// By default do nothing
 	}
 	
 	public void updateHitbox() {
@@ -102,7 +104,7 @@ public abstract class GameObject {
 	
 	public void drawObject(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
-		g2.drawImage(this.get_objectGraphic(), position.x() - get_objectGraphic_scaledWidth() / 2, position.y() - get_objectGraphic_scaledHeight() / 2, get_objectGraphic_scaledWidth(), get_objectGraphic_scaledHeight(), null);
+		g2.drawImage(this.get_objectGraphic(), position.x_as_int() - get_objectGraphic_scaledWidth() / 2, position.y_as_int() - get_objectGraphic_scaledHeight() / 2, get_objectGraphic_scaledWidth(), get_objectGraphic_scaledHeight(), null);
 	}
 	
 	public BufferedImage get_objectGraphic() {
@@ -113,6 +115,11 @@ public abstract class GameObject {
 		this.objectGraphic = image;
 	}
 	
+	public void load_objectGraphic_and_calc_dimensions(String image_path){
+		this.objectGraphic = Imageloader.loadImage(image_path);
+		set_objectGraphic_width(this.objectGraphic.getWidth());
+		set_objectGraphic_height(this.objectGraphic.getHeight());
+	}
 
 	public XYPoint get_leftupperXY(){
 		final int x = this.position.x_as_int() - (this.get_width() / 2);
