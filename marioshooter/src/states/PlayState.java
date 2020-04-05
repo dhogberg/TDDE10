@@ -62,7 +62,11 @@ public class PlayState extends GameState {
 		this.lastTime = timeNow;
 	}
 	
-	public void mouseClicked(MouseEvent e) {
+	public void mousePressed(MouseEvent e) {
+		// Here it is possible to add mouseclick events
+	}
+	
+	public void mousePressed(int x, int y) {
 		// Here it is possible to add mouseclick events
 	}
 	

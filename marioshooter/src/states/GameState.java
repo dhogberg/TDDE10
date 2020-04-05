@@ -58,7 +58,9 @@ public abstract class GameState {
 	
 	public abstract void keyReleased(int key);
 	
-	public abstract void mouseClicked(MouseEvent e);
+	public abstract void mousePressed(MouseEvent e);
+	
+	public abstract void mousePressed(int x, int y);
 
 	public void drawBg(Graphics g, Color color) {
 		g.setColor(color);

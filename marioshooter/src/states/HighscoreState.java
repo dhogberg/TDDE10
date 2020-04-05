@@ -37,13 +37,18 @@ public class HighscoreState extends GameState{
 		fontColor = new Color(255, 255, 255);
 	}
 	
-	public void mouseClicked(MouseEvent e) {
-		
+	public void mousePressed(MouseEvent e) {
 		if(back_to_menu.containsXY(e.getX(), e.getY())) {
 			System.out.println("changeState to Menustate");
 			model.switchState(new MenuState(model));
 		}
-		
+	}
+	
+	public void mousePressed(int x, int y) {
+		if(back_to_menu.containsXY(x, y)) {
+			System.out.println("changeState to Menustate");
+			model.switchState(new MenuState(model));
+		}
 	}
 	
 	public ArrayList<Integer> get_highscores(){

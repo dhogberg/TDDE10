@@ -68,9 +68,23 @@ public class MenuState extends GameState{
 		//model.switchState(new PlayState(model));
 	}
 	
-	public void mouseClicked(MouseEvent e) {
+	public void mousePressed(MouseEvent e) {
 		int x = e.getX();
 		int y = e.getY();
+		if(startgame_text_2.containsXY(x, y)) {
+			System.out.println("changeState to PlayState");
+			model.switchState(new PlayState(model));
+		}
+		if(highscores_text_2.containsXY(x, y)) {
+			System.out.println("changeState to HighscoreState");
+			model.switchState(new HighscoreState(model));
+		}
+		if(quit_text_2.containsXY(x, y)) {
+			System.exit(1);
+		}
+	}
+	
+	public void mousePressed(int x, int y) {
 		if(startgame_text_2.containsXY(x, y)) {
 			System.out.println("changeState to PlayState");
 			model.switchState(new PlayState(model));

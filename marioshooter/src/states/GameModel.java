@@ -71,8 +71,11 @@ public class GameModel {
 	}
 
 	
-	public void mouseClicked(MouseEvent e) {
-		currentState.mouseClicked(e);
+	public void mousePressed(MouseEvent e) {
+		currentState.mousePressed(e);
+	}
+	public void mousePressed(int x, int y) {
+		currentState.mousePressed(x, y);
 	}
 	
 	

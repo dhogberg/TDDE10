@@ -58,9 +58,12 @@ public class GameFrame extends JFrame {
 		
 		this.addMouseListener(new MouseAdapter() {
 			
-			public void mouseClicked(MouseEvent e) {
+			public void mousePressed(MouseEvent e) {
 				System.out.println("CLICK! < > < > < >");
-				model.mouseClicked(e);
+				int x = e.getX();
+				int y = e.getY();
+				model.mousePressed(x,y);
+				//model.mousePressed(e);
 			}
 		});
 		

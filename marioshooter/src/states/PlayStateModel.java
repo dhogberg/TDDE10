@@ -47,10 +47,14 @@ public class PlayStateModel extends GameState{
 		playerObject.set_name("Player1");
 	}
 	
-	public void mouseClicked(MouseEvent e) {
+	public void mousePressed(MouseEvent e) {
 		// Here we can add mouseclickevents in the future
 	}
 	
+	public void mousePressed(int x, int y) {
+		// Here we can add mouseclickevents in the future
+	}
+
 	public int getCurrentLevel() {
 		return this.lvl.getLevel();
 	}
