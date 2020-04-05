@@ -4,7 +4,7 @@ import codeassets.XYPoint;
 
 /** 
  * 
- * TODO: Represents the shot coming from the player!
+ *  Represents the shot coming from the player
  * 
  * @author David & Johan
  * @version 1.0

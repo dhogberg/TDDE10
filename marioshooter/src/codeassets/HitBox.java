@@ -2,7 +2,7 @@ package codeassets;
 
 /** 
  * 
- * TODO: Creates hitboxes!
+ * 
  * 
  * @author David & Johan
  * @version 1.0

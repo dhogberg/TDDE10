@@ -10,7 +10,7 @@ import java.awt.Graphics2D;
 
 /** 
  * 
- * TODO: Represents the menu button. Draws the menu botton and its size/hitbox
+ *  Represents the menu button. Draws the menu botton and its size/hitbox
  * 
  * @author David & Johan
  * @version 1.0

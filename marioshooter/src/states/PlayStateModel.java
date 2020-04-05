@@ -20,7 +20,7 @@ import static constants.Constants.DEV_SHOW_ACTIVE_KEYS;
 
 /** 
  * 
- * TODO: This an important class used to represent the current state
+ * TODO: This class is used to represent the current state
  * of the game when playing. It contains the data of the player and all the objects on the playfield
  * 
  * @author David & Johan
