@@ -22,7 +22,7 @@ public class LifeupObject extends GameObject {
 
 	public LifeupObject(String name) {
 		super();
-		load_objectGraphic_and_calc_dimensions("src/graphicassets/mushroom_18x18.png");
+		load_objectGraphic_and_calc_dimensions("src/graphicassets/1up_mushroom_18x18.png");
 		this.set_scale(2.0);
 		Random ran = new Random();
 		int randomX = PLAYFIELD_XPOS + ran.nextInt( PLAYFIELD_WIDTH + 1 - this.get_width() ) + this.get_width() / 2; // Random integer
