@@ -25,7 +25,6 @@ import codeassets.Highscores;
 
 /** 
  * 
- * TODO: Describe what this class does!
  * 
  * @author David & Johan
  * @version 1.0
