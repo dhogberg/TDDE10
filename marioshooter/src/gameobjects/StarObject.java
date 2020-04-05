@@ -32,7 +32,7 @@ public class StarObject extends GameObject {
 		this.updateHitbox();
 		this.enableHitbox();
 		this.set_name(name);
-		this.set_type_of_object("star");
+		this.set_type_of_object("starpowerup");
 		this.velocity = new XYPoint(0.0, 0.0); this.set_velocity(this.velocity);
 	}
 	

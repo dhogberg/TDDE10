@@ -90,6 +90,10 @@ public class PlayerObject extends GameObject {
 				System.out.println("Player has collided with mushroom!");
 				this.powerup_mushroom();
 				break;
+			case "starpowerup":
+				obj.disableHitbox();
+				System.out.println("Player has collided with starpower!");
+				this.powerup_star();
 			// 
 			default:
 				System.out.println("Player has collided with something!");
@@ -102,6 +106,10 @@ public class PlayerObject extends GameObject {
 			this.makeImmortalForSeconds(4.0);
 			this.makeBlinkingForSeconds(4.0);
 		}
+	}
+
+	public void powerup_star(){
+		
 	}
 	
 	public int get_lifes() {
