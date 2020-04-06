@@ -1,6 +1,7 @@
 package gameobjects;
 
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.util.Set;
 import java.util.ArrayList;
 import states.GameModel;
@@ -39,12 +40,16 @@ public class PlayerObject extends GameObject {
 	private double shootinterval;
 	private int lifes;
 	private int score;
+	private int size;
 	private double blinkinterval;
 	private ArrayList<GameObject> gameobjects_reference;
+	private ArrayList<BufferedImage> star_objectsGraphics_list;
+	
 	private GameModel model;
 
 	public PlayerObject(ArrayList<GameObject> gameobjects, GameModel model) {
 		super();
+		
 		this.model = model;
 		this.gameobjects_reference = gameobjects;
 		this.invisible = false;
@@ -52,6 +57,7 @@ public class PlayerObject extends GameObject {
 		this.immortal = false;
 		this.shooting = false;
 		this.big = false;
+		this.size = 1;
 		this.score = 0;
 		this.lifes = PLAYERLIFES;
 		this.blinkinterval = PLAYER_BLINKINTERVAL;
@@ -109,7 +115,7 @@ public class PlayerObject extends GameObject {
 	}
 
 	public void powerup_star(){
-		
+		this.makeImmortalForSeconds(4.0);
 	}
 	
 	public int get_lifes() {
@@ -156,14 +162,18 @@ public class PlayerObject extends GameObject {
 	}
 	
 	public void powerup_mushroom() {
-		this.big = true;
-		this.set_scale(this.get_scale() * 2);
-		this.shootinterval = shootinterval / 2;
-		this.bigtimer = 6.0;
+		if(this.size<=3){
+			this.big = true;
+			this.size = this.size + 1;
+			this.set_scale(this.get_scale() * 2);
+			this.shootinterval = shootinterval / 2;
+			this.bigtimer = 6.0;
+		}
 	}
 	
 	public void updateBigTimer(double executionTime) {
 		if(this.bigtimer < executionTime) {
+			this.size = this.size - 1;
 			this.big = false;
 			this.set_scale(this.get_scale() / 2);
 			this.shootinterval = shootinterval * 2;
