@@ -27,7 +27,7 @@ import static constants.Constants.DEV_SHOW_ACTIVE_KEYS;
  * @version 1.0
  * @since 1.0
  */
-public class PlayStateModel extends GameState{
+public class PlayModel extends GameState{
 	private GameLevels lvl; 
 	private PlayerObject playerObject;
 	private SidebarObject sidebarObject;
@@ -36,7 +36,7 @@ public class PlayStateModel extends GameState{
 	private ArrayList<GameObject> playerbullets;
 	private Set<Integer> active_keys = new HashSet<Integer>();
 
-	public PlayStateModel(GameModel model) {
+	public PlayModel(GameModel model) {
 		super(model);
 		gameobjects = new ArrayList<GameObject>();
 		this.playfieldObject = new PlayfieldObject();

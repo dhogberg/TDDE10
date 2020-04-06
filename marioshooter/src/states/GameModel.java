@@ -33,9 +33,9 @@ import codeassets.Highscores;
 public class GameModel {
 
 	private GameState currentState;
-	protected Long lastTime;
 	private int lastScore;
 	private Highscores highscores_object;
+	protected Long lastTime;
 
 	public GameModel() {
 		this.currentState = new MenuState(this);

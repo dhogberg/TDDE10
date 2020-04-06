@@ -1,6 +1,6 @@
 package levels;
 
-import states.PlayStateModel;
+import states.PlayModel;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -24,7 +24,7 @@ import java.awt.Color;
 public class GameLevels {
 	
 	private int level;
-	private PlayStateModel playStateModel_reference;
+	private PlayModel playStateModel_reference;
 	
 	private double BULLETENEMY_spawn_pause_timer;
 	private double BULLETENEMY_spawn_pause_interval;
@@ -34,7 +34,7 @@ public class GameLevels {
 
 	private double elapsed_time_on_level;
 	
-	public GameLevels(PlayStateModel playStateModel) {
+	public GameLevels(PlayModel playStateModel) {
 		this.playStateModel_reference = playStateModel;
 		this.BULLETENEMY_spawn_pause_interval = 2.0;
 		this.POWERUP_spawn_pause_interval = 2.0;

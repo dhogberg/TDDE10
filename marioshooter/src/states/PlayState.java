@@ -41,12 +41,12 @@ import java.awt.event.MouseEvent;
  */
 public class PlayState extends GameState {
 	
-	private PlayStateModel playStateModel;
+	private PlayModel playStateModel;
 	private long lastTime = System.currentTimeMillis();
 
 	public PlayState(GameModel model) {
 		super(model);
-		this.playStateModel = new PlayStateModel(model);
+		this.playStateModel = new PlayModel(model);
 	}
 
 	@Override
